@@ -1,5 +1,5 @@
 # LevelDB_Study
-2022 [DKU System Softeware Lab](https://sslab.dankook.ac.kr/) LevelDB Study
+2022 [DKU System Software Lab](https://sslab.dankook.ac.kr/) LevelDB Study
 
 ## Goals
 * [Analyze and doucument LevelDB.](./analysis/README.md)
