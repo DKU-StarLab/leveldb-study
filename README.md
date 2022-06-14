@@ -1,8 +1,8 @@
 # LevelDB_Study
-2022 [DKU System Software Lab](https://sslab.dankook.ac.kr/) LevelDB Study
+2022 [DKU System Softeware Lab](https://sslab.dankook.ac.kr/) LevelDB Study
 
 ## Goals
-* [Analyze and document LevelDB.](./analysis/README.md)
+* [Analyze and doucument LevelDB.](./analysis/README.md)
 * [Optimize LevelDB for real-world workload.](./optimization/README.md)
 * [Implement new ideas in LevelDB.](./new_implementation/README.md)
 * Write a research (undergraduate) paper on what you learned.
@@ -20,17 +20,21 @@
 * Professor: [Jongmoo Choi](http://embedded.dankook.ac.kr/~choijm/), [Seehwan Yoo](https://sites.google.com/site/dkumobileos/members/seehwanyoo)
 
 ## Schedule
+* Date: Every Tuesday in July, August
+* Time: 14:00 ~ 16:00
+* Place: Dankook University Software ICT Hall
+
 |No|Date|Contents||
 |--|--|--|--|
-|Week 1|22-07-04|LevelDB Introduction 1|What is key-value store? </br> Why open-source?|
-|Week 2|22-07-11|LevelDB Introduction 2|LevelDB basics </br>Analytics tools|
-|Week 3|22-07-18|LevelDB Analysis 1||
-|Week 4|22-07-25|LevelDB Analysis 2||
-|Week 5|22-08-01|LevelDB Analysis 3||
-|Week 6|22-08-08|LevelDB Analysis 4||
-|Week 7|22-08-15|Real-World Workload Optimization|YCSB</br>Twitter Trace|
-|Week 8|22-08-22|New Idea Implementation 1||
-|Week 9|22-08-29|New Idea Implementation 2|Write (undergraduate) research paper|
+|Week 1|22-07-05|LevelDB Introduction 1|What is key-value store? </br> Why open-source?|
+|Week 2|22-07-12|LevelDB Introduction 2|LevelDB basics </br>Analytics tools|
+|Week 3|22-07-19|LevelDB Analysis 1||
+|Week 4|22-07-26|LevelDB Analysis 2||
+|Week 5|22-08-02|LevelDB Analysis 3||
+|Week 6|22-08-09|LevelDB Analysis 4||
+|Week 7|22-08-16|Real-World Workload Optimization|YCSB</br>Twitter Trace|
+|Week 8|22-08-23|New Idea Implementation 1||
+|Week 9|22-08-30|New Idea Implementation 2|Write (undergraduate) research paper|
 
 ## References
 * Lecture
