@@ -1,4 +1,7 @@
+
+
 # Topic
+- Implement your new ideas in LevelDB. Below ideas are also fine.
 ## 1. Compaction
 - FIFO Compaction
 - TRIAD-MEM
