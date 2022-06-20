@@ -13,7 +13,7 @@
 2. WAL:
 3. Compaction:
 4. SSTable:
-5. Bloom Filiter:
+5. Bloom Filter:
 6. Cache:
 * Assistant: [Min-guk Choi](https://github.com/korea-choi)
 * Senior Assistant: [Sounghyoun Lee](https://github.com/shl812), [Hojin Shin](https://github.com/shinhojin)
