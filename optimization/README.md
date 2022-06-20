@@ -1,13 +1,13 @@
 # Optimize LevelDB Options for Real-World Workload
 
 ## LevelDB options tuning contest for real-world workload
-1. Study below db options and relationships between themselves.
-2. Analyze workload such as key/value size, key/operations distribution.
-3. Hypothesize best option set and verify it by experiment.
-4. Submit best option set to assistant.
-5. Write a document about your hypothesis, experiment and final decision.
-6. Prepare 15-min presentation and upload your PPT in pdf format.
-* Please refer to LevelDB options.h and RocksDB tunning guide before you start!
+1. Study the db options and their relationships.
+2. Analyze workloads such as key/value size and key/operations distribution.
+3. Hypothesize the best option set and verify it by experiment.
+4. Submit your best option set to the assistant.
+5. Write a document about your hypothesis, experiment, and final decision.
+6. Prepare a 15-minute presentation and upload your PPT in pdf format.
+* Please refer to LevelDB options.h and RocksDB tuning guide before you start!
   - [LevelDB include/leveldb/options.h](https://github.com/google/leveldb/blob/main/include/leveldb/options.h)
   - [RocksDB Tuning Guide](https://github.com/facebook/rocksdb/wiki/RocksDB-Tuning-Guide)
   - [RocksDB Setup Options and Basice Tuning](https://github.com/facebook/rocksdb/wiki/Setup-Options-and-Basic-Tuning)
@@ -18,7 +18,7 @@
 // ---------------------------Restriction----------------------------
 // max_memory size (= write_buffer_size*2 + block_cache_size) <= 1GB
 // max_file_size <= 1GB
-// Do not change other options except below.
+// Do not change other options except the ones below.
 
 
 // -------------LevelDB Default Options, Tune them!------------------
@@ -33,7 +33,7 @@ int block_restart_interval = 16;
 // Compression
 CompressionType compression = kSnappyCompression;
 
-// BloomFiliter
+// BloomFilter
 const FilterPolicy* filter_policy = nullptr;
 
 // Cache
