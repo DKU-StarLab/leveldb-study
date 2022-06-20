@@ -2,7 +2,8 @@
 2022 [DKU System Software Lab](https://sslab.dankook.ac.kr/) LevelDB Study
 
 ## Goals
-* [Analyze and doucument LevelDB.](./analysis/README.md)
+* [Analyze LevelDB.](./analysis/README.md)
+* [Write our LevelDB analysis into a git-book.](https://dku-starlab.gitbook.io/leveldb-analysis/)
 * [Optimize LevelDB for real-world workload.](./optimization/README.md)
 * [Implement new ideas in LevelDB.](./new_implementation/README.md)
 * Write a research (undergraduate) paper on what you learned.
