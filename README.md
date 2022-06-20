@@ -23,7 +23,7 @@
 ## Schedule
 * Date: Every Tuesday in July, August
 * Time: 14:00 ~ 16:00
-* Place: Dankook University Software ICT Hall
+* Place: Dankook University Software ICT Hall Room 301
 
 |No|Date|Contents||
 |--|--|--|--|
