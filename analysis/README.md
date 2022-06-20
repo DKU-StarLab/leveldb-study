@@ -1,8 +1,8 @@
-# How to analyze open source
+# How to analyze LevelDB
 1. Choose your topic.
 2. Do a research of your chosen topic by reading documents and/or watching lectures.
 3. Study remarks and codes related to your topic.
-4. Try static analytics tools like SciTools.
+4. Try static analytics tools like Understand by [SciTools](https://www.scitools.com/).
 5. Run db_bench with gdb debugger or dynamic analyics tool like uftrace.
 6. Draw figures to organize the structure, class diagram, code flow and etc. 
 7. Write a markdown document with figure and description.
