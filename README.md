@@ -3,7 +3,7 @@
 
 ## Goals
 * [Analyze LevelDB.](./analysis/README.md)
-* [Write our LevelDB analysis into a git-book.](https://dku-starlab.gitbook.io/leveldb-analysis/)
+* [Write your LevelDB analysis into a git-book.](https://dku-starlab.gitbook.io/leveldb-analysis/)
 * [Optimize LevelDB for real-world workload.](./optimization/README.md)
 * [Implement new ideas in LevelDB.](./new_implementation/README.md)
 * Write a research (undergraduate) paper on what you learned.
