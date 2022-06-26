@@ -40,8 +40,8 @@
 ## References
 * Lecture
   - [Jongmoo Choi, 『Key-Value DB for Unstructured data』, 2021](https://mooc.dankook.ac.kr/courses/61d537a3b6b71841651153b3)
-  - [Microsoft Research, 『Scaling Write-Intensive Key-Value Stores』, 2019](https://www.youtube.com/watch?v=b6SI8VbcT4w)
   - [GL Tech Tutorials, 『LSM trees』, 2021](https://youtube.com/playlist?list=PLRNjlOFk-f0lJJZVoSAmcwZgVtp64tXaX)
+  - [Wei Zhou, LevelDB YouTube playlist](https://youtube.com/playlist?list=PLaCN8MYUet0tR1xn5d8ZtCumHKtP6Wkeq)
 * Documents
   - [LevelDB library documentation](https://github.com/google/leveldb/blob/main/doc/index.md)
   - [RocksDB WiKi](https://github.com/facebook/rocksdb/wiki)
