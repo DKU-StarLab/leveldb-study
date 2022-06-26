@@ -47,6 +47,7 @@
   - [RocksDB WiKi](https://github.com/facebook/rocksdb/wiki)
   - [Fenggang Wu, 『LevelDB Introduction』, Universuty of Minnesota CSci5980, 2016](https://www-users.cselabs.umn.edu/classes/Spring-2020/csci5980/index.php?page=presentation)
   - [rjl493456442, 『leveldb-handbook』, 2022](https://github.com/rjl493456442/leveldb-handbook)
+  - [rsy56640, 『read_and_analyse_levelDB](https://github.com/rsy56640/read_and_analyse_levelDB)
 * Real-World Workload
   - [Twitter cache trace](https://github.com/twitter/cache-trace)
   - [Facebook ZippyDB](https://github.com/facebook/rocksdb/wiki/RocksDB-Trace%2C-Replay%2C-Analyzer%2C-and-Workload-Generation)
