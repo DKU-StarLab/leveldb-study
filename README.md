@@ -28,7 +28,7 @@
 |No|Date|Contents||
 |--|--|--|--|
 |Week 1|22-07-05|LevelDB Introduction 1 ([PPT](https://github.com/DKU-StarLab/leveldb-study/blob/f1e17898ca0cc318f2d3301a68d165f6464aed8e/lntroduction/leveldb%20Introduction%201%20upload.pdf))|What is key-value store? </br> Why open-source?|
-|Week 2|22-07-12|LevelDB Introduction 2|LevelDB basics </br>Analytics tools|
+|Week 2|22-07-12|LevelDB Introduction 2|LevelDB basics </br>Analysis tools|
 |Week 3|22-07-19|LevelDB Analysis 1||
 |Week 4|22-07-26|LevelDB Analysis 2||
 |Week 5|22-08-02|LevelDB Analysis 3||
