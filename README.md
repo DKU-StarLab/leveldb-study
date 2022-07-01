@@ -9,7 +9,7 @@
 * Write a research (undergraduate) paper on what you learned.
 
 ## Members
-* Student
+* Student: [Hansu Kim](https://github.com/gillyongs), [Isu Kim](https://github.com/gooday2die), [Ja-young Cho](https://github.com/cho-ja-young), [Jongki Park](https://github.com/JongKI-PARK), [Sanghyun Cho](https://github.com/Cho-SangHyun), [Seoyoung Cho](https://github.com/ChoSeoyoung), [Seyeon Park ](https://github.com/SayOny), [Subin Hong](https://github.com/sss654654), [Suhwan Shin](Student5421), [Taegyu Cho ](https://github.com/HASHTAG-YOU), [Wongil Kim](https://github.com/Wongilk), [Wonjun Jung](https://github.com/Seoulice), [Zhao Guangxun](https://github.com/ErosBryant), [Zhu Yongjie](https://github.com/arashio1111)
 1. Memtable:
 2. WAL:
 3. Compaction:
@@ -27,7 +27,7 @@
 
 |No|Date|Contents||
 |--|--|--|--|
-|Week 1|22-07-05|LevelDB Introduction 1|What is key-value store? </br> Why open-source?|
+|Week 1|22-07-05|LevelDB Introduction 1 (PPT)|What is key-value store? </br> Why open-source?|
 |Week 2|22-07-12|LevelDB Introduction 2|LevelDB basics </br>Analytics tools|
 |Week 3|22-07-19|LevelDB Analysis 1||
 |Week 4|22-07-26|LevelDB Analysis 2||
