@@ -1,4 +1,4 @@
-# LevelDB_Study
+# LevelDB Study
 2022 [DKU System Software Lab](https://sslab.dankook.ac.kr/) LevelDB Study
 
 ## Goals
@@ -36,6 +36,12 @@
 |Week 7|22-08-16|Real-World Workload Optimization|YCSB</br>Twitter Trace|
 |Week 8|22-08-23|New Idea Implementation 1||
 |Week 9|22-08-30|New Idea Implementation 2|Write (undergraduate) research paper|
+
+## Photo
+<img src="./photo/photo.png">
+
+## Poster (KOR)
+<img src="./photo/poster_kor.png" width="50%">
 
 ## References
 * Lecture
