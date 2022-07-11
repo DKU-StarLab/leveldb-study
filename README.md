@@ -27,8 +27,8 @@
 
 |No|Date|Contents||
 |--|--|--|--|
-|Week 1|22-07-05|LevelDB Introduction 1 ([PPT](https://github.com/DKU-StarLab/leveldb-study/blob/e225f52ffc254a3b49aaf86a20eadfeb027a0c9b/lntroduction/%5Bweek%201%5D%20leveldb%20study%20Introduction%201.pdf))|What is key-value store? </br> Why open-source?|
-|Week 2|22-07-12|LevelDB Introduction 2 ([PPT](https://github.com/DKU-StarLab/leveldb-study/blob/e225f52ffc254a3b49aaf86a20eadfeb027a0c9b/lntroduction/%5Bweek%202%5D%20leveldb%20study%20Introduction%202.pdf))|LevelDB basics </br>LevelDB install & db_bench|
+|[Week 1](./lntroduction/)|22-07-05|LevelDB Introduction 1 ([PPT](https://github.com/DKU-StarLab/leveldb-study/blob/e225f52ffc254a3b49aaf86a20eadfeb027a0c9b/lntroduction/%5Bweek%201%5D%20leveldb%20study%20Introduction%201.pdf))|What is key-value store? </br> Why open-source?|
+|[Week 2](./lntroduction/)|22-07-12|LevelDB Introduction 2 ([PPT](https://github.com/DKU-StarLab/leveldb-study/blob/e225f52ffc254a3b49aaf86a20eadfeb027a0c9b/lntroduction/%5Bweek%202%5D%20leveldb%20study%20Introduction%202.pdf))|LevelDB basics </br>LevelDB install & db_bench|
 |Week 3|22-07-19|LevelDB Analysis 1|Analysis tool|
 |Week 4|22-07-26|LevelDB Analysis 2||
 |Week 5|22-08-02|LevelDB Analysis 3||
