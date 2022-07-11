@@ -1,4 +1,4 @@
-# Tune` LevelDB Options for Real-World Workload
+# Tune LevelDB Options for Real-World Workload
 
 ## LevelDB options tuning contest for real-world workload
 1. Study the db options and their relationships.

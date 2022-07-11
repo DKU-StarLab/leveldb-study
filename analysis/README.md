@@ -16,7 +16,7 @@
 - Merge Iterator
 - Operations: Put
 
-## 2. WAL
+## 2. WAL/Manifest
 - Log structure
 - Flush, Recovery
 - Operations: Put
