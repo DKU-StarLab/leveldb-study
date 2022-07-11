@@ -1,6 +1,6 @@
 
 ## LevelDB Introduction
-### Week 1 ([PPT]())
+### Week 1 ([PPT](https://github.com/DKU-StarLab/leveldb-study/blob/e225f52ffc254a3b49aaf86a20eadfeb027a0c9b/lntroduction/%5Bweek%201%5D%20leveldb%20study%20Introduction%201.pdf))
 1. Study Introduction
 2. Why should we understand internal structure of DB?
 3. What is a key-value store?
@@ -10,7 +10,7 @@
 7. Environment setup
 8. Homework
 
-### Week 2 (PPT)
+### Week 2 ([PPT](https://github.com/DKU-StarLab/leveldb-study/blob/e225f52ffc254a3b49aaf86a20eadfeb027a0c9b/lntroduction/%5Bweek%202%5D%20leveldb%20study%20Introduction%202.pdf))
 1. LevelDB Architecture
 2. Key-Value Interface
 3. Internal Operations
