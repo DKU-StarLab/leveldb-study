@@ -9,7 +9,7 @@
 * Write a research (undergraduate) paper on what you learned.
 
 ## Members
-* Student: [Hansu Kim](https://github.com/gillyongs), [Isu Kim](https://github.com/gooday2die), [Ja-young Cho](https://github.com/cho-ja-young), [Jongki Park](https://github.com/JongKI-PARK), [Sanghyun Cho](https://github.com/Cho-SangHyun), [Sangwoo Kang](https://github.com/aarom416), [Seoyoung Cho](https://github.com/ChoSeoyoung), [Seyeon Park ](https://github.com/SayOny), [Subin Hong](https://github.com/sss654654), [Suhwan Shin](https://github.com/Student5421), [Taegyu Cho ](https://github.com/HASHTAG-YOU), [Wongil Kim](https://github.com/Wongilk), [Zhao Guangxun](https://github.com/ErosBryant), [Zhu Yongjie](https://github.com/arashio1111)
+* Student: [Hansu Kim](https://github.com/gillyongs), [Isu Kim](https://github.com/gooday2die), [Ja-young Cho](https://github.com/cho-ja-young), [Jongki Park](https://github.com/JongKI-PARK), [Sanghyun Cho](https://github.com/Cho-SangHyun), [Sangwoo Kang](https://github.com/aarom416), [Seoyoung Cho](https://github.com/ChoSeoyoung), [Seoyoung Park](https://github.com/seo-0), [Seungwon Ha](https://github.com/ha-seungwon), [Seyeon Park ](https://github.com/SayOny), [Subin Hong](https://github.com/sss654654), [Suhwan Shin](https://github.com/Student5421), [Taegyu Cho ](https://github.com/HASHTAG-YOU), [Wongil Kim](https://github.com/Wongilk), [Zhao Guangxun](https://github.com/ErosBryant), [Zhu Yongjie](https://github.com/arashio1111)
 1. Memtable:
 2. WAL/Manifest:
 3. Compaction:
@@ -27,8 +27,8 @@
 
 |No|Date|Contents||
 |--|--|--|--|
-|[Week 1](./lntroduction/)|22-07-05|LevelDB Introduction 1 ([PPT](https://github.com/DKU-StarLab/leveldb-study/blob/e225f52ffc254a3b49aaf86a20eadfeb027a0c9b/lntroduction/%5Bweek%201%5D%20leveldb%20study%20Introduction%201.pdf))|What is key-value store? </br> Why open-source?|
-|[Week 2](./lntroduction/)|22-07-12|LevelDB Introduction 2 ([PPT](https://github.com/DKU-StarLab/leveldb-study/blob/e225f52ffc254a3b49aaf86a20eadfeb027a0c9b/lntroduction/%5Bweek%202%5D%20leveldb%20study%20Introduction%202.pdf))|LevelDB basics </br>LevelDB install & db_bench|
+|[Week 1](./introduction/)|22-07-05|LevelDB Introduction 1 ([PPT](./introduction/[week1]leveldb_study_Introduction_1.pdf))|What is key-value store? </br> Why open-source?|
+|[Week 2](./introduction/)|22-07-12|LevelDB Introduction 2 ([PPT](./introduction/[week2]leveldb_study_Introduction_2.pdf))|LevelDB basics </br>LevelDB install & db_bench|
 |Week 3|22-07-19|LevelDB Analysis 1|Analysis tool|
 |Week 4|22-07-26|LevelDB Analysis 2||
 |Week 5|22-08-02|LevelDB Analysis 3||
