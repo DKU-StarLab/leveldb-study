@@ -9,6 +9,7 @@
 6. Lab research subject
 7. Environment setup
 8. Homework
+- [Jongmoo Choi,『Key-Value Store: Database for Unstructured Bigdata』, 2021]()
 
 ### Week 2 ([PPT](./[week2]leveldb_study_Introduction_2.pdf))
 1. LevelDB Architecture

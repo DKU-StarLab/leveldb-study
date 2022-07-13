@@ -31,11 +31,11 @@
 |[Week 2](./introduction/)|22-07-12|LevelDB Introduction 2 ([PPT](./introduction/[week2]leveldb_study_Introduction_2.pdf))|LevelDB basics </br>LevelDB install & db_bench|
 |Week 3|22-07-19|LevelDB Analysis 1|Analysis tool|
 |Week 4|22-07-26|LevelDB Analysis 2||
-|Week 5|22-08-02|LevelDB Analysis 3||
-|Week 6|22-08-09|LevelDB Analysis 4||
-|Week 7|22-08-16|Real-World Workload Optimization|YCSB</br>Twitter Trace|
-|Week 8|22-08-23|New Idea Implementation 1||
-|Week 9|22-08-30|New Idea Implementation 2|Write (undergraduate) research paper|
+|Summer</br>Vacation|| ||
+|Week 5|22-08-09|LevelDB Analysis 3||
+|Week 6|22-08-16|Real-World Workload Optimization|YCSB</br>Twitter Trace|
+|Week 7|22-08-23|New Idea Implementation 1||
+|Week 8|22-08-30|New Idea Implementation 2|Write (undergraduate) research paper|
 
 ## Photo
 <img src="./photo/photo.png">
@@ -45,16 +45,17 @@
 
 ## References
 * Documents
-  - [LevelDB library documentation](https://github.com/google/leveldb/blob/main/doc)
-  - [RocksDB WiKi](https://github.com/facebook/rocksdb/wiki)
-  - [Fenggang Wu, 『LevelDB Introduction』, University of Minnesota CSci5980, 2016](https://www-users.cselabs.umn.edu/classes/Spring-2020/csci5980/index.php?page=presentation)
+  - [LevelDB Document](https://github.com/google/leveldb/blob/main/doc)
+  - [RocksDB Wiki](https://github.com/facebook/rocksdb/wiki)
+  - [Jongmoo Choi,『Key-Value Store: Database for Unstructured Bigdata』, 2021]()
+  - [Fenggang Wu, 『LevelDB Introduction』, 2016](https://www-users.cselabs.umn.edu/classes/Spring-2020/csci5980/index.php?page=presentation)
   - [rjl493456442, 『leveldb-handbook (CHS)』, 2022](https://leveldb-handbook.readthedocs.io/zh/latest/)
-  - [木鸟杂记, Talking about LevelDB data structure (CHS), 2021 ](https://www.qtmuniao.com/categories/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/)
   - [rsy56640, 『read_and_analyse_levelDB (CHS)』](https://github.com/rsy56640/read_and_analyse_levelDB/tree/master/reference)
   - [FOCUS,『LevelDB fully parsed (CHS)』](https://www.zhihu.com/column/c_1258068131073183744)
   - [bloomingTony, 『Research on Network and Storage Technology(CHS)』](https://www.zhihu.com/column/c_180212366)
+  - [木鸟杂记,『Talking about LevelDB data structure (CHS)』, 2021 ](https://www.qtmuniao.com/categories/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/)
 * Lecture
-  - [Jongmoo Choi, 『Key-Value DB for Unstructured data (KOR)』, 2021](https://mooc.dankook.ac.kr/courses/61d537a3b6b71841651153b3)
+  - [Jongmoo Choi, 『Key-Value Store: Database for Unstructured Bigdata (KOR)』,  2021](https://mooc.dankook.ac.kr/courses/61d537a3b6b71841651153b3)
   - [GL Tech Tutorials, 『LSM trees』, 2021](https://youtube.com/playlist?list=PLRNjlOFk-f0lJJZVoSAmcwZgVtp64tXaX)
   - [Wei Zhou, LevelDB YouTube playlist](https://youtube.com/playlist?list=PLaCN8MYUet0tR1xn5d8ZtCumHKtP6Wkeq)
 * Real-World Workload
