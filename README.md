@@ -29,13 +29,13 @@
 |--|--|--|--|
 |[Week 1](./introduction/)|22-07-05|LevelDB Introduction 1 ([PPT](./introduction/[week1]leveldb_study_Introduction_1.pdf))|What is key-value store? </br> Why open-source?|
 |[Week 2](./introduction/)|22-07-12|LevelDB Introduction 2 ([PPT](./introduction/[week2]leveldb_study_Introduction_2.pdf))|LevelDB basics </br>LevelDB install & db_bench|
-|Week 3|22-07-19|LevelDB Analysis 1|Analysis tool|
-|Week 4|22-07-26|LevelDB Analysis 2||
-|Summer</br>Vacation|| ||
-|Week 5|22-08-09|LevelDB Analysis 3||
-|Week 6|22-08-16|Real-World Workload Optimization|YCSB</br>Twitter Trace|
-|Week 7|22-08-23|New Idea Implementation 1||
-|Week 8|22-08-30|New Idea Implementation 2|Write (undergraduate) research paper|
+|[Week 3](./introduction/)|22-07-19|LevelDB Introduction 3 ([PPT](./introduction/[week3]leveldb_study_Introduction_3.pdf))|Analysis tool</br>[Homework](https://github.com/DKU-StarLab/leveldb-study/issues/6#issue-1302876982)|
+|Week 4</br>(Zoom)|22-07-26|LevelDB db_bench practice||
+|Week 5|22-08-02|LevelDB Analysis 1||
+|Week 6|22-08-09|LevelDB Analysis 2||
+|Week 7|22-08-16|LevelDB Analysis 3||
+|Week 8|22-08-23|Real-World Workload Optimization|YCSB</br>Twitter Trace|
+|Week 9|22-08-30|LevelDB Analysis 4|Write (undergraduate) research paper|
 
 ## Photo
 <img src="./photo/photo.png">
@@ -71,3 +71,4 @@
 - [presentation.ppt](./introduction/[format]leveldb_study_ppt.pptx)
 - [kcc research paper.hwp](./introduction/[format]research_paper(KCC).hwp)
 - [leveldb db_bench script](./introduction/bench_script.sh)
+- [leveldb uftrace script](./introduction/uftrace_script.sh)

@@ -22,7 +22,16 @@
 8. Homework
 9. Appendix: RocksDB installation & db_bench
 
+
+### Week 3 ([PPT](./[week3]leveldb_study_Introduction_3.pdf))
+1. How to analyze LevelDB
+2. VS code
+3. Understand
+4. GDB
+5. Uftrace ([script](./uftrace_script.sh))
+
 ### Format
 - presentation format ([file](./[format]leveldb_study_ppt.pptx))
 - kcc research paper format ([file](./[format]research_paper(KCC).hwp))
 - leveldb db_bench script ([file](./bench_script.sh))
+- leveldb uftrace script ([file](./uftrace_script.sh))
