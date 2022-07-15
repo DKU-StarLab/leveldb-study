@@ -67,7 +67,8 @@
 * Previous Study
   - [DKU RocksDB Festival, 2021](https://github.com/DKU-StarLab/RocksDB_Festival)
   
-  ### Format
+  
+## Format
 - [presentation.ppt](./introduction/[format]leveldb_study_ppt.pptx)
 - [kcc research paper.hwp](./introduction/[format]research_paper(KCC).hwp)
 - [leveldb db_bench script](./introduction/bench_script.sh)
