@@ -23,7 +23,7 @@
 9. Appendix: RocksDB installation & db_bench
 
 
-## Week 3 ([PPT](./[week3]leveldb_study_Introduction_3.pdf))
+## Week 3 (PPT)
 1. How to analyze LevelDB
 2. VS code
 3. Understand
