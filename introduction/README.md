@@ -31,9 +31,9 @@
 5. Uftrace ([script](./uftrace_script.sh))
 
 * Homework solutions
-Question 1, 2 - Jongki Park
-Question 3, 5 - Suhwan Shin
-Question 4 - Zhu Yongjie
+  - Question 1, 2 - Jongki Park
+  - Question 3, 5 - Suhwan Shin
+  - Question 4 - Zhu Yongjie
 
 ## Format
 - presentation format ([file](./[format]leveldb_study_ppt.pptx))
