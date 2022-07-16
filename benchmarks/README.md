@@ -3,9 +3,8 @@
 * Upload your presentation file through pull reqeust.
     - Pull request until **Tuesday, 7/26 11AM**.
     - Title: [topic]benchmark_experiment.pdf
-    - PPT format: [presentation.ppt](./introduction/[format]leveldb_study_ppt.pptx)
-</br>
-
+    - PPT format: [presentation.ppt](./introduction/[format]leveldb_study_ppt.pptx)    
+    
 * Upload your experiment document at [DKU-StarLab/leveldb-wiki](https://github.com/DKU-StarLab/leveldb-wiki) repository through pull reqeust.
     - Pull request until **Tuesday, 8/2 11AM**.
 * Check previous study presentation files.
@@ -32,9 +31,12 @@
     * Do not experiment with multiple independent variables at once from the beginning.
     * Do not let uncontrolled variables ruin your experiment.  
     * Variables
-        - Independent: Options, Benchmarks, # of KV pairs
-        - Dependent: Metrics(Throughput, Latency, WAF/SAF/RAF)
-        - Controlled: Env, Page Cache, Compile option, existing db, compression ratio, bloomfilter bit
+        - Independent
+            - Options, Benchmarks, # of KV pairs
+        - Dependent
+            * Metrics (Throughput, Latency, WAF/SAF/RAF)
+        - Controlled
+            * Enviornment, Page Cache, Compile Options, Existing DB, Compression Ratio, Bloom Filter Bits
 
 3. Run Experiment
     * Please use shell/python script.
