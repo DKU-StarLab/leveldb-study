@@ -26,9 +26,9 @@
 * Place: Dankook University Software ICT Hall Room 307
 
 |No|Date|Contents|Details|
-|--|--|--|--|--|
+|--|--|--|--|
 Week 1|22-07-05|[Introduction 1](./introduction/)| What is key-value store? </br> Why open-source?|
-Week 2|22-07-12|[Introduction 2](./introduction/)|LevelDB Basics </br>LevelDB Install</br>[Homework](https://github.com/DKU-StarLab/leveldb-study/issues/6#issue-1302876982)|
+Week 2|22-07-12|[Introduction 2](./introduction/)|LevelDB Basics </br>LevelDB Installation</br>[Homework](https://github.com/DKU-StarLab/leveldb-study/issues/6#issue-1302876982)|
 Week 3|22-07-19|[Introduction 3](./introduction/)|Analysis Tools</br>Homework Solutions|
 |Week 4|22-07-26|[Benchmark Experiment](./benchmarks/)|LevelDB db_bench|
 |Week 5</br>(zoom)|22-08-02|Analysis 1|
