@@ -2,16 +2,16 @@
 2022 [DKU System Software Lab](https://sslab.dankook.ac.kr/) LevelDB Study
 
 ## Goals
-* [Analyze LevelDB.](./analysis/README.md)
-* [Write your LevelDB analysis into a git-book.](https://dku-starlab.gitbook.io/leveldb-analysis/)
-* [Optimize LevelDB for real-world workload.](./optimization/README.md)
-* [Implement new ideas in LevelDB.](./new_implementation/README.md)
-* Write a research (undergraduate) paper on what you learned.
+* [Study LevelDB.](./introduction/README.md)
+* [Analyze LevelDB](./analysis/README.md)
+* [Write LevelDB analysis document.](https://dku-starlab.gitbook.io/leveldb-analysis/)
+* [Tune LevelDB for real-world workload.](./optimization/README.md)
+* Write a research paper on what you learned.
 
 ## Members
 * Student: [Hansu Kim](https://github.com/gillyongs), [Isu Kim](https://github.com/gooday2die), [Ja-young Cho](https://github.com/cho-ja-young), [Jongki Park](https://github.com/JongKI-PARK), [Sanghyun Cho](https://github.com/Cho-SangHyun), [Sangwoo Kang](https://github.com/aarom416), [Seoyoung Cho](https://github.com/ChoSeoyoung), [Seoyoung Park](https://github.com/seo-0), [Seungwon Ha](https://github.com/ha-seungwon), [Seyeon Park ](https://github.com/SayOny), [Subin Hong](https://github.com/sss654654), [Suhwan Shin](https://github.com/Student5421), [Taegyu Cho ](https://github.com/HASHTAG-YOU), [Wongil Kim](https://github.com/Wongilk), [Zhao Guangxun](https://github.com/ErosBryant), [Zhu Yongjie](https://github.com/arashio1111)
-1. Memtable:
-2. WAL/Manifest:
+1. WAL/Manifest:
+2. Memtable:
 3. Compaction:
 4. SSTable:
 5. Bloom Filter:
@@ -25,17 +25,17 @@
 * Time: 14:00 ~ 16:00
 * Place: Dankook University Software ICT Hall Room 307
 
-|No|Date|Contents||
-|--|--|--|--|
-|[Week 1](./introduction/)|22-07-05|LevelDB Introduction 1 ([PPT](./introduction/[week1]leveldb_study_Introduction_1.pdf))|What is key-value store? </br> Why open-source?|
-|[Week 2](./introduction/)|22-07-12|LevelDB Introduction 2 ([PPT](./introduction/[week2]leveldb_study_Introduction_2.pdf))|LevelDB basics </br>LevelDB install & db_bench|
-|[Week 3](./introduction/)|22-07-19|LevelDB Introduction 3 ([PPT](./introduction/[week3]leveldb_study_Introduction_3.pdf))|Analysis tool</br>[Homework](https://github.com/DKU-StarLab/leveldb-study/issues/6#issue-1302876982)|
-|Week 4</br>(Zoom)|22-07-26|LevelDB db_bench practice||
-|Week 5|22-08-02|LevelDB Analysis 1||
-|Week 6|22-08-09|LevelDB Analysis 2||
-|Week 7|22-08-16|LevelDB Analysis 3||
-|Week 8|22-08-23|Real-World Workload Optimization|YCSB</br>Twitter Trace|
-|Week 9|22-08-30|LevelDB Analysis 4|Write (undergraduate) research paper|
+|No|Date|Contents|Details|
+|--|--|--|--|--|
+Week 1|22-07-05|[Introduction 1](./introduction/)| What is key-value store? </br> Why open-source?|
+Week 2|22-07-12|[Introduction 2](./introduction/)|LevelDB Basics </br>LevelDB Install</br>[Homework](https://github.com/DKU-StarLab/leveldb-study/issues/6#issue-1302876982)|
+Week 3|22-07-19|[Introduction 3](./introduction/)|Analysis Tools</br>Homework Solutions|
+|Week 4|22-07-26|[Benchmark Experiment](./benchmarks/)|LevelDB db_bench|
+|Week 5</br>(zoom)|22-08-02|Analysis 1|
+|Week 6|22-08-09|Analysis 2|
+|Week 7|22-08-16|Analysis 3|
+|Week 8|22-08-23|Tuning Contest|YCSB</br>Twitter Trace|
+|Week 9|22-08-30|Analysis 4|Write a research paper|
 
 ## Photo
 <img src="./photo/photo.png">
@@ -62,8 +62,10 @@
   - [Twitter cache trace](https://github.com/twitter/cache-trace)
   - [Facebook ZippyDB](https://github.com/facebook/rocksdb/wiki/RocksDB-Trace%2C-Replay%2C-Analyzer%2C-and-Workload-Generation)
 * Analysis Tools
-  - [understand](https://licensing.scitools.com/download)
-  - [uftrace](https://github.com/namhyung/uftrace)
+  - [GDB](https://www.sourceware.org/gdb/)
+  - [Understand](https://licensing.scitools.com/download)
+  - [Uftrace](https://github.com/namhyung/uftrace)
+  - [Draw.io](https://www.draw.io)
 * Previous Study
   - [DKU RocksDB Festival, 2021](https://github.com/DKU-StarLab/RocksDB_Festival)
   
