@@ -1,4 +1,4 @@
-# Benchmarks Experiment
+# Benchmark Experiment
 ## Notice
 * Upload your presentation file through pull reqeust.
     - Pull request until **Tuesday, 7/26 11AM**.
