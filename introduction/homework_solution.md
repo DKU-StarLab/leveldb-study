@@ -16,7 +16,7 @@
     - (1) With larger write-buffer sizes, it is nice not to do too many level-0 compactions.
     - (2) The files in level-0 are merged on every read and therefore we wish to avoid too many files when the individual file size is small
 
-### Practice 1. (Solution - Suhwan Shin)
+### Practice 1. (PPT - Suhwan Shin)
 ```
 [A] $ ./db_bench --benchmarks="fillseq" 
 [B] $ ./db_bench --benchmarks="fillrandom"
