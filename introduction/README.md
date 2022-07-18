@@ -30,7 +30,8 @@
 4. GDB
 5. Uftrace ([script](./uftrace_script.sh))
 
-* Homework solutions
+* [Answers submitted by students](./homework_answered_by_students(kor).xlsx)
+* [Homework solutions](./homework_solution.md)
   - Question 1, 2 - Jongki Park
   - Question 3, 5 - Suhwan Shin
   - Question 4 - Zhu Yongjie
