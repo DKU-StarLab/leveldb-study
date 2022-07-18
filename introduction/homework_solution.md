@@ -1,7 +1,7 @@
 # Homework & Solutions
 
-#### Question 1. (Solution - Jongki Park)
-##### Why do LSM-tree and LevelDB use leveled structure? 
+### Question 1. (Solution - Jongki Park)
+#### Why do LSM-tree and LevelDB use leveled structure? 
 * Hint 1 - Stackoverflow
     - [Why does LevelDB needs more than two levels?](https://stackoverflow.com/questions/14305113/why-does-leveldb-needs-more-than-two-levels)
     - [Why rocksDB needs multiple levels?](https://stackoverflow.com/questions/68297612/why-rocksdb-needs-multiple-levels)
@@ -10,14 +10,14 @@
 * Hint 2 – Memory hierarchy
 * Hint 3 - [Patrick O'Neil, The Log-Structured Merge-Tree (LSM-Tree), 1996](https://www.cs.umb.edu/~poneil/lsmtree.pdf)
 
-#### Question 2. (Solution - Jongki Park) 
-##### In leveldb, max size of level i is 10^iMB. But max size of level 0 is 8MB. Why? 
+### Question 2. (Solution - Jongki Park) 
+#### In leveldb, max size of level i is 10^iMB. But max size of level 0 is 8MB. Why? 
 * Hint 1 - leveldb source code
     - leveldb/db/version_set.cc:VersionSet::Finalize
     - leveldb/db/dbformat.h:kL0_CompactionTrigger
 * Hint 2 - [leveldb-handbook, Compaction (Use google chrome translator)](https://leveldb-handbook.readthedocs.io/zh/latest/compaction.html)
 
-#### Practice 1. (Solution - Suhwan Shin)
+### Practice 1. (Solution - Suhwan Shin)
 ```
 [A] $ ./db_bench --benchmarks="fillseq" 
 [B] $ ./db_bench --benchmarks="fillrandom"
@@ -29,7 +29,7 @@
 * Q3. Calculate SAF (Space Amplification Factor) for each benchmark.
     - Hint - db_bench meta operation
 
-#### Practice 2. (Solution - Suhwan Shin)
+### Practice 2. (Solution - Suhwan Shin)
 ```
 [A] $ ./db_bench --benchmarks="fillrandom" --value_size=100 --num=1000000 --compression_ratio=1
 [B] $ ./db_bench --benchmarks="fillrandom" --value_size=1000 --num=114173 --compression_ratio=1
@@ -41,7 +41,7 @@
 * Q. The size of input kv pairs is the same. But One is better in throughput, the other is better in latency. Explain why.
     - Hint. Batch Processing
 
-#### Practice 3. (Solution - Zhu Yongjie)
+### Practice 3. (Solution - Zhu Yongjie)
 ```
 [Load] $ ./db_bench --benchmarks="fillrandom" --use_existing_db=0
 
