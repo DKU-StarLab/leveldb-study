@@ -32,7 +32,7 @@
 * Q3. In benchmark A, SSTs are not written in L0. Why?
     - Trivial Move
 
-#### Practice 2. (PPT - Suhwan Shin)
+### Practice 2. (PPT - Suhwan Shin)
 ```
 [A] $ ./db_bench --benchmarks="fillrandom" --value_size=100 --num=1000000 --compression_ratio=1
 [B] $ ./db_bench --benchmarks="fillrandom" --value_size=1000 --num=114173 --compression_ratio=1
