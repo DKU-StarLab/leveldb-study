@@ -23,7 +23,7 @@
 9. Appendix: RocksDB installation & db_bench
 
 
-## Week 3 ([PPT](./[week3]leveldb_study_Introduction_3.pdf))
+## Week 3 (PPT)
 1. How to analyze LevelDB
 2. VS code
 3. Understand
@@ -31,9 +31,9 @@
 5. Uftrace ([script](./uftrace_script.sh))
 
 * Homework solutions
-Question 1, 2 - Jongki Park
-Question 3, 5 - Suhwan Shin
-Question 4 - Zhu Yongjie
+  - Question 1, 2 - Jongki Park
+  - Question 3, 5 - Suhwan Shin
+  - Question 4 - Zhu Yongjie
 
 ## Format
 - presentation format ([file](./[format]leveldb_study_ppt.pptx))
