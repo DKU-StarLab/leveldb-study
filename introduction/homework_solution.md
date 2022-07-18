@@ -34,10 +34,10 @@
 [A] $ ./db_bench --benchmarks="fillrandom" --value_size=100 --num=1000000 --compression_ratio=1
 [B] $ ./db_bench --benchmarks="fillrandom" --value_size=1000 --num=114173 --compression_ratio=1
 ```
-> Note 1. key_size = 16B
-> Note 2. same total kv pairs size.
-> Note 3. # of B's entries = 114173 = (16+100)/(16+1000) * 1000000
->
+> Note 1. key_size = 16B  
+> Note 2. same total kv pairs size.  
+> Note 3. # of B's entries = 114173 = (16+100)/(16+1000) * 1000000 
+
 * Q. The size of input kv pairs is the same. But One is better in throughput, the other is better in latency. Explain why.
     - Hint. Batch Processing
 
