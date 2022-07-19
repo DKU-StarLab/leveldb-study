@@ -27,8 +27,8 @@
 
 | Benchmark | duplicate key range  | Major Compaction | Throughput | Latency | SAF      |
 |-----------|----------------------|------------------|------------|---------|----------|
-| Fillseq   | No                   | No               | High       | High    | 1 (0.98) |
-| Fillrandom| Yes                  | Yes              | Low        | Low     | 1.275    |
+| Fillseq   | No                   | No               | High       | Low    | 1 (0.98) |
+| Fillrandom| Yes                  | Yes              | Low        | High     | 1.275    |
 * Q3. In benchmark A, SSTs are not written in L0. Why?
     - Trivial Move
 
@@ -43,10 +43,10 @@
 
 * Q. The size of input kv pairs is the same. But One is better in throughput, the other is better in latency. Explain why.
 * 
-| Benchmark | DB size | # of entries     | Size of entry | Throughput | Latency |
+| Benchmark | DB size | # of entries     | Size of entry | Throughput (MB/s) | Latency (s/op) |
 |-----------|---------|------------------|---------------|------------|---------|
-| A         | same    | 1,000,000 (many) | 116B (small)  | low        | high    |
-| B         | same    | 114,173 (few)    | 1016B (big)   | high       | low     |
+| A         | same    | 1,000,000 (many) | 116B (small)  | low        | low    |
+| B         | same    | 114,173 (few)    | 1016B (big)   | high       | high     |
 
 ### [Practice 3. (PPT - Zhu Yongjie)](./%5Bhomework%5Dpractice_3.pdf)
 ```
@@ -59,7 +59,7 @@
 * Q1. Which user key-value interface does each benchmark use? (Put, Get, Iterator, ...)
 * Q2. Compare throughput and latency of each benchmark and explain why.
 
-| Benchmark  | Interface        | throughput | latency | I/O        | Access Level |
+| Benchmark  | Interface        | Throughput (MB/s) | Latency (micros/op) | I/O        | Access Level |
 |------------|------------------|------------|---------|------------|--------------|
 | readseq    | Get()            | high    | low  | sequential | all          |
 | readrandom | Iterator->Next() |     low       |     high    | random     | access one by one </br> until find the key  |
