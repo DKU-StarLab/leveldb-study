@@ -27,10 +27,10 @@
 
 |No|Date|Contents|Details|
 |--|--|--|--|
-Week 1|22-07-05|[Introduction 1](./introduction/)| What is key-value store? </br> Why open-source?|
-Week 2|22-07-12|[Introduction 2](./introduction/)|LevelDB Basics </br>LevelDB Install</br>[Homework](https://github.com/DKU-StarLab/leveldb-study/issues/6#issue-1302876982)|
-Week 3|22-07-19|[Introduction 3](./introduction/)|Analysis Tools</br>[Homework Solutions](./introduction/homework_solution.md)|
-|Week 4|22-07-26|[Benchmark Experiment](./benchmarks/)|LevelDB db_bench|
+Week 1|22-07-05|[Introduction 1](./introduction/README.md)| What is key-value store? </br> Why open-source?|
+Week 2|22-07-12|[Introduction 2](./introduction/README.md)|LevelDB Basics </br>LevelDB Install</br>[Homework](https://github.com/DKU-StarLab/leveldb-study/issues/6#issue-1302876982)|
+Week 3|22-07-19|[Introduction 3](./introduction/README.md)|Analysis Tools</br>[Homework Solutions](./introduction/homework_solution.md)|
+|Week 4|22-07-26|[Benchmark Experiment](./benchmarks/README.md)|LevelDB db_bench|
 |Week 5</br>(zoom)|22-08-02|Analysis 1|
 |Week 6|22-08-09|Analysis 2|
 |Week 7|22-08-16|Analysis 3|
