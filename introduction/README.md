@@ -30,10 +30,10 @@
 4. GDB
 5. Uftrace ([script](./uftrace_script.sh))
 
-* Homework solutions
-  - Question 1, 2 - Jongki Park
-  - Question 3, 5 - Suhwan Shin
-  - Question 4 - Zhu Yongjie
+* [Homework solutions](./homework_solution.md)
+  - [Question 1, 2 - Jongki Park](./%5Bhomework%5Dquestion_1%2C2.pdf)
+  - [Question 3, 5 - Suhwan Shin](./%5Bhomework%5Dquestion_1%2C2.pdf)
+  - [Question 4 - Zhu Yongjie](./%5Bhomework%5Dpractice_3.pdf)
 
 ## Format
 - presentation format ([file](./[format]leveldb_study_ppt.pptx))
