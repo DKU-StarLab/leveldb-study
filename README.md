@@ -9,13 +9,13 @@
 * Write a research paper on what you learned.
 
 ## Members
-* Student: [Hansu Kim](https://github.com/gillyongs), [Isu Kim](https://github.com/gooday2die), [Ja-young Cho](https://github.com/cho-ja-young), [Jongki Park](https://github.com/JongKI-PARK), [Sanghyun Cho](https://github.com/Cho-SangHyun), [Seoyoung Cho](https://github.com/ChoSeoyoung), [Seoyoung Park](https://github.com/seo-0), [Seungwon Ha](https://github.com/ha-seungwon), [Seyeon Park ](https://github.com/SayOny), [Subin Hong](https://github.com/sss654654), [Suhwan Shin](https://github.com/Student5421), [Taegyu Cho ](https://github.com/HASHTAG-YOU), [Zhao Guangxun](https://github.com/ErosBryant), [Zhu Yongjie](https://github.com/arashio1111)
-1. WAL/Manifest:
-2. Memtable:
-3. Compaction:
-4. SSTable:
-5. Bloom Filter:
-6. Cache:
+* Student:
+  - 1.WAL/Manifest: [Isu Kim](https://github.com/gooday2die), [Seyeon Park ](https://github.com/SayOny), [Suhwan Shin](https://github.com/Student5421)
+  - 2.Memtable: [Taegyu Cho ](https://github.com/HASHTAG-YOU), [Zhu Yongjie](https://github.com/arashio1111)
+  - 3.Compaction: [Sangwoo Kang](https://github.com/aarom416), [Seoyoung Park](https://github.com/seo-0), [Zhao Guangxun](https://github.com/ErosBryant)
+  - 4.SSTable: [Ja-young Cho](https://github.com/cho-ja-young), [Jongki Park](https://github.com/JongKI-PARK), [Sanghyun Cho](https://github.com/Cho-SangHyun)
+  - 5.Bloom Filter: [Hansu Kim](https://github.com/gillyongs), [Seoyoung Cho](https://github.com/ChoSeoyoung)
+  - 6.Cache: [Seungwon Ha](https://github.com/ha-seungwon), [Subin Hong](https://github.com/sss654654)
 * Assistant: [Min-guk Choi](https://github.com/korea-choi)
 * Senior Assistant: [Sounghyoun Lee](https://github.com/shl812), [Hojin Shin](https://github.com/shinhojin)
 * Professor: [Jongmoo Choi](http://embedded.dankook.ac.kr/~choijm/), [Seehwan Yoo](https://sites.google.com/site/dkumobileos/members/seehwanyoo)
