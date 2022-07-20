@@ -33,8 +33,8 @@ Week 3|22-07-19|[Introduction 3](./introduction/README.md)|Analysis Tools</br>[H
 |Week 4|22-07-26|[Benchmark Experiment](./benchmarks/README.md)|LevelDB db_bench|
 |Week 5</br>(zoom)|22-08-02|Analysis 1|
 |Week 6|22-08-09|Analysis 2|
-|Week 7|22-08-16|Analysis 3|
-|Week 8|22-08-23|Tuning Contest|YCSB</br>Twitter Trace|
+|Week 7|22-08-16|Tuning Contest|YCSB</br>Twitter Trace|
+|Week 8|22-08-23|Analysis 3|
 |Week 9|22-08-30|Analysis 4|Write a research paper|
 
 ## Photo
