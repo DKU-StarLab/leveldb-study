@@ -14,7 +14,7 @@
   - 2.Memtable: [Taegyu Cho ](https://github.com/HASHTAG-YOU), [Zhu Yongjie](https://github.com/arashio1111)
   - 3.Compaction: [Sangwoo Kang](https://github.com/aarom416), [Seoyoung Park](https://github.com/seo-0), [Zhao Guangxun](https://github.com/ErosBryant)
   - 4.SSTable: [Ja-young Cho](https://github.com/cho-ja-young), [Jongki Park](https://github.com/JongKI-PARK), [Sanghyun Cho](https://github.com/Cho-SangHyun)
-  - 5.Bloom Filter: [Hansu Kim](https://github.com/gillyongs), [Seoyoung Cho](https://github.com/ChoSeoyoung)
+  - 5.Bloom Filter: [Hansu Kim](https://github.com/gillyongs)
   - 6.Cache: [Seungwon Ha](https://github.com/ha-seungwon), [Subin Hong](https://github.com/sss654654)
 * Assistant: [Min-guk Choi](https://github.com/korea-choi)
 * Senior Assistant: [Sounghyoun Lee](https://github.com/shl812), [Hojin Shin](https://github.com/shinhojin)
