@@ -17,7 +17,7 @@
 3. Internal Operations
 4. Data Structure
 5. LevelDB Installation
-6. db_bench experiment ([script](./bench_script.sh))
+6. db_bench experiment ([script](../file/bench_script.sh))
 7. References
 8. [Homework](https://github.com/DKU-StarLab/leveldb-study/issues/6#issue-1302876982)
 9. Appendix: RocksDB installation & db_bench
@@ -28,12 +28,12 @@
 2. VS code
 3. Understand
 4. GDB
-5. Uftrace ([script](./uftrace_script.sh))
+5. Uftrace ([script](../file/uftrace_script.sh))
 
 * [Homework solutions](../homework/README.md)
   - [Question 1, 2 - Jongki Park](../homework/%5Bhomework%5Dpractice_1%2C2.pdf)
-  - [Question 3, 5 - Suhwan Shin](../homework/%5Bhomework%5Dpractice_1%2C2.pdf)
-  - [Question 4 - Zhu Yongjie](../homework/%5Bhomework%5Dpractice_3.pdf)
+  - [Pratice 1, 2 - Suhwan Shin](../homework/%5Bhomework%5Dpractice_1%2C2.pdf)
+  - [Pratice 3 - Zhu Yongjie](../homework/%5Bhomework%5Dpractice_3.pdf)
 
 ## File
 - [presentation format](../file/%5Bformat%5Dleveldb_study_ppt.pptx)

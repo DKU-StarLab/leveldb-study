@@ -5,7 +5,7 @@
 * [Study LevelDB.](./introduction/README.md)
 * [Analyze LevelDB](./analysis/README.md)
 * [Write LevelDB analysis document.](https://github.com/DKU-StarLab/leveldb-wiki)
-* [Tune LevelDB for real-world workload.](./optimization/README.md)
+* [Tune LevelDB for real-world workload.](./tuning/README.md)
 * Write a research paper on what you learned.
 
 ## Members
