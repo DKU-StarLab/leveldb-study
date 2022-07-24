@@ -1,34 +1,11 @@
 # LevelDB analysis
-## 1. WAL/Manifest
-- Log structure
-- Flush, Recovery
-- Operations: Put
 
-## 2. Memtable
-- Data Structure: Skiplist
-- Memory Management: Arena
-- Immutable Memtable, Flush
-- Operations: Put, Get, Seek
-
-## 3. Compaction
-- Policy: Leveled, Tiered
-- Compaction Trigger
-- Merge Iterator
-- Operations: Put
-
-## 4. SST file
-- SST file format
-- Index/Data Block format
-- Two Level Iterator
-- Operations: Put, Get, Seek
-
-## 5. Bloom Filiter
-- Bloom Filiter Structure
-- Flush, Compaction
-- Operations: Put, Get, Seek
-
-## 6. Cache
-- Cache Structure
-- Index Block, Data Block
-- Replacement Policy: LRU
-- Operations: Get, Seek
+## Topics
+|              | User API         | Internal Operation    | Contents                                                | Source Code                                                    |
+|--------------|------------------|-----------------------|---------------------------------------------------------|----------------------------------------------------------------|
+| WAL/Manifest | Put              | Open Flush Compaction | Version Control  Log Format Manifest Format             | log_*.h version_*.h db_impl.h repair.cc                        |
+| Memtable     | Put Get Iterator | Flush                 | Skiplist Arena Batch Write                              | wirte_batch_internal.h skiplist.h memtable.h db_impl.h arena.h |
+| Compaction   | Put              | Compaction            | Compaction Policy Merge Iterator                        | db_impl.h merger.h version_set.h                               |
+| SSTable      | Get Iterator     | Flush Compaction      | SST Format Block Format                                 | table/ builder.h                                               |
+| Bloom filter | Put Get          | Flush Compaction      | Meta Index Block Filter Block Bloom Filter              | bloom.cc filter_block.cc filter_policy.h                       |
+| Cache        | Get, Iterator    |                       | Replacement Policy Sharding, Lock Hash Index/Data Block | cache.h table.cc table_cache.h hash.h db_impl.h                |
