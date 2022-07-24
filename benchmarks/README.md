@@ -3,7 +3,7 @@
 * Upload your presentation file through pull reqeust.
     - Pull request until **Tuesday, 7/26 11AM**.
     - Title: [topic]benchmark_experiment.pdf
-    - [presentation.ppt](../introduction/[format]leveldb_study_ppt.pptx)   
+    - [presentation.ppt](../file/%5Bformat%5Dleveldb_study_ppt.pptx)   
     
 * Upload your experiment document at [DKU-StarLab/leveldb-wiki](https://github.com/DKU-StarLab/leveldb-wiki) repository through pull reqeust.
     - Pull request until **Tuesday, 8/2 11AM**.
