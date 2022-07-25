@@ -15,7 +15,7 @@
 |--|--|--|--|--|
 |1|WAL/Manifest|--disable_wal</br>--wal_bytes_per_sync|fillseq/random|PPT|
 |2|Memtable|--write_buffer_size</br>--max_file_size|fillseq/random</br>readrandom|PPT|
-|3|Compaction|--base_background_compactions</br>--compaction_style|fillseq/random</br>readseq/random</br>seekrandom|PPT|
+|3|Compaction|--base_background_compactions</br>--compaction_style|fillseq/random</br>readseq/random</br>seekrandom|[PPT](./2022.7.26_Compaction_week4.pdf)|
 |4|SSTable|--write_buffer_size</br>--max_file_size</br>--block_size|fillseq/random</br>readseq/random</br>seekrandom|[PPT](./2022.7.26_SSTable_week4.pdf)|
 |5|Bloom Filter|--bloom_bits|readhot/random<br>seekrandom|PPT|
 |6|Cache|--cache_size</br>--block_size|readhot/random</br>seekrandom|PPT|
