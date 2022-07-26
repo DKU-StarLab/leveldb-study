@@ -13,8 +13,8 @@
 ## Topics / Benchmarks / Options
 |No|Topic|Benchmarks|Options|Result|
 |--|--|--|--|--|
-|1|WAL/Manifest|--disable_wal</br>--wal_bytes_per_sync|fillseq/random|PPT|
-|2|Memtable|--write_buffer_size</br>--max_file_size|fillseq/random</br>readrandom|PPT|
+|1|WAL/Manifest|--disable_wal</br>--wal_bytes_per_sync|fillseq/random|[PPT](./2022.07.26_WAL_week4.pdf)|
+|2|Memtable|--write_buffer_size</br>--max_file_size|fillseq/random</br>readrandom|[PPT](./2022.7.26_Memtable_week4.pdf)|
 |3|Compaction|--base_background_compactions</br>--compaction_style|fillseq/random</br>readseq/random</br>seekrandom|[PPT](./2022.7.26_Compaction_week4.pdf)|
 |4|SSTable|--write_buffer_size</br>--max_file_size</br>--block_size|fillseq/random</br>readseq/random</br>seekrandom|[PPT](./2022.7.26_SSTable_week4.pdf)|
 |5|Bloom Filter|--bloom_bits|readhot/random<br>seekrandom|[PPT](./2022.7.26_BloomFilter_week4.pdf)|
