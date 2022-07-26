@@ -17,8 +17,8 @@
 |2|Memtable|--write_buffer_size</br>--max_file_size|fillseq/random</br>readrandom|PPT|
 |3|Compaction|--base_background_compactions</br>--compaction_style|fillseq/random</br>readseq/random</br>seekrandom|[PPT](./2022.7.26_Compaction_week4.pdf)|
 |4|SSTable|--write_buffer_size</br>--max_file_size</br>--block_size|fillseq/random</br>readseq/random</br>seekrandom|[PPT](./2022.7.26_SSTable_week4.pdf)|
-|5|Bloom Filter|--bloom_bits|readhot/random<br>seekrandom|PPT|
-|6|Cache|--cache_size</br>--block_size|readhot/random</br>seekrandom|PPT|
+|5|Bloom Filter|--bloom_bits|readhot/random<br>seekrandom|[PPT](./2022.7.26_BloomFilter_week4.pdf)|
+|6|Cache|--cache_size</br>--block_size|readhot/random</br>seekrandom|[PPT](./leveldb_study_week4_cache.pdf)|
 
 ## 5 Steps of Experiment
 1. Hypothesis
