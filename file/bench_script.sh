@@ -22,8 +22,6 @@
 
 
 # 2. Set your benchmark options
-# you can add more options with for statement.
-
 # 1) Set result file
 result_file="example.txt"
 # 2) Set db_bench option-num array
@@ -32,7 +30,9 @@ NUM=(1 2)
 VAl_SIZE=(128 256 512)
 # 4) Set db_bench benchmarks array
 BENCH=("fillrandom,stats,readrandom,stats" "fillrandom,stats,seekrandom,stats")
+# you can add more options with for statement.
 
+# 3. Run db_bench
 # num loop
 for num in "${NUM[@]}" 
 do 
