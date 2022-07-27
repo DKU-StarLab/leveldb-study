@@ -15,32 +15,7 @@
 # sysctl -w fs.file-max=5000000
 # ---------------------------------------------------------------
 
-# ----------------------3. db_bench options----------------------
-# --db=
-# --reuse_logs=
-# --use_existing_db=
-
-# --benchmarks=""
-# --histogram=
-# --comparisons=
-
-# --num=
-# --reads=
-# --threads=
-
-# --value_size=
-# --compression_ratio=
-
-# --write_buffer_size=
-# --max_file_size=
-# --block_size=
-# --cache_size=
-# --open_files=
-# --bloom_bits=
-# --key_prefix=
-# ----------------------------------------------------------------
-
-# ------------------------3. Run db_bench------------------------
+# ------------------------2. Run db_bench------------------------
 # 1. clearing kernel buffers before running each workload.
 # if you want, run shell script with sudo su
 # sync; echo 3 > /proc/sys/vm/drop_caches
@@ -48,19 +23,28 @@
 
 # 2. Set your benchmark options
 # you can add more options with for statement.
+
+# 1) Set result file
 result_file="example.txt"
+# 2) Set db_bench option-num array
 NUM=(1 2)
+# 3) Set db_bench option-value_size array
 VAl_SIZE=(128 256 512)
+# 4) Set db_bench benchmarks array
 BENCH=("fillrandom,stats,readrandom,stats" "fillrandom,stats,seekrandom,stats")
 
-for num in "${NUM[@]}"
-do
-    for value in "${VAl_SIZE[@]}"
+# num loop
+for num in "${NUM[@]}" 
+do 
+    # valuesize loop
+    for value in "${VAl_SIZE[@]}" # 4) num array loop
     do
+        # benchmark loop
         for bench in "${BENCH[@]}"
         do
             ((count++))
 
+            # Make Command String
             CMD="./db_bench \
             --use_existing_db=0 \
             --histogram=1 \
@@ -69,22 +53,21 @@ do
             --num="$num" \
             --value_size="$value" \
             "
+            # Write Experiment Count to file and terminal
             echo "Count $count" | tee -a "$result_file"
+            
+            # Write Command to file and terminal
             echo "$CMD" | tee -a "$result_file"
+            # Write '\n' to file and terminal
             echo | tee -a "$result_file"
 
+            # Run Command and Save bench result
             RESULT=$($CMD)
 
+            # Write bench result to file and terminal 
             echo "$RESULT" | tee -a "$result_file"
+            # Write '\n' to file and terminal
             echo | tee -a "$result_file"
         done
     done
 done
-
-
-# ----------------------------------------------------------------
-
-# ------------------------4. Debug db_bench-----------------------
-# gdb --args db_bench (args ...)
-# b db_bench.cc:1022 [line of db_bench main func]
-# -----------~-----------------------------------------------------
