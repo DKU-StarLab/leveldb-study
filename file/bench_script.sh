@@ -57,7 +57,7 @@ do
             echo | tee -a "$result_file"
             
             # 3. clearing kernel buffers before running each workload.
-            # if you want to drop caches, run shell script with sudo su
+            # if you want to drop caches, delete # below and run shell script with sudo su
             # sync; echo 3 > /proc/sys/vm/drop_caches
             
             # Run Command and Save bench result
