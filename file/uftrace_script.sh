@@ -1,7 +1,11 @@
 #!/bin/sh
 
+# 1. If you define default function, you don't have to enter target function.
 default_func=""
 
+# 2. Before run shell script, record ./db_bench
+
+# 3. Check if user entered command such as replay, report, graph, tui ...
 if [ -z "$1" ]
 then
     echo '[USAGE] : sh uft_cmd [COMMAND] [TARGET FUNC]'
@@ -9,6 +13,7 @@ then
     exit
 fi
 
+# 4. Set target function,
 if [ -n "$2" ]
 then
     func="-F ${2}"
@@ -21,6 +26,7 @@ else
     fi
 fi
 
+# 5. Run uftrace with filters. You can modify filters if you want.
 uftrace $1 \
 $func \
 --no-libcall \
