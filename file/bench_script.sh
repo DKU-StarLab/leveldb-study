@@ -16,12 +16,7 @@
 # ---------------------------------------------------------------
 
 # ------------------------2. Run db_bench------------------------
-# 1. clearing kernel buffers before running each workload.
-# if you want, run shell script with sudo su
-# sync; echo 3 > /proc/sys/vm/drop_caches
-
-
-# 2. Set your benchmark options
+# 1. Set your benchmark options
 # 1) Set result file
 result_file="example.txt"
 # 2) Set db_bench option-num array
@@ -32,7 +27,7 @@ VAl_SIZE=(128 256 512)
 BENCH=("fillrandom,stats,readrandom,stats" "fillrandom,stats,seekrandom,stats")
 # you can add more options with for statement.
 
-# 3. Run db_bench
+# 2. Run db_bench
 # num loop
 for num in "${NUM[@]}" 
 do 
@@ -60,7 +55,11 @@ do
             echo "$CMD" | tee -a "$result_file"
             # Write '\n' to file and terminal
             echo | tee -a "$result_file"
-
+            
+            # 3. clearing kernel buffers before running each workload.
+            # if you want to drop caches, delete # below and run shell script with sudo su
+            # sync; echo 3 > /proc/sys/vm/drop_caches
+            
             # Run Command and Save bench result
             RESULT=$($CMD)
 
