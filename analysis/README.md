@@ -9,16 +9,7 @@
 8. Draw figure with PPT
 
 
-## Notice
-* Upload your presentation file through pull reqeust.
-    - Pull request until **every Tuesday, 11AM**.
-    - Title: [analysis]topic_week0.pdf
-    - [presentation.ppt](../file/%5Bformat%5Dleveldb_study_ppt.pptx)   
-    
-* Upload your analysis document at [DKU-StarLab/leveldb-wiki](https://github.com/DKU-StarLab/leveldb-wiki) repository through pull reqeust.
-    - Pull request until **every Tuesday, 11AM**.
-* Check previous study presentation files.
-    - https://github.com/DKU-StarLab/RocksDB_Festival
+
 
 ## Topics
 | Topic        | User API         | Internal Operation    | Contents                                                | Source Code                                                    |PPT|
@@ -43,3 +34,15 @@
 | **Bloom Filter**                   <img width=320/>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | **Cache**                  <img width=320/>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | leveldb::Table::ReadFilter </br>leveldb::FilterBlockBuilder::Finish </br>leveldb::FilterBlockBuilder::StartBlock </br>leveldb::FilterBlockBuilder::GenerateFilter </br>leveldb::FilterBlockBuilder::FilterBlockBuilder </br>leveldb::FilterBlockBuilder::AddKey </br>leveldb::FilterBlockReader::KeyMayMatch </br>leveldb::_GLOBAL__N_1::BloomFilterPolicy::KeyMayMatch </br>leveldb::FilterBlockReader::FilterBlockReader </br>leveldb::_GLOBAL__N_1::BloomHash </br>leveldb::_GLOBAL__N_1::BloomFilterPolicy::CreateFilter </br>leveldb::_GLOBAL__N_1::BloomFilterPolicy::Name | leveldb::TableCache::FindTable </br>leveldb::DeleteCachedBlock </br>leveldb::_GLOBAL__N_1::LRUCache::Release </br>leveldb::_GLOBAL__N_1::LRUCache::LRU_Remove </br>leveldb::_GLOBAL__N_1::LRUCache::LRU_Append </br>leveldb::_GLOBAL__N_1::LRUCache::FinishErase </br>leveldb::_GLOBAL__N_1::LRUCache::Unref </br>leveldb::_GLOBAL__N_1::ShardedLRUCache::Shard </br>leveldb::_GLOBAL__N_1::ShardedLRUCache::Lookup </br>leveldb::_GLOBAL__N_1::ShardedLRUCache::Insert </br>leveldb::_GLOBAL__N_1::PosixMmapReadableFile::Read |
+
+
+## Notice
+* Upload your presentation file through pull reqeust.
+    - Pull request until **every Tuesday, 11AM**.
+    - Title: [analysis]topic_week0.pdf
+    - [presentation.ppt](../file/%5Bformat%5Dleveldb_study_ppt.pptx)   
+    
+* Upload your analysis document at [DKU-StarLab/leveldb-wiki](https://github.com/DKU-StarLab/leveldb-wiki) repository through pull reqeust.
+    - Pull request until **every Tuesday, 11AM**.
+* Check previous study presentation files.
+    - https://github.com/DKU-StarLab/RocksDB_Festival
