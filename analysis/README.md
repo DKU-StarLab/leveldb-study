@@ -28,7 +28,7 @@
 | Compaction   | Put              | Compaction            | Compaction Policy </br>Merge Iterator                        | db_impl.h </br>merger.h </br>version_set.h                               |Week5|
 | SSTable      | Get </br>Iterator     | Flush </br>Compaction      | SST Format </br>Block Format                                 | table/ </br>builder.h                                               |Week5|
 | Bloom filter | Put </br>Get          | Flush </br>Compaction      | Meta Index Block </br>Filter Block </br>Bloom Filter              | bloom.cc </br>filter_block.cc </br>filter_policy.h                       |Week5|
-| Cache        | Get </br>Iterator    |                       | Replacement Policy </br>Sharding, Lock </br>Hash </br>Index/Data Block | cache.h </br>table.cc </br>table_cache.h </br>hash.h </br>db_impl.h                |Week5|
+| Cache        | Get </br>Iterator    |                       | Replacement Policy </br>Sharding, Lock </br>Hash </br>Index/Data Block | cache.h </br>table.cc </br>table_cache.h </br>hash.h </br>db_impl.h                |[Week5]([analysis]cache_week5.pdf)|
 
 
 ## Functions
