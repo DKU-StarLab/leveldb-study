@@ -1,6 +1,4 @@
-# Tune LevelDB Options for YCSB
-
-## LevelDB options tuning contest for YCSB
+## LevelDB tuning contest for YCSB
 1. Study the db options and their relationships.
 2. Analyze workloads such as key/value size and key/operations distribution.
 3. Hypothesize the best option set and verify it by experiment.
@@ -25,7 +23,9 @@
 | 6 |              |       |       |       |           | File |
 
 ## Benchmark: YCSB-cpp
- The goal of the Yahoo Cloud Serving Benchmark (YCSB) project is to develop a framework and common set of workloads for evaluating the performance of different "key-value" and "cloud" serving stores. 
+![image](https://user-images.githubusercontent.com/87025898/183247993-0133d8c1-3b40-455e-987d-f54892488e84.png)  
+
+The goal of the Yahoo Cloud Serving Benchmark (YCSB) project is to develop a framework and common set of workloads for evaluating the performance of different "key-value" and "cloud" serving stores.
 * [YCSB github](https://github.com/brianfrankcooper/YCSB)
 * [YCSB-cpp github](https://github.com/ls4154/YCSB-cpp)
 * [Cooper, Brian F., et al. "Benchmarking cloud serving systems with YCSB." Proceedings of the 1st ACM symposium on Cloud computing. 2010.](https://dl.acm.org/doi/abs/10.1145/1807128.1807152)
