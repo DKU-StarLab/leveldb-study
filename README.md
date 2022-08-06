@@ -5,7 +5,7 @@
 * [Study LevelDB.](./introduction/README.md)
 * [Analyze LevelDB](./analysis/README.md)
 * [Write LevelDB analysis document.](https://github.com/DKU-StarLab/leveldb-wiki)
-* [Tune LevelDB for real-world workload.](./tuning/README.md)
+* [Tune LevelDB for YCSB](./tuning/README.md)
 * Write a research paper on what you learned.
 
 ## Members
@@ -33,7 +33,7 @@ Week 3|22-07-19|[Introduction 3](./introduction/README.md)|Analysis Tools</br>[H
 |Week 4|22-07-26|[Benchmark Experiment](./benchmarks/README.md)|LevelDB db_bench|
 |Week 5</br>(zoom)|22-08-02|[Analysis 1](./analysis/README.md)|
 |Week 6|22-08-09|[Analysis 2](./analysis/README.md)|
-|Week 7|22-08-16|Tuning Contest|YCSB</br>Twitter Trace|
+|Week 7|22-08-16|[Tuning Contest](./tuning/README.md)|YCSB|
 |Week 8|22-08-23|[Analysis 3](./analysis/README.md)|
 |Week 9|22-08-30|[Analysis 4](./analysis/README.md)|Write a research paper|
 
@@ -58,9 +58,6 @@ Week 3|22-07-19|[Introduction 3](./introduction/README.md)|Analysis Tools</br>[H
   - [Jongmoo Choi, 『Key-Value Store: Database for Unstructured Bigdata (KOR)』,  2021](https://mooc.dankook.ac.kr/courses/61d537a3b6b71841651153b3)
   - [GL Tech Tutorials, 『LSM trees』, 2021](https://youtube.com/playlist?list=PLRNjlOFk-f0lJJZVoSAmcwZgVtp64tXaX)
   - [Wei Zhou, LevelDB YouTube playlist](https://youtube.com/playlist?list=PLaCN8MYUet0tR1xn5d8ZtCumHKtP6Wkeq)
-* Real-World Workload
-  - [Twitter cache trace](https://github.com/twitter/cache-trace)
-  - [Facebook ZippyDB](https://github.com/facebook/rocksdb/wiki/RocksDB-Trace%2C-Replay%2C-Analyzer%2C-and-Workload-Generation)
 * Analysis Tools
   - [GDB](https://www.sourceware.org/gdb/)
   - [Understand](https://licensing.scitools.com/download)

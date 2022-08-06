@@ -1,6 +1,6 @@
-# Tune LevelDB Options for Real-World Workload
+# Tune LevelDB Options for YCSB
 
-## LevelDB options tuning contest for real-world workload
+## LevelDB options tuning contest for YCSB
 1. Study the db options and their relationships.
 2. Analyze workloads such as key/value size and key/operations distribution.
 3. Hypothesize the best option set and verify it by experiment.
@@ -25,6 +25,8 @@
 
 ## Benchmark: YCSB-cpp
  The goal of the Yahoo Cloud Serving Benchmark (YCSB) project is to develop a framework and common set of workloads for evaluating the performance of different "key-value" and "cloud" serving stores. 
+* [YCSB github](https://github.com/brianfrankcooper/YCSB)
+* [YCSB-cpp github](https://github.com/ls4154/YCSB-cpp)
 * [Cooper, Brian F., et al. "Benchmarking cloud serving systems with YCSB." Proceedings of the 1st ACM symposium on Cloud computing. 2010.](https://dl.acm.org/doi/abs/10.1145/1807128.1807152)
 
 ### Measurement For Evaluation
@@ -60,17 +62,40 @@ void LeveldbDB::GetOptions(const utils::Properties &props, leveldb::Options *opt
   opt->filter_policy = nullptr;
 }
 ```
+- Example source code: [leveldb_db.cc](./leveldb_db.cc)
 
 ### Contest Workload
 * Load A -> Run A -> Run B -> Run D
-```
-./ycsb -load -db leveldb -P workloads/workloada -P leveldb/leveldb.properties -s
-./ycsb -run -db leveldb -P workloads/workloada -P leveldb/leveldb.properties -s
-./ycsb -run -db leveldb -P workloads/workloadb -P leveldb/leveldb.properties -s
-./ycsb -run -db leveldb -P workloads/workloadd -P leveldb/leveldb.properties -s
-```
+  ```
+  # Command
+  ./ycsb -load -db leveldb -P workloads/workloada -P leveldb/leveldb.properties -s
+  ./ycsb -run -db leveldb -P workloads/workloada -P leveldb/leveldb.properties -s
+  ./ycsb -run -db leveldb -P workloads/workloadb -P leveldb/leveldb.properties -s
+  ./ycsb -run -db leveldb -P workloads/workloadd -P leveldb/leveldb.properties -s
+  ```
 - Workload
-  - recordcount=2,000,000 
-  - operationcount=2,000,000
+  - Record Count = 2,000,000 
+  - Operation Count = 2,000,000
+  - Workload file 
+    - [Workload A](./workloada)
+    - [Workload B](./workloadb)
+    - [Workload D](./workloadd)
   
+
+### Install YCSB-cpp
+  - Install and build leveldb in release mode
+  - ```git clone https://github.com/ls4154/YCSB-cpp.git```
+  - modify config section in Makefile
+    ```
+    #---------------------build config-------------------------
+    DEBUG_BUILD ?= 0
+    # put your leveldb directory
+    EXTRA_CXXFLAGS ?= -I/example/leveldb/include
+    EXTRA_LDFLAGS ?= -L/example/leveldb/build -lsnappy
+
+    BIND_LEVELDB ?= 1
+    BIND_ROCKSDB ?= 0 
+    BIND_LMDB ?= 0
+    ```
+  - ```make```
 
