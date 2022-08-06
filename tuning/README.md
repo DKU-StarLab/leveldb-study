@@ -4,9 +4,10 @@
 1. Study the db options and their relationships.
 2. Analyze workloads such as key/value size and key/operations distribution.
 3. Hypothesize the best option set and verify it by experiment.
-4. Submit your best option set to the assistant.
-5. Write a document about your hypothesis, experiment, and final decision.
-6. Prepare a 15-minute presentation and upload your PPT in pdf format.
+4. Submit your best option set to the assistant by e-mail.
+    - Send your _YCSB-cpp/leveldb/leveldb_db.cc file_ to _koreachoi96@gmail.com_ until **Monday, 15 August 2022, 9:00 AM**
+6. Write a document about your hypothesis, experiment, and final decision.
+7. Prepare a 15-minute presentation and upload your PPT in pdf format.
 * Please refer to LevelDB options.h and RocksDB tuning guide before you start!
   - [leveldb/include/leveldb/options.h](https://github.com/google/leveldb/blob/main/include/leveldb/options.h)
   - [leveldb/doc/index.md](https://github.com/google/leveldb/blob/main/doc/index.md)
