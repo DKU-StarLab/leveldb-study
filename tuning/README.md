@@ -98,6 +98,5 @@ void LeveldbDB::GetOptions(const utils::Properties &props, leveldb::Options *opt
     BIND_ROCKSDB ?= 0 
     BIND_LMDB ?= 0
     ```
-  - Modify _YCSB-cpp/leveldb/leveldb_db.cc:LeveldbDB::GetOptions_ 
   - ```make```
 
