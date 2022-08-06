@@ -33,7 +33,7 @@
 * Average of throughput ranks for each workload
 
 ### LevelDB options and restrictions
-Modify _YCSB-cpp/leveldb/leveldb.cc:LeveldbDB::GetOptions_ like below.
+Modify _YCSB-cpp/leveldb/leveldb_db.cc:LeveldbDB::GetOptions_ like below.
 ``` c++
 void LeveldbDB::GetOptions(const utils::Properties &props, leveldb::Options *opt) {
 // ---------------------------Restriction----------------------------
@@ -85,7 +85,7 @@ void LeveldbDB::GetOptions(const utils::Properties &props, leveldb::Options *opt
 ### Install YCSB-cpp
   - Install and build leveldb in release mode
   - ```git clone https://github.com/ls4154/YCSB-cpp.git```
-  - modify config section in Makefile
+  - Modify config section in Makefile
     ```
     #---------------------build config-------------------------
     DEBUG_BUILD ?= 0
@@ -97,5 +97,6 @@ void LeveldbDB::GetOptions(const utils::Properties &props, leveldb::Options *opt
     BIND_ROCKSDB ?= 0 
     BIND_LMDB ?= 0
     ```
+  - Modify _YCSB-cpp/leveldb/leveldb_db.cc:LeveldbDB::GetOptions_ 
   - ```make```
 
