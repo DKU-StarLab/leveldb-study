@@ -4,16 +4,18 @@
 3. Hypothesize the best option set and verify it by experiment.
 4. Submit your best option set to the assistant by e-mail.
     - Send your _YCSB-cpp/leveldb/leveldb_db.cc file_ to _koreachoi96@gmail.com_ until **Monday, 15 August 2022, 9:00 AM**
-6. Write a document about your hypothesis, experiment, and final decision.
-7. Prepare a 15-minute presentation and upload your PPT in pdf format.
+5. Check your ranking at **Tuesday, 16 August 2022, 2:00 PM**
+6. Write a report about your hypothesis, experiment, and final decision in markdown format.
+    - Pull request at tuning directory until **...**
+    - Title: [Tuning]team_<your_topic>_report.md
 * Please refer to LevelDB options.h and RocksDB tuning guide before you start!
   - [leveldb/include/leveldb/options.h](https://github.com/google/leveldb/blob/main/include/leveldb/options.h)
   - [leveldb/doc/index.md](https://github.com/google/leveldb/blob/main/doc/index.md)
   - [RocksDB Tuning Guide](https://github.com/facebook/rocksdb/wiki/RocksDB-Tuning-Guide)
   - [RocksDB Setup Options and Basice Tuning](https://github.com/facebook/rocksdb/wiki/Setup-Options-and-Basic-Tuning)
 
-## Result
-| Team  | Load (MB/s)  | Run A | Run B | Run D | Total | PPT  |
+## Result 
+| Team  | Load (MB/s)  | Run A | Run B | Run D | Total | Report  |
 |---|--------------|-------|-------|-------|-----------|------|
 | WAL/Manifest | 1 (8.8) |       |       |       | 1          | File |
 | Memtable | 2 (7.7)             |       |       |       |  2         | File |
@@ -21,6 +23,17 @@
 | SSTable |              |       |       |       |           | File |
 | Bloomfilter |              |       |       |       |           | File |
 | Cache |              |       |       |       |           | File |
+
+### Tuning Options
+ Team | write_buffer_size | max_file_size | block_size | block_restart_interval | block_cache | compression | filter_policy 
+---|---|---|---|---|---|---|---
+ WAL/Manifest |  |  |  |  |  |  |  
+ Memtable |  |  |  |  |  |  |  
+ Compaction |  |  |  |  |  |  |  
+ SSTable |  |  |  |  |  |  |  
+ Bloom Filter |  |  |  |  |  |  |  
+ Cache |  |  |  |  |  |  |  
+
 
 ## Benchmark: YCSB-cpp
 ![image](https://user-images.githubusercontent.com/87025898/183247993-0133d8c1-3b40-455e-987d-f54892488e84.png)  
