@@ -13,14 +13,14 @@
   - [RocksDB Setup Options and Basice Tuning](https://github.com/facebook/rocksdb/wiki/Setup-Options-and-Basic-Tuning)
 
 ## Result
-|   | Load (MB/s)  | Run A | Run B | Run D | Total | PPT  |
+| Team  | Load (MB/s)  | Run A | Run B | Run D | Total | PPT  |
 |---|--------------|-------|-------|-------|-----------|------|
-| 1 | Team A (8.8) |       |       |       |           | File |
-| 2 |              |       |       |       |           | File |
-| 3 |              |       |       |       |           | File |
-| 4 |              |       |       |       |           | File |
-| 5 |              |       |       |       |           | File |
-| 6 |              |       |       |       |           | File |
+| WAL/Manifest | 1 (8.8) |       |       |       | 1          | File |
+| Memtable | 2 (7.7)             |       |       |       |  2         | File |
+| Compaction |              |       |       |       |           | File |
+| SSTable |              |       |       |       |           | File |
+| Bloomfilter |              |       |       |       |           | File |
+| Cache |              |       |       |       |           | File |
 
 ## Benchmark: YCSB-cpp
 ![image](https://user-images.githubusercontent.com/87025898/183247993-0133d8c1-3b40-455e-987d-f54892488e84.png)  
@@ -100,3 +100,11 @@ void LeveldbDB::GetOptions(const utils::Properties &props, leveldb::Options *opt
     ```
   - ```make```
 
+### Tuning Enviornment
+| System  | Specification                             |
+|---------|-------------------------------------------|
+| CPU     |  |
+| Memory  |  |
+| Storage |  |
+| Linux   |  |
+| Ubuntu  |  |
