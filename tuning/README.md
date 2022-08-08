@@ -4,10 +4,10 @@
 3. Hypothesize the best option set and verify it by experiment.
 4. Submit your best option set to the assistant by e-mail.
     - Send your _YCSB-cpp/leveldb/leveldb_db.cc file_ to _koreachoi96@gmail.com_ until **Monday, 15 August 2022, 9:00 AM**
-5. Check your ranking at **Tuesday, 16 August 2022, 2:00 PM**
 6. Write a report about your hypothesis, experiment, and final decision in markdown format.
-    - Pull request at tuning directory until **...**
+    - Pull request at tuning directory until **Tuesday, 16 August 2022, 2:00 PM**
     - Title: [Tuning]team_<your_topic>_report.md
+5. Check your ranking at **Tuesday, 16 August 2022, 4:00 PM**
 * Please refer to LevelDB options.h and RocksDB tuning guide before you start!
   - [leveldb/include/leveldb/options.h](https://github.com/google/leveldb/blob/main/include/leveldb/options.h)
   - [leveldb/doc/index.md](https://github.com/google/leveldb/blob/main/doc/index.md)
