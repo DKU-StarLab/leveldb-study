@@ -1,4 +1,4 @@
-## LevelDB tuning contest for YCSB
+## 1. LevelDB tuning contest for YCSB
 1. Study the db options and their relationships.
 2. Analyze workloads such as key/value size and key/operations distribution.
 3. Hypothesize the best option set and verify it by experiment.
@@ -14,7 +14,7 @@
   - [RocksDB Tuning Guide](https://github.com/facebook/rocksdb/wiki/RocksDB-Tuning-Guide)
   - [RocksDB Setup Options and Basice Tuning](https://github.com/facebook/rocksdb/wiki/Setup-Options-and-Basic-Tuning)
 
-## Result 
+## 2. Result 
 | Team  | Load (MB/s)  | Run A | Run B | Run D | Total | Report  |
 |---|--------------|-------|-------|-------|-----------|------|
 | WAL/Manifest | 1 (8.8) |       |       |       | 1          | File |
@@ -24,7 +24,10 @@
 | Bloomfilter |              |       |       |       |           | File |
 | Cache |              |       |       |       |           | File |
 
-### Tuning Options
+### Measurement For Evaluation
+* Average of throughput ranks for each workload
+
+## 3. Tuning Options
  Team | write_buffer_size | max_file_size | block_size | block_restart_interval | block_cache | compression | filter_policy 
 ---|---|---|---|---|---|---|---
  WAL/Manifest |  |  |  |  |  |  |  
@@ -33,18 +36,6 @@
  SSTable |  |  |  |  |  |  |  
  Bloom Filter |  |  |  |  |  |  |  
  Cache |  |  |  |  |  |  |  
-
-
-## Benchmark: YCSB-cpp
-![image](https://user-images.githubusercontent.com/87025898/183247993-0133d8c1-3b40-455e-987d-f54892488e84.png)  
-
-The goal of the Yahoo Cloud Serving Benchmark (YCSB) project is to develop a framework and common set of workloads for evaluating the performance of different "key-value" and "cloud" serving stores.
-* [YCSB github](https://github.com/brianfrankcooper/YCSB)
-* [YCSB-cpp github](https://github.com/ls4154/YCSB-cpp)
-* [Cooper, Brian F., et al. "Benchmarking cloud serving systems with YCSB." Proceedings of the 1st ACM symposium on Cloud computing. 2010.](https://dl.acm.org/doi/abs/10.1145/1807128.1807152)
-
-### Measurement For Evaluation
-* Average of throughput ranks for each workload
 
 ### LevelDB options and restrictions
 Modify _YCSB-cpp/leveldb/leveldb_db.cc:LeveldbDB::GetOptions_ like below.
@@ -77,6 +68,15 @@ void LeveldbDB::GetOptions(const utils::Properties &props, leveldb::Options *opt
 }
 ```
 - Example source code: [leveldb_db.cc](./leveldb_db.cc)
+
+## 4. Benchmark: YCSB-cpp
+![image](https://user-images.githubusercontent.com/87025898/183247993-0133d8c1-3b40-455e-987d-f54892488e84.png)  
+
+The goal of the Yahoo Cloud Serving Benchmark (YCSB) project is to develop a framework and common set of workloads for evaluating the performance of different "key-value" and "cloud" serving stores.
+* [YCSB github](https://github.com/brianfrankcooper/YCSB)
+* [YCSB-cpp github](https://github.com/ls4154/YCSB-cpp)
+* [Cooper, Brian F., et al. "Benchmarking cloud serving systems with YCSB." Proceedings of the 1st ACM symposium on Cloud computing. 2010.](https://dl.acm.org/doi/abs/10.1145/1807128.1807152)
+
 
 ### Contest Workload
 * Load A -> Run A -> Run B -> Run D
