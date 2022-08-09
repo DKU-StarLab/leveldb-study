@@ -3,7 +3,7 @@
 2. Analyze workloads such as key/value size and key/operations distribution.
 3. Hypothesize the best option set and verify it by experiment.
 4. Submit your best option set to the assistant by e-mail.
-    - Send your _YCSB-cpp/leveldb/leveldb_db.cc file_ to _koreachoi96@gmail.com_ until **Monday, 15 August 2022, 9:00 AM**
+    - Send your _**YCSB-cpp/leveldb/leveldb.properties**_ to _koreachoi96@gmail.com_ until **Monday, 15 August 2022, 9:00 AM**
 6. Write a report about your hypothesis, experiment, and final decision in markdown format.
     - Pull request at tuning directory until **Tuesday, 16 August 2022, 2:00 PM**
     - Title: [Tuning]team_<your_topic>_report.md
