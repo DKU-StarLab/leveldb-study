@@ -65,6 +65,19 @@ void LeveldbDB::GetOptions(const utils::Properties &props, leveldb::Options *opt
 
   // BloomFilter
   opt->filter_policy = nullptr;
+
+  leveldb.dbname=/tmp/ycsb-leveldb
+  leveldb.format=single
+  leveldb.destroy=false
+
+  leveldb.write_buffer_size=67108864
+  leveldb.max_file_size=67108864
+  leveldb.max_open_files=1000
+  leveldb.compression=snappy
+  leveldb.cache_size=134217728
+  leveldb.filter_bits=10
+  leveldb.block_size=4096
+  leveldb.block_restart_interval=16
 }
 ```
 - Example source code: [leveldb_db.cc](./leveldb_db.cc)
