@@ -4,7 +4,9 @@
 ## Goals
 * [Study LevelDB.](./introduction/README.md)
 * [Analyze LevelDB](./analysis/README.md)
-* [Write LevelDB analysis document.](https://github.com/DKU-StarLab/leveldb-wiki)
+* Write LevelDB analysis document.
+  * [leveldb-wiki](https://github.com/DKU-StarLab/leveldb-wiki)
+  * [leveldb-wiki-kor](https://github.com/DKU-StarLab/leveldb-wiki-kor)
 * [Tune LevelDB for YCSB](./tuning/README.md)
 * Write a research paper on what you learned.
 
