@@ -42,10 +42,10 @@ Modify _YCSB-cpp/leveldb/leveldb_db.cc:LeveldbDB::GetOptions_ like below.
 ``` c++
 void LeveldbDB::GetOptions(const utils::Properties &props, leveldb::Options *opt) {
 // ---------------------------Restriction----------------------------
-  // max_memory size (= write_buffer_size + block_cache_size) <= 1024 * 1024
-  // max_file_size <= 1024 * 1024
+  // max_memory size (= write_buffer_size + block_cache_size) <= 1024 * 1024 * 1024
+  // max_file_size <= 1024 * 1024 * 1024
   // Do not change other options except the ones below
-  opt->max_open_files = 1000;
+  opt->max_open_files = 10000;
 
 
 // -------------LevelDB Default Options, Tune them!------------------
