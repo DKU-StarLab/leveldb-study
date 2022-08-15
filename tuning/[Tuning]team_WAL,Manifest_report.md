@@ -39,9 +39,11 @@
     // worth switching to kNoCompression.  Even if the input data is
     // incompressible, the kSnappyCompression implementation will
     // efficiently detect that and will switch to uncompressed mode.
-    leveldb의 compression 옵션에 대한 설명인데 위의 설명에 따르면 kNoCompression 옵션으로 변경할 필요가 없다고 되어 있어 kSnappyCompression 옵션 일 때 성능이 더 좋을것으로 예상된다.
+    leveldb의 compression 옵션에 대한 설명인데 위의 설명에 따르면 kNoCompression 옵션으로 변경할 필요가
+    없다고 되어 있어 kSnappyCompression 옵션 일 때 성능이 더 좋을것으로 예상된다.
 #### filter_policy
-    default로 NewBloomFilterPolicy로 설정이 되어 있고 지난 bloomfilter 팀의 benchmark 발표에서 10bit 일 때 가장 효율적이라고 발표를 했으므로 따로 설정하지 않고 10bit로 실험을 진행했다.
+    default로 NewBloomFilterPolicy로 설정이 되어 있고 지난 bloomfilter 팀의 benchmark 발표에서 
+    10bit 일 때 가장 효율적이라고 발표를 했으므로 따로 설정하지 않고 10bit로 실험을 진행했다.
 
 
 
@@ -76,13 +78,15 @@
     서버가 다른 것도 영향을 줄 수 있는지는 확인을 해봐야겠지만 3개의 서버에서 같은 결과가 나오지는 않아서 평균값을 결과값으로 정했다.
     
 #### max_file_size
-    64MB 이상부터는 큰 차이가 없었고 일반적인 경우에 파일의 크기가 클수록 성능에 안 좋을 수 있다고 생각해서 비슷한 결과 값 중에서 가장 작은 64MB을 결과값으로 정했다.
+    64MB 이상부터는 큰 차이가 없었고 일반적인 경우에 파일의 크기가 클수록 성능에 안 좋을 수 있다고 생각해서 비슷한 결과 값 중에서 
+    가장 작은 64MB을 결과값으로 정했다.
 #### block_size
     우리의 실험에서는 8kB 일 때 값들이 일관적으로 잘 나오는 것을 확인했고 공통된 결과가 나왔으므로 8kB를 결과값으로 정했다.
 #### block_restart_interval
     16
 #### block_cache_size
-    캐시의 크기가 128MB부터는 성능이 향상 되지 않았고 반복적으로 실험을 돌려봐도 높은 성능이 나오는 것을 확인해서 128MB를 결과값으로 정했다.
+    캐시의 크기가 128MB부터는 성능이 향상 되지 않았고 반복적으로 실험을 돌려봐도 높은 성능이 나오는 것을 확인해서 
+    128MB를 결과값으로 정했다.
 #### compression
     kSnappyCompression
 #### filter_policy
