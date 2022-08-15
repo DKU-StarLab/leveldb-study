@@ -35,10 +35,15 @@ key/value 크기에 대응하여 설정해야합니다.
 - - -
 - - -
 2022-08-15 20:13:09 0 sec: 0 operations;
+
 2022-08-15 20:13:10 0 sec: 100000 operations; [READ: Count=49912 Max=4231.61 Min=1.14 Avg=4.24] [UPDATE: Count=50088 Max=3125.45 Min=3.94 Avg=8.25]
+
 Run runtime(sec): 0.831485
+
 Run operations(ops): 100000
+
 Run throughput(ops/sec): 120267
+
 
 ##100000 operations
 
