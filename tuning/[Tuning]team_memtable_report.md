@@ -45,9 +45,15 @@ Run throughput(ops/sec): 120267
 op가 많은것이 않이어서 옵션을 작은db의 맞게 설정했습니다.
 
 leveldb.write_buffer_size=33554432
+
 leveldb.max_file_size=16777216
+
 leveldb.compression=snappy
+
 leveldb.cache_size=33554432
+
 leveldb.filter_bits=10
+
 leveldb.block_size=8192
+
 leveldb.block_restart_interval=16
