@@ -1,5 +1,5 @@
-# [Team SSTable] Tuning report  
-
+# BloomFilter Team Tuning report  
+<br/><br/>
 ## 1)write_buffer_size  
 가설 : write buffer size를 키울수록 쓰기 성능이 향상될 것으로 추정되나 이를 너무 과하게 키운다면 어딘가의 overhead가 너무 커져 <br/>
 오히려 성능 저하가 발생할 수 있으므로 최대한 크기를 키우되 성능 저하가 적어 최고의 성능이 나오는 값을 찾는 것을 목표로 해야할 것이다.<br/>
