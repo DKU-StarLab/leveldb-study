@@ -28,14 +28,14 @@
 * Average of throughput ranks for each workload
 
 ## 3. Tuning Options
- Team | write_buffer_size | max_file_size | block_size | block_restart_interval | block_cache | compression | filter_policy 
----|---|---|---|---|---|---|---
- WAL/Manifest |  |  |  |  |  |  |  
- Memtable |  |  |  |  |  |  |  
- Compaction |  |  |  |  |  |  |  
- SSTable |  |  |  |  |  |  |  
+ Team | write_buffer_size | max_file_size | compression | block_cache| filter_policy |block_size | block_restart_interval|
+---|---|---|---|---|---|---|---|
+ WAL/Manifest |128MB|64MB|snappy|128MB|10|8KB|16|
+ Memtable |32MB|16MB|snappy|32MB|10|8KB|16
+ Compaction |32MB|4MB|snappy |8MB|10|2KB|16|
+ SSTable |64MB|32MB|snappy|13.75MB|10|2MB|4  
  Bloom Filter |  |  |  |  |  |  |  
- Cache |  |  |  |  |  |  |  
+ Cache |47.68MB|4MB|snappy |40MB|10|8KB|32  
 
 ### LevelDB options and restrictions
 Modify _**YCSB-cpp/leveldb/leveldb.properties**_ like below.
