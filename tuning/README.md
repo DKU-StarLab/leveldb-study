@@ -33,8 +33,8 @@
  WAL/Manifest |128MB|64MB|snappy|128MB|10|8KB|16|
  Memtable |32MB|16MB|snappy|32MB|10|8KB|16
  Compaction |32MB|4MB|snappy |8MB|10|2KB|16|
- SSTable |64MB|32MB|snappy|13.75MB|10|2MB|4  
- Bloom Filter |  |  |  |  |  |  |  
+ SSTable |64MB|32MB|snappy|13.75MB|10|2MB|4|  
+ Bloom Filter |128MB|64MB|snappy|64MB|9|8KB|4|  
  Cache |47.68MB|4MB|snappy |40MB|10|8KB|32  
 
 ### LevelDB options and restrictions
