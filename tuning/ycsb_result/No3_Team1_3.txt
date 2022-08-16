@@ -1,0 +1,83 @@
+./YCSB-cpp/ycsb -load -db leveldb -P ./YCSB-cpp/workloads/workloada -P ./YCSB-cpp/leveldb/leveldb1.properties -s
+2022-08-16 06:41:37 0 sec: 0 operations;
+2022-08-16 06:41:47 10 sec: 48749 operations; [INSERT: Count=48749 Max=6049.83 Min=2.83 Avg=195.56]
+2022-08-16 06:41:57 20 sec: 80251 operations; [INSERT: Count=80251 Max=8047.73 Min=2.83 Avg=238.85]
+2022-08-16 06:42:07 30 sec: 110641 operations; [INSERT: Count=110641 Max=8047.73 Min=2.83 Avg=260.40]
+2022-08-16 06:42:17 40 sec: 558815 operations; [INSERT: Count=558815 Max=1254288.25 Min=2.83 Avg=63.33]
+2022-08-16 06:42:27 50 sec: 1018130 operations; [INSERT: Count=1018130 Max=1432366.09 Min=2.67 Avg=43.81]
+2022-08-16 06:42:37 60 sec: 1343363 operations; [INSERT: Count=1343363 Max=1432366.09 Min=2.67 Avg=39.57]
+2022-08-16 06:42:47 70 sec: 1351119 operations; [INSERT: Count=1351119 Max=1432366.09 Min=2.67 Avg=46.61]
+2022-08-16 06:42:57 80 sec: 1537169 operations; [INSERT: Count=1537169 Max=1432366.09 Min=2.64 Avg=46.88]
+2022-08-16 06:43:07 90 sec: 2000000 operations; [INSERT: Count=2000000 Max=1432366.09 Min=2.64 Avg=39.97]
+2022-08-16 06:43:09 91 sec: 2000000 operations; [INSERT: Count=2000000 Max=1432366.09 Min=2.64 Avg=39.97]
+Load runtime(sec): 91.2742
+Load operations(ops): 2000000
+Load throughput(ops/sec): 21912
+./YCSB-cpp/ycsb -run -db leveldb -P ./YCSB-cpp/workloads/workloada -P ./YCSB-cpp/leveldb/leveldb1.properties -s
+2022-08-16 06:43:09 0 sec: 0 operations;
+2022-08-16 06:43:19 10 sec: 1524 operations; [READ: Count=727 Max=98215.85 Min=2.40 Avg=3237.36] [UPDATE: Count=797 Max=111897.68 Min=5.67 Avg=3577.97]
+2022-08-16 06:43:29 20 sec: 6358 operations; [READ: Count=3121 Max=98215.85 Min=1.77 Avg=2276.08] [UPDATE: Count=3237 Max=111897.68 Min=5.67 Avg=2493.22]
+2022-08-16 06:43:39 30 sec: 13726 operations; [READ: Count=6854 Max=206867.56 Min=1.77 Avg=1709.14] [UPDATE: Count=6872 Max=207998.76 Min=5.17 Avg=1954.83]
+2022-08-16 06:43:49 40 sec: 23347 operations; [READ: Count=11620 Max=206867.56 Min=1.77 Avg=1398.26] [UPDATE: Count=11727 Max=208569.52 Min=5.17 Avg=1608.73]
+2022-08-16 06:43:59 50 sec: 28712 operations; [READ: Count=14310 Max=206867.56 Min=1.77 Avg=1465.11] [UPDATE: Count=14402 Max=208569.52 Min=5.17 Avg=1674.58]
+2022-08-16 06:44:09 60 sec: 34935 operations; [READ: Count=17438 Max=208725.07 Min=1.77 Avg=1479.35] [UPDATE: Count=17497 Max=208569.52 Min=5.17 Avg=1672.12]
+2022-08-16 06:44:19 70 sec: 41815 operations; [READ: Count=20879 Max=208725.07 Min=1.77 Avg=1446.83] [UPDATE: Count=20936 Max=210822.23 Min=5.17 Avg=1663.18]
+2022-08-16 06:44:29 80 sec: 50375 operations; [READ: Count=25132 Max=208725.07 Min=1.77 Avg=1388.55] [UPDATE: Count=25243 Max=210822.23 Min=5.17 Avg=1588.21]
+2022-08-16 06:44:39 90 sec: 58257 operations; [READ: Count=29058 Max=208725.07 Min=1.77 Avg=1354.15] [UPDATE: Count=29199 Max=210822.23 Min=5.17 Avg=1561.96]
+2022-08-16 06:44:49 100 sec: 65113 operations; [READ: Count=32502 Max=208725.07 Min=1.77 Avg=1365.71] [UPDATE: Count=32611 Max=210822.23 Min=5.17 Avg=1549.97]
+2022-08-16 06:44:59 110 sec: 69485 operations; [READ: Count=34726 Max=208725.07 Min=1.77 Avg=1421.96] [UPDATE: Count=34759 Max=210822.23 Min=5.17 Avg=1597.53]
+2022-08-16 06:45:09 120 sec: 74030 operations; [READ: Count=36988 Max=211848.52 Min=1.77 Avg=1465.68] [UPDATE: Count=37042 Max=210822.23 Min=5.17 Avg=1638.00]
+2022-08-16 06:45:19 130 sec: 79033 operations; [READ: Count=39551 Max=211848.52 Min=1.77 Avg=1492.12] [UPDATE: Count=39482 Max=210822.23 Min=5.17 Avg=1667.73]
+2022-08-16 06:45:29 140 sec: 84163 operations; [READ: Count=42102 Max=211848.52 Min=1.77 Avg=1521.39] [UPDATE: Count=42061 Max=210822.23 Min=5.17 Avg=1682.85]
+2022-08-16 06:45:39 150 sec: 89196 operations; [READ: Count=44601 Max=211848.52 Min=1.70 Avg=1534.95] [UPDATE: Count=44595 Max=210822.23 Min=5.17 Avg=1712.07]
+2022-08-16 06:45:49 160 sec: 94404 operations; [READ: Count=47172 Max=211848.52 Min=1.70 Avg=1546.60] [UPDATE: Count=47232 Max=210864.72 Min=5.17 Avg=1732.51]
+2022-08-16 06:45:59 170 sec: 106697 operations; [READ: Count=53332 Max=211848.52 Min=1.70 Avg=1448.80] [UPDATE: Count=53365 Max=210864.72 Min=5.17 Avg=1639.06]
+2022-08-16 06:46:09 180 sec: 132525 operations; [READ: Count=66039 Max=211848.52 Min=1.70 Avg=1225.50] [UPDATE: Count=66486 Max=210864.72 Min=4.96 Avg=1409.84]
+2022-08-16 06:46:19 190 sec: 173868 operations; [READ: Count=86720 Max=211848.52 Min=1.70 Avg=960.22] [UPDATE: Count=87148 Max=210864.72 Min=4.83 Avg=1162.44]
+2022-08-16 06:46:29 200 sec: 210486 operations; [READ: Count=104825 Max=295096.46 Min=1.62 Avg=819.76] [UPDATE: Count=105661 Max=210864.72 Min=4.83 Avg=1027.43]
+2022-08-16 06:46:39 210 sec: 238761 operations; [READ: Count=118994 Max=663233.18 Min=1.53 Avg=754.30] [UPDATE: Count=119767 Max=442448.14 Min=4.60 Avg=957.35]
+2022-08-16 06:46:49 220 sec: 260176 operations; [READ: Count=129610 Max=663233.18 Min=1.53 Avg=732.49] [UPDATE: Count=130566 Max=442448.14 Min=4.60 Avg=914.77]
+2022-08-16 06:46:59 230 sec: 270480 operations; [READ: Count=134778 Max=663233.18 Min=1.53 Avg=738.78] [UPDATE: Count=135702 Max=442448.14 Min=4.60 Avg=919.32]
+2022-08-16 06:47:09 240 sec: 275949 operations; [READ: Count=137518 Max=663233.18 Min=1.53 Avg=757.85] [UPDATE: Count=138431 Max=442448.14 Min=4.60 Avg=939.84]
+2022-08-16 06:47:19 250 sec: 298799 operations; [READ: Count=148959 Max=663233.18 Min=1.53 Avg=725.32] [UPDATE: Count=149840 Max=442448.14 Min=4.60 Avg=909.06]
+2022-08-16 06:47:29 260 sec: 337922 operations; [READ: Count=168541 Max=663233.18 Min=1.53 Avg=655.98] [UPDATE: Count=169381 Max=442448.14 Min=4.60 Avg=847.86]
+2022-08-16 06:47:39 270 sec: 386377 operations; [READ: Count=192979 Max=663233.18 Min=1.53 Avg=578.75] [UPDATE: Count=193398 Max=442448.14 Min=4.60 Avg=787.91]
+2022-08-16 06:47:49 280 sec: 439039 operations; [READ: Count=219315 Max=663233.18 Min=1.53 Avg=511.89] [UPDATE: Count=219724 Max=442448.14 Min=4.60 Avg=735.88]
+2022-08-16 06:47:59 290 sec: 470450 operations; [READ: Count=235110 Max=663233.18 Min=1.51 Avg=490.17] [UPDATE: Count=235340 Max=1061154.45 Min=4.45 Avg=716.52]
+2022-08-16 06:48:09 300 sec: 485747 operations; [READ: Count=242828 Max=663233.18 Min=1.51 Avg=491.96] [UPDATE: Count=242919 Max=1061154.45 Min=4.45 Avg=717.87]
+2022-08-16 06:48:19 310 sec: 494310 operations; [READ: Count=247081 Max=663233.18 Min=1.51 Avg=498.95] [UPDATE: Count=247229 Max=1061154.45 Min=4.45 Avg=730.25]
+2022-08-16 06:48:29 320 sec: 500586 operations; [READ: Count=250155 Max=663233.18 Min=1.51 Avg=512.17] [UPDATE: Count=250431 Max=1061154.45 Min=4.45 Avg=741.42]
+2022-08-16 06:48:39 330 sec: 520539 operations; [READ: Count=260100 Max=663233.18 Min=1.51 Avg=508.62] [UPDATE: Count=260439 Max=1061154.45 Min=4.45 Avg=735.07]
+2022-08-16 06:48:49 340 sec: 554108 operations; [READ: Count=276868 Max=663233.18 Min=1.51 Avg=488.74] [UPDATE: Count=277240 Max=1061154.45 Min=4.45 Avg=715.40]
+2022-08-16 06:48:59 350 sec: 597203 operations; [READ: Count=298424 Max=663233.18 Min=1.51 Avg=458.59] [UPDATE: Count=298779 Max=1061154.45 Min=4.45 Avg=691.82]
+2022-08-16 06:49:09 360 sec: 650094 operations; [READ: Count=325021 Max=663233.18 Min=1.51 Avg=423.37] [UPDATE: Count=325073 Max=1061154.45 Min=4.45 Avg=663.98]
+2022-08-16 06:49:19 370 sec: 688901 operations; [READ: Count=344502 Max=663233.18 Min=1.51 Avg=404.41] [UPDATE: Count=344399 Max=1061154.45 Min=4.42 Avg=650.53]
+2022-08-16 06:49:29 380 sec: 700172 operations; [READ: Count=350095 Max=663233.18 Min=1.51 Avg=411.63] [UPDATE: Count=350077 Max=1061154.45 Min=4.42 Avg=654.71]
+2022-08-16 06:49:39 390 sec: 710929 operations; [READ: Count=355438 Max=663233.18 Min=1.51 Avg=417.56] [UPDATE: Count=355491 Max=1061154.45 Min=4.42 Avg=660.71]
+2022-08-16 06:49:49 400 sec: 715549 operations; [READ: Count=357765 Max=663233.18 Min=1.51 Avg=428.49] [UPDATE: Count=357784 Max=1061154.45 Min=4.42 Avg=670.74]
+2022-08-16 06:49:59 410 sec: 733698 operations; [READ: Count=366943 Max=663233.18 Min=1.51 Avg=429.41] [UPDATE: Count=366755 Max=1061154.45 Min=4.42 Avg=669.80]
+2022-08-16 06:50:09 420 sec: 767434 operations; [READ: Count=383767 Max=663233.18 Min=1.51 Avg=419.03] [UPDATE: Count=383667 Max=1061154.45 Min=4.42 Avg=657.68]
+2022-08-16 06:50:19 430 sec: 812280 operations; [READ: Count=406099 Max=663233.18 Min=1.51 Avg=399.82] [UPDATE: Count=406181 Max=1061154.45 Min=4.42 Avg=641.76]
+2022-08-16 06:50:29 440 sec: 863866 operations; [READ: Count=431934 Max=663233.18 Min=1.51 Avg=377.77] [UPDATE: Count=431932 Max=1061154.45 Min=4.42 Avg=624.53]
+2022-08-16 06:50:39 450 sec: 912552 operations; [READ: Count=456520 Max=663233.18 Min=1.51 Avg=361.07] [UPDATE: Count=456032 Max=1061154.45 Min=4.42 Avg=609.58]
+2022-08-16 06:50:49 460 sec: 971250 operations; [READ: Count=485794 Max=663233.18 Min=1.51 Avg=349.56] [UPDATE: Count=485456 Max=1061154.45 Min=4.35 Avg=582.14]
+2022-08-16 06:50:59 470 sec: 1140893 operations; [READ: Count=570749 Max=663233.18 Min=1.42 Avg=305.63] [UPDATE: Count=570144 Max=1061154.45 Min=3.89 Avg=505.03]
+2022-08-16 06:51:09 480 sec: 1564479 operations; [READ: Count=782124 Max=779958.48 Min=1.42 Avg=227.93] [UPDATE: Count=782355 Max=1253188.98 Min=3.89 Avg=375.15]
+2022-08-16 06:51:18 489 sec: 2000000 operations; [READ: Count=999948 Max=779958.48 Min=1.37 Avg=179.93] [UPDATE: Count=1000052 Max=1519654.28 Min=3.85 Avg=299.83]
+Run runtime(sec): 489.442
+Run operations(ops): 2000000
+Run throughput(ops/sec): 4086.29
+./YCSB-cpp/ycsb -run -db leveldb -P ./YCSB-cpp/workloads/workloadb -P ./YCSB-cpp/leveldb/leveldb1.properties -s
+2022-08-16 06:51:18 0 sec: 0 operations;
+2022-08-16 06:51:28 10 sec: 1108950 operations; [READ: Count=1053415 Max=20750.42 Min=1.26 Avg=6.65] [UPDATE: Count=55535 Max=36292.12 Min=3.99 Avg=11.68]
+2022-08-16 06:51:35 17 sec: 2000000 operations; [READ: Count=1899775 Max=35166.38 Min=1.26 Avg=6.19] [UPDATE: Count=100225 Max=36292.12 Min=3.99 Avg=10.81]
+Run runtime(sec): 17.0342
+Run operations(ops): 2000000
+Run throughput(ops/sec): 117411
+./YCSB-cpp/ycsb -run -db leveldb -P ./YCSB-cpp/workloads/workloadd -P ./YCSB-cpp/leveldb/leveldb1.properties -s
+2022-08-16 06:51:35 0 sec: 0 operations;
+2022-08-16 06:51:45 10 sec: 1752745 operations; [INSERT: Count=87555 Max=406.79 Min=2.46 Avg=4.47] [READ: Count=1665190 Max=31275.08 Min=1.23 Avg=3.97]
+2022-08-16 06:51:48 12 sec: 2000000 operations; [INSERT: Count=99904 Max=406.79 Min=2.46 Avg=4.50] [READ: Count=1900096 Max=31275.08 Min=1.23 Avg=3.96]
+Run runtime(sec): 12.9466
+Run operations(ops): 2000000
+Run throughput(ops/sec): 154481
