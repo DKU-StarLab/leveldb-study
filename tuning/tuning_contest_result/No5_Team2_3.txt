@@ -1,0 +1,33 @@
+./YCSB-cpp/ycsb -load -db leveldb -P ./YCSB-cpp/workloads/workloada -P ./YCSB-cpp/leveldb/leveldb2.properties -s
+2022-08-16 18:04:35 0 sec: 0 operations;
+2022-08-16 18:04:45 10 sec: 632015 operations; [INSERT: Count=632015 Max=10796.25 Min=3.08 Avg=11.24]
+2022-08-16 18:04:55 20 sec: 1077151 operations; [INSERT: Count=1077151 Max=16210.66 Min=3.04 Avg=13.94]
+2022-08-16 18:05:05 30 sec: 1386763 operations; [INSERT: Count=1386763 Max=16210.66 Min=3.04 Avg=16.97]
+2022-08-16 18:05:15 40 sec: 1735249 operations; [INSERT: Count=1735249 Max=16210.66 Min=3.04 Avg=18.36]
+2022-08-16 18:05:25 50 sec: 1970141 operations; [INSERT: Count=1970141 Max=16210.66 Min=3.04 Avg=20.66]
+2022-08-16 18:05:31 56 sec: 2000000 operations; [INSERT: Count=2000000 Max=16210.66 Min=3.04 Avg=23.28]
+Load runtime(sec): 56.0761
+Load operations(ops): 2000000
+Load throughput(ops/sec): 35665.8
+./YCSB-cpp/ycsb -run -db leveldb -P ./YCSB-cpp/workloads/workloada -P ./YCSB-cpp/leveldb/leveldb2.properties -s
+2022-08-16 18:05:31 0 sec: 0 operations;
+2022-08-16 18:05:41 10 sec: 448608 operations; [READ: Count=224095 Max=6395.18 Min=1.34 Avg=8.29] [UPDATE: Count=224513 Max=15357.83 Min=4.45 Avg=33.91]
+2022-08-16 18:05:51 20 sec: 1063644 operations; [READ: Count=531688 Max=7130.92 Min=1.27 Avg=8.00] [UPDATE: Count=531956 Max=15357.83 Min=4.45 Avg=27.59]
+2022-08-16 18:06:01 30 sec: 1689670 operations; [READ: Count=844986 Max=7130.92 Min=1.27 Avg=8.07] [UPDATE: Count=844684 Max=15357.83 Min=4.45 Avg=25.53]
+2022-08-16 18:06:05 34 sec: 2000000 operations; [READ: Count=1000290 Max=7130.92 Min=1.22 Avg=7.93] [UPDATE: Count=999710 Max=15357.83 Min=4.45 Avg=24.21]
+Run runtime(sec): 34.1038
+Run operations(ops): 2000000
+Run throughput(ops/sec): 58644.5
+./YCSB-cpp/ycsb -run -db leveldb -P ./YCSB-cpp/workloads/workloadb -P ./YCSB-cpp/leveldb/leveldb2.properties -s
+2022-08-16 18:06:05 0 sec: 0 operations;
+2022-08-16 18:06:15 10 sec: 1201256 operations; [READ: Count=1140608 Max=14173.23 Min=1.26 Avg=7.21] [UPDATE: Count=60648 Max=6003.10 Min=4.73 Avg=14.61]
+2022-08-16 18:06:21 15 sec: 2000000 operations; [READ: Count=1899415 Max=14173.23 Min=1.21 Avg=6.55] [UPDATE: Count=100585 Max=6003.10 Min=4.73 Avg=13.85]
+Run runtime(sec): 15.346
+Run operations(ops): 2000000
+Run throughput(ops/sec): 130327
+./YCSB-cpp/ycsb -run -db leveldb -P ./YCSB-cpp/workloads/workloadd -P ./YCSB-cpp/leveldb/leveldb2.properties -s
+2022-08-16 18:06:21 0 sec: 0 operations;
+2022-08-16 18:06:30 9 sec: 2000000 operations; [INSERT: Count=99467 Max=12660.75 Min=3.29 Avg=7.03] [READ: Count=1900533 Max=19947.99 Min=1.18 Avg=3.90]
+Run runtime(sec): 9.91207
+Run operations(ops): 2000000
+Run throughput(ops/sec): 201774

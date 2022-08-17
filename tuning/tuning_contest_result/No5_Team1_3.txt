@@ -1,0 +1,30 @@
+./YCSB-cpp/ycsb -load -db leveldb -P ./YCSB-cpp/workloads/workloada -P ./YCSB-cpp/leveldb/leveldb1.properties -s
+2022-08-16 18:02:32 0 sec: 0 operations;
+2022-08-16 18:02:42 10 sec: 911662 operations; [INSERT: Count=911662 Max=17365.07 Min=3.01 Avg=6.54]
+2022-08-16 18:02:52 20 sec: 1755922 operations; [INSERT: Count=1755922 Max=29047.97 Min=2.98 Avg=6.94]
+2022-08-16 18:03:00 28 sec: 2000000 operations; [INSERT: Count=2000000 Max=130818.19 Min=2.98 Avg=9.63]
+Load runtime(sec): 28.26
+Load operations(ops): 2000000
+Load throughput(ops/sec): 70771.3
+./YCSB-cpp/ycsb -run -db leveldb -P ./YCSB-cpp/workloads/workloada -P ./YCSB-cpp/leveldb/leveldb1.properties -s
+2022-08-16 18:03:00 0 sec: 0 operations;
+2022-08-16 18:03:10 10 sec: 788127 operations; [READ: Count=393930 Max=21552.27 Min=1.55 Avg=7.88] [UPDATE: Count=394197 Max=26244.31 Min=4.83 Avg=13.90]
+2022-08-16 18:03:20 20 sec: 1540375 operations; [READ: Count=769856 Max=23657.53 Min=1.55 Avg=8.55] [UPDATE: Count=770519 Max=26244.31 Min=4.83 Avg=14.75]
+2022-08-16 18:03:27 27 sec: 2000000 operations; [READ: Count=999356 Max=23657.53 Min=1.55 Avg=8.55] [UPDATE: Count=1000644 Max=68215.29 Min=4.83 Avg=16.04]
+Run runtime(sec): 27.2348
+Run operations(ops): 2000000
+Run throughput(ops/sec): 73435.3
+./YCSB-cpp/ycsb -run -db leveldb -P ./YCSB-cpp/workloads/workloadb -P ./YCSB-cpp/leveldb/leveldb1.properties -s
+2022-08-16 18:03:27 0 sec: 0 operations;
+2022-08-16 18:03:37 10 sec: 1265806 operations; [READ: Count=1203049 Max=50329.96 Min=1.23 Avg=6.38] [UPDATE: Count=62757 Max=328.08 Min=4.94 Avg=12.99]
+2022-08-16 18:03:43 15 sec: 2000000 operations; [READ: Count=1900608 Max=51270.70 Min=1.23 Avg=6.18] [UPDATE: Count=99392 Max=427.29 Min=4.94 Avg=12.72]
+Run runtime(sec): 15.1544
+Run operations(ops): 2000000
+Run throughput(ops/sec): 131975
+./YCSB-cpp/ycsb -run -db leveldb -P ./YCSB-cpp/workloads/workloadd -P ./YCSB-cpp/leveldb/leveldb1.properties -s
+2022-08-16 18:03:43 0 sec: 0 operations;
+2022-08-16 18:03:53 10 sec: 1923543 operations; [INSERT: Count=96359 Max=315.78 Min=3.28 Avg=6.99] [READ: Count=1827184 Max=53884.98 Min=1.20 Avg=3.90]
+2022-08-16 18:03:53 10 sec: 2000000 operations; [INSERT: Count=100230 Max=343.23 Min=3.28 Avg=7.04] [READ: Count=1899770 Max=53884.98 Min=1.20 Avg=3.90]
+Run runtime(sec): 10.4762
+Run operations(ops): 2000000
+Run throughput(ops/sec): 190909
