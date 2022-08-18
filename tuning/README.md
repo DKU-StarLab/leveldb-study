@@ -44,6 +44,7 @@ The goal of the Yahoo Cloud Serving Benchmark (YCSB) project is to develop a fra
 | Run B                         | 131709       | 130014   | 114509     | 147205  | 136455       | 125638 |
 | Run D                         | 191939       | 200841   | 177168     | 207546  | 194346       | 193820 |
 - [Tuning Benchmark shell script](./tuning_contest_script.sh)
+- [Tuning Benchmark excel data](./leveldb_tuning_contest.xlsx)
 - [Tuning Benchmark raw data](./tuning_contest_result/)
 
 ## 4. Ranking & Report 
