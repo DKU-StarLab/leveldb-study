@@ -1,4 +1,62 @@
-## 1. LevelDB tuning contest for YCSB
+# LevelDB Tuning Contest
+
+## 1. Workload (Benchmark): [YCSB-cpp](https://github.com/ls4154/YCSB-cpp)
+The goal of the Yahoo Cloud Serving Benchmark (YCSB) project is to develop a framework and common set of workloads for evaluating the performance of different "key-value" and "cloud" serving stores.
+  ![image](https://user-images.githubusercontent.com/87025898/183247993-0133d8c1-3b40-455e-987d-f54892488e84.png) 
+
+* [YCSB github](https://github.com/brianfrankcooper/YCSB)
+* [YCSB-cpp github](https://github.com/ls4154/YCSB-cpp)
+* [Cooper, Brian F., et al. "Benchmarking cloud serving systems with YCSB." Proceedings of the 1st ACM symposium on Cloud computing. 2010.](https://dl.acm.org/doi/abs/10.1145/1807128.1807152)
+
+
+### Contest Workload
+- YCSB Workload
+ 
+  - Record Count = 2,000,000 
+  - Operation Count = 2,000,000
+  - Workload file 
+    - [Workload A](./workloada)
+    - [Workload B](./workloadb)
+    - [Workload D](./workloadd)
+
+* Load A -> Run A -> Run B -> Run D
+
+
+
+## 2. Tuning Options
+ Team | write_buffer_size | max_file_size | compression | block_cache| filter_policy |block_size | block_restart_interval|
+---|---|---|---|---|---|---|---|
+ WAL/Manifest |128MB|64MB|snappy|128MB|10|8KB|16|
+ Memtable |32MB|16MB|snappy|32MB|10|8KB|16
+ Compaction |32MB|4MB|snappy |8MB|10|2KB|16|
+ SSTable |64MB|32MB|snappy|13.75MB|10|2MB|4|  
+ Bloom Filter |128MB|64MB|snappy|64MB|9|8KB|4|  
+ Cache |47.68MB|4MB|snappy |40MB|10|8KB|32 
+
+
+## 3. Result 
+<img src="tuning_result_graph.png">
+
+| Avg. Throughput</br>(ops/sec) | WAL/Manifest | Memtable | Compaction | SSTable | Bloom Filter | Cache  |
+| :---------------------------- | :----------- | :------- | :--------- | :------ | :----------- | :----- |
+| Load A                        | 71065        | 34800    | 23336      | 57734   | 71972        | 35522  |
+| Run A                         | 73928        | 58610    | 40784      | 63753   | 72253        | 47830  |
+| Run B                         | 131709       | 130014   | 114509     | 147205  | 136455       | 125638 |
+| Run D                         | 191939       | 200841   | 177168     | 207546  | 194346       | 193820 |
+
+## 4. Ranking & Report 
+| Total Rank | Team         | Load A | Run A | Run B | Run D | Report (KOR) |
+| :--------- | :----------- | :----- | :---- | :---- | :---- | :----------- |
+| 1          | SSTable      | 3      | 3     | 1     | 1     | [File](./%5BTuning%5Dteam_SSTable_report.md)         |
+| 1          | Bloom Filter | 1      | 2     | 2     | 3     | [File](./%5BTuning%5Dteam_bloomfilter_report.md)         |
+| 3          | WAL/Manifest | 2      | 1     | 3     | 5     | [File](./%5BTuning%5Dteam_WAL%2CManifest_report.md)         |
+| 4          | Memtable     | 5      | 4     | 4     | 2     | File         |
+| 5          | Cache        | 4      | 5     | 5     | 4     | [File](./%5BTuning%5Dteam_cache_report.md)         |
+| 6          | Compaction   | 6      | 6     | 6     | 6     | [File](./%5BTuning%5DCompaction_%3Cthe%20best%20options%3E_report.md)         |
+
+
+ 
+## 5. Notice
 1. Study the db options and their relationships.
 2. Analyze workloads such as key/value size and key/operations distribution.
 3. Hypothesize the best option set and verify it by experiment.
@@ -14,30 +72,8 @@
   - [RocksDB Tuning Guide](https://github.com/facebook/rocksdb/wiki/RocksDB-Tuning-Guide)
   - [RocksDB Setup Options and Basice Tuning](https://github.com/facebook/rocksdb/wiki/Setup-Options-and-Basic-Tuning)
 
-## 2. Result 
-| Team  | Load (MB/s)  | Run A | Run B | Run D | Total | Report  |
-|---|--------------|-------|-------|-------|-----------|------|
-| WAL/Manifest | 1 (8.8) |       |       |       | 1          | File |
-| Memtable | 2 (7.7)             |       |       |       |  2         | File |
-| Compaction |              |       |       |       |           | File |
-| SSTable |              |       |       |       |           | File |
-| Bloomfilter |              |       |       |       |           | File |
-| Cache |              |       |       |       |           | File |
 
-### Measurement For Evaluation
-* Average of throughput ranks for each workload
-
-## 3. Tuning Options
- Team | write_buffer_size | max_file_size | compression | block_cache| filter_policy |block_size | block_restart_interval|
----|---|---|---|---|---|---|---|
- WAL/Manifest |128MB|64MB|snappy|128MB|10|8KB|16|
- Memtable |32MB|16MB|snappy|32MB|10|8KB|16
- Compaction |32MB|4MB|snappy |8MB|10|2KB|16|
- SSTable |64MB|32MB|snappy|13.75MB|10|2MB|4|  
- Bloom Filter |128MB|64MB|snappy|64MB|9|8KB|4|  
- Cache |47.68MB|4MB|snappy |40MB|10|8KB|32  
-
-### LevelDB options and restrictions
+## 6. LevelDB options and restrictions
 Modify _**YCSB-cpp/leveldb/leveldb.properties**_ like below.
 ```s
 # YCSB-cpp/leveldb/leveldb.properties
@@ -60,28 +96,7 @@ leveldb.block_size=4096
 leveldb.block_restart_interval=16
 ```
 
-## 4. Benchmark: [YCSB-cpp](https://github.com/ls4154/YCSB-cpp)
-The goal of the Yahoo Cloud Serving Benchmark (YCSB) project is to develop a framework and common set of workloads for evaluating the performance of different "key-value" and "cloud" serving stores.
-  ![image](https://user-images.githubusercontent.com/87025898/183247993-0133d8c1-3b40-455e-987d-f54892488e84.png) 
-
-* [YCSB github](https://github.com/brianfrankcooper/YCSB)
-* [YCSB-cpp github](https://github.com/ls4154/YCSB-cpp)
-* [Cooper, Brian F., et al. "Benchmarking cloud serving systems with YCSB." Proceedings of the 1st ACM symposium on Cloud computing. 2010.](https://dl.acm.org/doi/abs/10.1145/1807128.1807152)
-
-
-### Contest Workload
-- YCSB Workload
- 
-  - Record Count = 2,000,000 
-  - Operation Count = 2,000,000
-  - Workload file 
-    - [Workload A](./workloada)
-    - [Workload B](./workloadb)
-    - [Workload D](./workloadd)
-
-* Load A -> Run A -> Run B -> Run D
-
-### Install [YCSB-cpp](https://github.com/ls4154/YCSB-cpp)
+## 7. Install [YCSB-cpp](https://github.com/ls4154/YCSB-cpp)
   - Install and build leveldb in release mode
   - ```git clone https://github.com/ls4154/YCSB-cpp.git```
   - Modify config section in Makefile
@@ -113,13 +128,13 @@ The goal of the Yahoo Cloud Serving Benchmark (YCSB) project is to develop a fra
       ./ycsb -load -db leveldb -P workloads/workloada -P leveldb/leveldb.properties2 -s
       ```
 
-### Tuning Enviornment
+## 8. Tuning Enviornment
 - DKU Linux Server
 
-| System  | Specification                             |
-|---------|-------------------------------------------|
-| CPU     |  |
-| Memory  |  |
-| Storage |  |
-| Linux   |  |
-| Ubuntu  |  |
+| System  | Specification |
+| ------- | ------------- |
+| CPU     |               |
+| Memory  |               |
+| Storage |               |
+| Linux   |               |
+| Ubuntu  |               |
