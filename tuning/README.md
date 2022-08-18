@@ -26,12 +26,12 @@ The goal of the Yahoo Cloud Serving Benchmark (YCSB) project is to develop a fra
 ## 2. Tuning Options
  Team | write_buffer_size | max_file_size | compression | block_cache| filter_policy |block_size | block_restart_interval|
 ---|---|---|---|---|---|---|---|
- WAL/Manifest |128MB|64MB|snappy|128MB|10|8KB|16|
- Memtable |32MB|16MB|snappy|32MB|10|8KB|16
- Compaction |32MB|4MB|snappy |8MB|10|2KB|16|
- SSTable |64MB|32MB|snappy|13.75MB|10|2MB|4|  
- Bloom Filter |128MB|64MB|snappy|64MB|9|8KB|4|  
- Cache |47.68MB|4MB|snappy |40MB|10|8KB|32 
+ [WAL/Manifest](./tuning_option_set/leveldb1.properties) |128MB|64MB|snappy|128MB|10|8KB|16|
+ [Memtable](./tuning_option_set/leveldb2.properties) |32MB|16MB|snappy|32MB|10|8KB|16
+ [Compaction](./tuning_option_set/leveldb3.properties) |32MB|4MB|snappy |8MB|10|2KB|16|
+ [SSTable](./tuning_option_set/leveldb4.properties) |64MB|32MB|snappy|13.75MB|10|2MB|4|  
+ [Bloom Filter](./tuning_option_set/leveldb5.properties) |128MB|64MB|snappy|64MB|9|8KB|4|  
+ [Cache](./tuning_option_set/leveldb6.properties) |47.68MB|4MB|snappy |40MB|10|8KB|32 
 
 
 ## 3. Result 
@@ -43,6 +43,8 @@ The goal of the Yahoo Cloud Serving Benchmark (YCSB) project is to develop a fra
 | Run A                         | 73928        | 58610    | 40784      | 63753   | 72253        | 47830  |
 | Run B                         | 131709       | 130014   | 114509     | 147205  | 136455       | 125638 |
 | Run D                         | 191939       | 200841   | 177168     | 207546  | 194346       | 193820 |
+- [Tuning Benchmark shell script](./tuning_contest_script.sh)
+- [Tuning Benchmark raw data](./tuning_contest_result/)
 
 ## 4. Ranking & Report 
 | Total Rank | Team         | Load A | Run A | Run B | Run D | Report (KOR) |
