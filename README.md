@@ -37,7 +37,8 @@ Week 3|22-07-19|[Introduction 3](./introduction/README.md)|Analysis Tools</br>[H
 |Week 6|22-08-09|[Analysis 2](./analysis/README.md)|
 |Week 7|22-08-16|[Tuning Contest](./tuning/README.md)|YCSB|
 |Week 8|22-08-23|[Analysis 3](./analysis/README.md)|
-|Week 9|22-08-30|[Analysis 4](./analysis/README.md)|Write a research paper|
+|Week 9|22-08-30|[Analysis 4](./analysis/README.md)||
+|Week 10|22-09-11|Wrap up||
 
 ## Photo
 <img src="./photo/photo.png">
@@ -64,7 +65,6 @@ Week 3|22-07-19|[Introduction 3](./introduction/README.md)|Analysis Tools</br>[H
   - [GDB](https://www.sourceware.org/gdb/)
   - [Understand](https://licensing.scitools.com/download)
   - [Uftrace](https://github.com/namhyung/uftrace)
-  - [Draw.io](https://www.draw.io)
 * Previous Study
   - [DKU RocksDB Festival, 2021](https://github.com/DKU-StarLab/RocksDB_Festival)
   
