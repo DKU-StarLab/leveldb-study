@@ -37,8 +37,7 @@ Week 3|22-07-19|[Introduction 3](./introduction/README.md)|Analysis Tools</br>[H
 |Week 6|22-08-09|[Analysis 2](./analysis/README.md)|
 |Week 7|22-08-16|[Tuning Contest](./tuning/README.md)|YCSB|
 |Week 8|22-08-23|[Analysis 3](./analysis/README.md)|
-|Week 9|22-08-30|[Analysis 4](./analysis/README.md)|
-|Week 10|22-09-15/16|Wrap up|Photo, Dinner|
+|Week 9|22-08-30/31|[Analysis 4](./analysis/README.md)</br>Wrap up|Photo, Dinner|
 
 ## Photo
 <img src="./photo/photo.png">
