@@ -53,7 +53,7 @@ The goal of the Yahoo Cloud Serving Benchmark (YCSB) project is to develop a fra
 | 1          | SSTable      | 3      | 3     | 1     | 1     | [Link (KOR)](./%5BTuning%5Dteam_SSTable_report.md)         |
 | 1          | Bloom Filter | 1      | 2     | 2     | 3     | [Link (KOR)](./%5BTuning%5Dteam_bloomfilter_report.md)         |
 | 3          | WAL/Manifest | 2      | 1     | 3     | 5     | [Link (KOR)](./%5BTuning%5Dteam_WAL%2CManifest_report.md)         |
-| 4          | Memtable     | 5      | 4     | 4     | 2     | [Link (KOR)](.%5BTuning%5Dteam_memtable_report.md)         |
+| 4          | Memtable     | 5      | 4     | 4     | 2     | [Link (KOR)](./%5BTuning%5Dteam_memtable_report.md)         |
 | 5          | Cache        | 4      | 5     | 5     | 4     | [Link (KOR)](./%5BTuning%5Dteam_cache_report.md)         |
 | 6          | Compaction   | 6      | 6     | 6     | 6     | [Link (ENG)](./%5BTuning%5DCompaction_%3Cthe%20best%20options%3E_report.md)         |
 
