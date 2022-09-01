@@ -5,8 +5,8 @@
 * [Study LevelDB.](./introduction/README.md)
 * [Analyze LevelDB](./analysis/README.md)
 * Write LevelDB analysis document.
-  * [leveldb-wiki (github)](https://github.com/DKU-StarLab/leveldb-wiki)
-  * [leveldb-wiki (website)](https://sslab.dankook.ac.kr/leveldb-wiki)
+  * [github: leveldb-wiki (kor)](https://github.com/DKU-StarLab/leveldb-wiki)
+  * [website: leveldb-wiki (kor)](https://sslab.dankook.ac.kr/leveldb-wiki)
 * [Tuning Contest: YCSB](./tuning/README.md)
 * Write a research paper on what you learned.
 
