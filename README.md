@@ -23,7 +23,7 @@
   - 4.SSTable: [Jongki Park](https://github.com/JongKI-PARK), [Sanghyun Cho](https://github.com/Cho-SangHyun)
   - 5.Bloom Filter: [Hansu Kim](https://github.com/gillyongs)
   - 6.Cache: [Seungwon Ha](https://github.com/ha-seungwon), [Subin Hong](https://github.com/sss654654)
-* Assistant: [Min-guk Choi](https://github.com/min-guk)
+* Assistant: [Minguk Choi](https://github.com/min-guk)
 * Professor: [Jongmoo Choi](http://embedded.dankook.ac.kr/~choijm/), [Seehwan Yoo](https://sites.google.com/site/dkumobileos/members/seehwanyoo)
 
 ## Schedule
