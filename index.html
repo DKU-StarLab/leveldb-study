@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+    
+    <title>Home - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="css/base.min.css" rel="stylesheet">
+    <link href="css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body class="homepage" >
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href=".">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="active">
+                        <a href=".">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="analysis/memtable/">Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="analysis/wal/">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="analysis/manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="analysis/compaction/compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="analysis/compaction/Major-Compaction/">Major Compaction</a>
+</li>
+
+        
+            
+<li >
+    <a href="analysis/compaction/Minor-Compaction/">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="analysis/sstable/sstable/">SSTable Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="analysis/sstable/sstable-write/">SSTable Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="analysis/sstable/sstable-read/">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="analysis/bloomfilter/bloomfilter/">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="analysis/bloomfilter/bloomfilter-write/">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="analysis/bloomfilter/bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="analysis/cache/">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="benchmarks/wal_1/">Disable_wal</a>
+</li>
+
+        
+            
+<li >
+    <a href="benchmarks/wal_2/">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="benchmarks/wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="benchmarks/compaction/">Compaction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="benchmarks/sstable/">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="benchmarks/bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="tuning/">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="tuning/Tuning_team_SSTable_report/">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="tuning/Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="tuning/Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="tuning/Tuning_team_memtable_report/">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="tuning/Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="tuning/Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="practice/practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="practice/answer/">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a rel="prev" >
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="analysis/memtable/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#leveldb-wiki">LevelDB WIKI</a></li>
+            <li class="second-level"><a href="#authors">Authors</a></li>
+                
+            <li class="second-level"><a href="#photo">Photo</a></li>
+                
+            <li class="second-level"><a href="#poster">Poster</a></li>
+                
+            <li class="second-level"><a href="#references">References</a></li>
+                
+                <li class="third-level"><a href="#1-documents">1. Documents</a></li>
+                <li class="third-level"><a href="#2-lecture">2. Lecture</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="leveldb-wiki">LevelDB WIKI</h1>
+<p>LevelDB WIKI is a summary of what students have studied LevelDB through <a href="https://github.com/DKU-StarLab/leveldb-study">the 2022 LevelDB study</a> hosted by <a href="https://sslab.dankook.ac.kr/">the DKU System Software Lab</a>.  It includes code analysis of LevelDB, benchmark experiment reports, and tuning contest reports. </p>
+<p>The Korean version can be found on the <a href="https://sslab.dankook.ac.kr/leveldb-wiki/">DKU System Software Lab website</a>. If there are any errors or additions in the document content, please feel free to contribute through a <strong>Pull Request</strong>. </p>
+<h2 id="authors">Authors</h2>
+<ul>
+<li>Student:<ul>
+<li>1.WAL/Manifest: <a href="https://github.com/gooday2die">Isu Kim</a>, <a href="https://github.com/SayOny">Seyeon Park </a>, <a href="https://github.com/Student5421">Suhwan Shin</a></li>
+<li>2.Memtable: <a href="https://github.com/HASHTAG-YOU">Taegyu Cho </a>, <a href="https://github.com/arashio1111">Zhu Yongjie</a></li>
+<li>3.Compaction: <a href="https://github.com/aarom416">Sangwoo Kang</a>, <a href="https://github.com/seo-0">Seoyoung Park</a>, <a href="https://github.com/ErosBryant">Zhao Guangxun</a></li>
+<li>4.SSTable: <a href="https://github.com/JongKI-PARK">Jongki Park</a>, <a href="https://github.com/Cho-SangHyun">Sanghyun Cho</a></li>
+<li>5.Bloom Filter: <a href="https://github.com/gillyongs">Hansu Kim</a></li>
+<li>6.Cache: <a href="https://github.com/ha-seungwon">Seungwon Ha</a>, <a href="https://github.com/sss654654">Subin Hong</a></li>
+</ul>
+</li>
+<li>Assistant: <a href="https://github.com/min-guk">Min-guk Choi</a></li>
+<li>Professor: <a href="http://embedded.dankook.ac.kr/~choijm/">Jongmoo Choi</a>, <a href="https://sites.google.com/site/dkumobileos/members/seehwanyoo">Seehwan Yoo</a></li>
+</ul>
+<h2 id="photo">Photo</h2>
+<p><img src="./image/photo.png" width="100%"></p>
+<h2 id="poster">Poster</h2>
+<p><img src="./image/poster_kor.png" width="50%"></p>
+<h2 id="references">References</h2>
+<h4 id="1-documents">1. Documents</h4>
+<ul>
+<li><a href="https://github.com/google/leveldb/blob/main/doc">LevelDB Document</a></li>
+<li><a href="https://github.com/facebook/rocksdb/wiki">RocksDB Wiki</a></li>
+<li><a href="https://github.com/DKU-StarLab/leveldb-study/blob/761b550973ab6d1e88189190e66c0ee19a52aa12/introduction/Jongmoo%20Choi,%20Key-Value%20Store%20-%20Database%20for%20Unstructured%20Bigdata,%202021.pdf">Jongmoo Choi,『Key-Value Store: Database for Unstructured Bigdata』, 2021</a></li>
+<li><a href="https://www-users.cselabs.umn.edu/classes/Spring-2020/csci5980/index.php?page=presentation">Fenggang Wu, 『LevelDB Introduction』, 2016</a></li>
+<li><a href="https://leveldb-handbook.readthedocs.io/zh/latest/">rjl493456442, 『leveldb-handbook (CHS)』, 2022</a></li>
+<li><a href="https://github.com/rsy56640/read_and_analyse_levelDB/tree/master/reference">rsy56640, 『read_and_analyse_levelDB (CHS)』</a></li>
+<li><a href="https://www.zhihu.com/column/c_1258068131073183744">FOCUS,『LevelDB fully parsed (CHS)』</a></li>
+<li><a href="https://www.zhihu.com/column/c_180212366">bloomingTony, 『Research on Network and Storage Technology(CHS)』</a></li>
+<li><a href="https://www.qtmuniao.com/categories/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/">木鸟杂记,『Talking about LevelDB data structure (CHS)』, 2021 </a></li>
+</ul>
+<h4 id="2-lecture">2. Lecture</h4>
+<ul>
+<li><a href="https://mooc.dankook.ac.kr/courses/61d537a3b6b71841651153b3">Jongmoo Choi, 『Key-Value Store: Database for Unstructured Bigdata (KOR)』,  2021</a></li>
+<li><a href="https://youtube.com/playlist?list=PLRNjlOFk-f0lJJZVoSAmcwZgVtp64tXaX">GL Tech Tutorials, 『LSM trees』, 2021</a></li>
+<li><a href="https://youtube.com/playlist?list=PLaCN8MYUet0tR1xn5d8ZtCumHKtP6Wkeq">Wei Zhou, LevelDB YouTube playlist</a></li>
+</ul></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "."</script>
+    
+    <script src="js/base.js"></script>
+    <script src="search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2024-11-19 18:22:40.190319+00:00
+-->

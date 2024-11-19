@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+    
+    <title>Minor Compaction - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../../css/base.min.css" rel="stylesheet">
+    <link href="../../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../../..">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../memtable/">Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../wal/">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Major-Compaction/">Major Compaction</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../sstable/sstable/">SSTable Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../sstable/sstable-write/">SSTable Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../sstable/sstable-read/">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../bloomfilter/bloomfilter/">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../bloomfilter/bloomfilter-write/">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../bloomfilter/bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../cache/">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_1/">Disable_wal</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_2/">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/compaction/">Compaction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/sstable/">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../tuning/">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_SSTable_report/">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_memtable_report/">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../practice/practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../practice/answer/">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../Major-Compaction/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../../sstable/sstable/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#minor-compaction">Minor Compaction</a></li>
+            <li class="second-level"><a href="#overall-minor-compaction-code-flow">Overall Minor Compaction Code Flow</a></li>
+                
+                <li class="third-level"><a href="#overall-process">Overall Process</a></li>
+            <li class="second-level"><a href="#maybeschedulecompaction-backgroundcompaction">MaybeScheduleCompaction &amp; BackgroundCompaction</a></li>
+                
+            <li class="second-level"><a href="#compactmemtable">CompactMemTable</a></li>
+                
+            <li class="second-level"><a href="#writelevel0table">WriteLevel0Table</a></li>
+                
+            <li class="second-level"><a href="#trivial-move">Trivial Move</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="minor-compaction">Minor Compaction</h2>
+<p><code>Minor Compaction</code> </p>
+<ul>
+<li>Also known as <code>flush</code>, this process moves data from memory (imm memtable) to disk (level 0).</li>
+</ul>
+<h3 id="overall-minor-compaction-code-flow">Overall Minor Compaction Code Flow</h3>
+<blockquote>
+<p>This section only describes the Minor Compaction process.</p>
+<p>For Major Compaction, please refer to <a href="./analysis/compaction/Major-Compaction.md">here</a>.</p>
+</blockquote>
+<p><img alt="image" src="https://user-images.githubusercontent.com/106041072/188577384-fca24121-ef6d-40b7-aa82-020faf6cc965.png" />  </p>
+<h4 id="overall-process">Overall Process</h4>
+<ol>
+<li><code>MaybeScheduleCompaction</code> checks if a Minor Compaction is needed and calls <code>BackgroundCall</code> if necessary.</li>
+<li><code>BackgroundCall</code> invokes <code>BackgroundCompaction</code> and checks for the presence of an imm memtable.</li>
+<li><code>CompactMemTable</code> calls the <code>WriteLevel0Table</code> function to execute the <code>Minor Compaction</code>.</li>
+</ol>
+<h3 id="maybeschedulecompaction-backgroundcompaction">MaybeScheduleCompaction &amp; BackgroundCompaction</h3>
+<blockquote>
+<p>These functions are explained in the <a href="./analysis/compaction/Major-Compaction.md">Major Compaction</a> section, so they are omitted here.</p>
+</blockquote>
+<h3 id="compactmemtable">CompactMemTable</h3>
+<blockquote>
+<p>This is where the actual Minor Compaction takes place.</p>
+</blockquote>
+<pre><code class="language-cpp">void DBImpl::CompactMemTable() {
+  mutex_.AssertHeld();
+  assert(imm_ != nullptr);
+
+  // Save the contents of the memtable as a new Table
+  VersionEdit edit;
+  Version* base = versions_-&gt;current();
+  base-&gt;Ref();
+   //(TeamCompaction)1.Main point: call the `WriteLevel0Table` function for minor compaction
+  Status s = WriteLevel0Table(imm_, &amp;edit, base); 
+  base-&gt;Unref();
+
+   //(TeamCompaction)2. Check if WriteLevel0Table was executed successfully
+  if (s.ok() &amp;&amp; shutting_down_.load(std::memory_order_acquire)) { 
+    s = Status::IOError(&quot;Deleting DB during memtable compaction&quot;);
+  }
+
+  //(TeamCompaction)3.If minor compaction is successful
+  // Replace immutable memtable with the generated Table
+  if (s.ok()) {
+    edit.SetPrevLogNumber(0);
+    edit.SetLogNumber(logfile_number_);  // Earlier logs no longer needed
+    s = versions_-&gt;LogAndApply(&amp;edit, &amp;mutex_);
+  }
+
+  if (s.ok()) {  
+    // Commit to the new state
+    imm_-&gt;Unref();
+    imm_ = nullptr;  
+    has_imm_.store(false, std::memory_order_release);
+    RemoveObsoleteFiles();
+  } else {
+    RecordBackgroundError(s);
+  }
+}
+</code></pre>
+<ol>
+<li>To execute <code>Minor Compaction</code>, the <code>WriteLevel0Table</code> function is called with the current imm memtable and version as arguments.</li>
+<li>If an error occurs during the execution of the <code>WriteLevel0Table</code> function, an error message is sent.</li>
+<li>If <code>Minor Compaction</code> is successfully executed, the imm memtable is released.</li>
+</ol>
+<h3 id="writelevel0table">WriteLevel0Table</h3>
+<blockquote>
+<p>This function moves the imm memtable to disk.</p>
+</blockquote>
+<pre><code class="language-cpp">Status DBImpl::WriteLevel0Table(MemTable* mem, VersionEdit* edit,
+                                Version* base) {
+  mutex_.AssertHeld();
+  const uint64_t start_micros = env_-&gt;NowMicros();
+  FileMetaData meta;
+  //(TeamCompaction)1. Organizes imm memtable's meta information.
+  meta.number = versions_-&gt;NewFileNumber();
+  pending_outputs_.insert(meta.number);
+  Iterator* iter = mem-&gt;NewIterator();
+  Log(options_.info_log, &quot;Level-0 table #%llu: started&quot;,
+      (unsigned long long)meta.number);
+
+  Status s;
+  {
+    mutex_.Unlock();
+    //(TeamCompaction)2. Change imm memtable to SST.
+    s = BuildTable(dbname_, env_, options_, table_cache_, iter, &amp;meta);
+    mutex_.Lock();
+  }
+
+  Log(options_.info_log, &quot;Level-0 table #%llu: %lld bytes %s&quot;,
+      (unsigned long long)meta.number, (unsigned long long)meta.file_size,
+      s.ToString().c_str());
+  delete iter;
+  pending_outputs_.erase(meta.number);
+
+  // Note that if file_size is zero, the file has been deleted and
+  // should not be added to the manifest.
+  //(TeamCompaction)3. update the version
+  int level = 0;
+  if (s.ok() &amp;&amp; meta.file_size &gt; 0) {
+    const Slice min_user_key = meta.smallest.user_key();
+    const Slice max_user_key = meta.largest.user_key();
+    if (base != nullptr) {
+      level = base-&gt;PickLevelForMemTableOutput(min_user_key, max_user_key);
+    }
+    edit-&gt;AddFile(level, meta.number, meta.file_size, meta.smallest,
+                  meta.largest);
+  }
+
+  CompactionStats stats;
+  stats.micros = env_-&gt;NowMicros() - start_micros;
+  stats.bytes_written = meta.file_size;
+  stats_[level].Add(stats);
+  return s;
+}
+</code></pre>
+<ol>
+<li>First, the imm memtable's information is organized.</li>
+<li>The <code>BuildTable</code> function is used to create an SST from the imm memtable information.</li>
+<li>If the SST is successfully created, this information is updated in the Version.</li>
+</ol>
+<h3 id="trivial-move">Trivial Move</h3>
+<blockquote>
+<p>A Trivial Move is a type of Minor Compaction where, if the newly created SST does not overlap with the keys of SSTs in each level, it is directly moved to level 2.</p>
+</blockquote>
+<pre><code class="language-cpp">void DBImpl::BackgroundCompaction() {
+
+ // ...omitted 
+  Status status;
+  if (c == nullptr) {
+    // Nothing to do
+  } else if (!is_manual &amp;&amp; c-&gt;IsTrivialMove()) {
+    // 1.  Move file to next level
+    assert(c-&gt;num_input_files(0) == 1);
+    FileMetaData* f = c-&gt;input(0, 0);
+    c-&gt;edit()-&gt;RemoveFile(c-&gt;level(), f-&gt;number);
+    c-&gt;edit()-&gt;AddFile(c-&gt;level() + 1, f-&gt;number, f-&gt;file_size, f-&gt;smallest,
+                       f-&gt;largest);
+    status = versions_-&gt;LogAndApply(c-&gt;edit(), &amp;mutex_);
+    if (!status.ok()) {
+      RecordBackgroundError(status);
+    }
+    VersionSet::LevelSummaryStorage tmp;
+    Log(options_.info_log, &quot;Moved #%lld to level-%d %lld bytes %s: %s\n&quot;,
+        static_cast&lt;unsigned long long&gt;(f-&gt;number), c-&gt;level() + 1,
+        static_cast&lt;unsigned long long&gt;(f-&gt;file_size),
+        status.ToString().c_str(), versions_-&gt;LevelSummary(&amp;tmp));
+  }
+  // ...omitted 
+}
+
+
+bool Compaction::IsTrivialMove() const {
+  const VersionSet* vset = input_version_-&gt;vset_;
+  // Avoid a move if there is lots of overlapping grandparent data.
+  // Otherwise, the move could create a parent file that will require
+  // a very expensive merge later on.
+  return (num_input_files(0) == 1 &amp;&amp; num_input_files(1) == 0 &amp;&amp;
+          TotalFileSize(grandparents_) &lt;=
+              MaxGrandParentOverlapBytes(vset-&gt;options_));
+}
+
+</code></pre>
+<ul>
+<li>If <code>is_manual &amp;&amp; c-&gt;IsTrivialMove()</code> is true, a Trivial Move is executed.</li>
+</ul></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../../.."</script>
+    
+    <script src="../../../js/base.js"></script>
+    <script src="../../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

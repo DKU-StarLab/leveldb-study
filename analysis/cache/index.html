@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    
+    <title>Cache - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../..">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../memtable/">Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../wal/">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../compaction/compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../compaction/Major-Compaction/">Major Compaction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../compaction/Minor-Compaction/">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../sstable/sstable/">SSTable Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../sstable/sstable-write/">SSTable Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../sstable/sstable-read/">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../bloomfilter/bloomfilter/">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../bloomfilter/bloomfilter-write/">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../bloomfilter/bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../benchmarks/wal_1/">Disable_wal</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../benchmarks/wal_2/">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../benchmarks/wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../benchmarks/compaction/">Compaction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../benchmarks/sstable/">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../benchmarks/bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tuning/">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_SSTable_report/">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_memtable_report/">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../practice/practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../practice/answer/">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../bloomfilter/bloomfilter-read/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../../benchmarks/wal_1/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#cache">Cache</a></li>
+            <li class="second-level"><a href="#contents">Contents</a></li>
+                
+            <li class="second-level"><a href="#1-what-is-cache">1. What is Cache</a></li>
+                
+            <li class="second-level"><a href="#2-what-is-lru">2. What is LRU</a></li>
+                
+            <li class="second-level"><a href="#3-lru-cache-structure-in-leveldb">3. LRU Cache Structure in LevelDB</a></li>
+                
+                <li class="third-level"><a href="#1-shardedlrucache">(1) ShardedLRUCache</a></li>
+                <li class="third-level"><a href="#sharding">Sharding</a></li>
+                <li class="third-level"><a href="#2-lrucache">(2) LRUCache</a></li>
+                <li class="third-level"><a href="#3-lruhandle">(3) LRUHandle</a></li>
+                <li class="third-level"><a href="#4-handletable">(4) HandleTable</a></li>
+                <li class="third-level"><a href="#5-in_use_-and-6-lru_">(5) in_use_ and (6) lru_</a></li>
+                <li class="third-level"><a href="#5-in_use_">(5) in_use_</a></li>
+                <li class="third-level"><a href="#6-lru_">(6) lru_</a></li>
+            <li class="second-level"><a href="#4-overall-cache-flow">4. Overall Cache Flow</a></li>
+                
+                <li class="third-level"><a href="#1-tablecache-usage-findtable">&lt;1&gt; TableCache Usage (FindTable)</a></li>
+                <li class="third-level"><a href="#2-blockcache-usage-internalget-blockreader">&lt;2&gt; BlockCache Usage (InternalGet -&gt; BlockReader)</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="cache">Cache</h2>
+<h3 id="contents">Contents</h3>
+<ul>
+<li><a href="#1-what-is-cache">1. What is Cache</a></li>
+<li><a href="#2-what-is-lru">2. What is LRU</a></li>
+<li><a href="#3-lru-cache-structure-in-leveldb">3. LRU Cache Structure in LevelDB</a></li>
+<li><a href="#4-overall-cache-flow">4. Overall Cache Flow</a></li>
+</ul>
+<hr />
+<h3 id="1-what-is-cache">1. What is Cache</h3>
+<p>Cache is hardware or software that temporarily stores data in computing environments. It is a smaller, faster, and more expensive memory used to improve the performance of recently or frequently accessed data.</p>
+<p>There are several types of caches:</p>
+<ol>
+<li><strong>CPU Cache</strong>: Memory mounted next to the CPU</li>
+<li><strong>Disk Cache</strong>: Memory built into hard disks for disk control and external interface</li>
+<li><strong>Other Caches</strong>: These are the caches we need to understand in LevelDB. Caches other than the two mentioned above are mainly managed through software, such as page cache where the operating system's main memory is copied to the hard disk.</li>
+</ol>
+<hr />
+<h3 id="2-what-is-lru">2. What is LRU</h3>
+<p>LRU(Least Recently Used) policy is a page replacement algorithm, which means that the least recently used data will be removed. The basic assumption of this algorithm is that the data that has not been used for the longest time is unlikely to be used in the future.</p>
+<p>LRU Cache works by removing the least recently used item when the cache is full and placing a new node. LRU Cache can be implemented using <strong>double linked list</strong>.</p>
+<p>Below is a diagram explaining LRU Cache.</p>
+<p align="center">
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/84978165/189130049-634c1d81-5b49-49b5-bfea-3621a82c6687.png">
+</p>
+
+<p>The basic assumption is that the data closer to Head (rightmost node) is recently used and the data closer to Tail (leftmost node) is old. When accessing cached data, move the data to Head to indicate that it is recently used and remove it from the priority queue.</p>
+<p>The order of reading data is A, B, C, D, E, D, F.</p>
+<ol>
+<li>The numbers in parentheses indicate sorting. The smaller the number, the closer the data is to Tail.</li>
+<li>When E is read, the cache is full, so the oldest data A is removed.</li>
+<li>Continue reading D and F, and you can see that the node with the least access count is removed and replaced.</li>
+</ol>
+<p>LevelDB uses two different data structures for LRU Cache:</p>
+<ol>
+<li><strong>HashTable (HandleTable)</strong>: Used for lookup</li>
+<li><strong>Double Linked List</strong>: Used for removing old data</li>
+</ol>
+<hr />
+<h3 id="3-lru-cache-structure-in-leveldb">3. LRU Cache Structure in LevelDB</h3>
+<p>To understand the LRU Cache structure in LevelDB accurately, we analyzed the source code of LevelDB through Git clone.</p>
+<p>(source code download)</p>
+<pre><code>git clone --recurse-submodules https://github.com/google/leveldb.git leveldb_release
+</code></pre>
+<p>Below is a rough diagram of the overall LRU Cache structure. (For accurate code analysis, please refer to <code>leveldb_release/build/util/cache.cc</code>.)</p>
+<p align="center">
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/84978165/189133099-0140c4df-884a-4591-870d-a5e92be39df5.png">
+</p>
+
+<h4 id="1-shardedlrucache">(1) ShardedLRUCache</h4>
+<p>ShardedLRUCache in LevelDB consists of 16 LRU Caches internally and is defined as the external LRUCache.</p>
+<h4 id="sharding">Sharding</h4>
+<p>Sharding means dividing data into pieces and managing them. It is a kind of load balancing technique that distributes workload requests to multiple servers or processing devices. It means dividing a large database or network system into multiple small pieces and distributing them for storage and management.</p>
+<p>Below is a diagram showing how to divide a table into different tables.</p>
+<p align="center">
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/84978165/189147668-2f5907b4-7529-427a-8176-7d4d9a55223d.png">
+</p>
+
+<p>LevelDB uses LRU Cache through Sharding technique. ShardedLRUCache maintains an array of LRU Caches internally.</p>
+<p><em>When calling LRU Caches in ShardedLRUCache, Lock is performed for each LRU Cache to prevent multiple threads from accessing the same LRU Cache object.</em></p>
+<h4 id="2-lrucache">(2) LRUCache</h4>
+<p>Each Item in LRUCache is an LRUHandle, which will be described in (3) LRUHandle. LRUCache is managed by 1 HandleTable (HashTable) and 2 Double Linked Lists. LRUHandles are managed in both Double Linked List and HashTable HandleTable.</p>
+<p>Below are the three elements that make up the Cache: Double Linked List and HashTable.</p>
+<pre><code>LRUHandle lru_; // will be described (5).
+LRUHandle in_use_; // will be described (6).
+HandleTable table_; // will be described (4).
+</code></pre>
+<h4 id="3-lruhandle">(3) LRUHandle</h4>
+<p>LRUCache's object. HandleTable (HashTable) implements fast lookup by combining with Double Linked List and Double Linked List implements fast addition and deletion.</p>
+<p>LRUHandle's components:</p>
+<pre><code class="language-cpp">struct LRUHandle {
+    void* value;
+    void (*deleter)(const Slice&amp;, void* value); // to free the key and value space
+    LRUHandle* next_hash; // handle hash collisions and keep objects (LRUHandle) belonging to the array
+    LRUHandle* next; // used to maintain LRU order in doubly linked list
+    LRUHandle* prev; // points to the previous node in a doubly linked list
+    size_t charge;  
+    size_t key_length; // length of key value
+    bool in_cache; // whether the handle is in the cache table
+    uint32_t refs; // the number of times the handle was referenced    
+    uint32_t hash; // hash value of key used to determine sharding and fast comparison    
+    char key_data[1]; // start of key
+};
+</code></pre>
+<h4 id="4-handletable">(4) HandleTable</h4>
+<p>It is a very simple hash table.</p>
+<p align="center">
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/84978165/189152590-843477ba-efbd-41e6-a00e-6e0ed2e28062.png">
+</p>
+
+<p>Declare a double pointer <code>list_</code> in the code to manage LRUHandle objects.</p>
+<pre><code class="language-cpp">uint32_t length_; // length of LRUHandle* array
+uint32_t elems_; // number of nodes in the table
+LRUHandle** list_;
+</code></pre>
+<p>Below is a diagram showing <code>LRUHandle** list_</code> as <code>LRUHandle* list_</code>.</p>
+<p align="center">
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/84978165/189152971-8c8aabfd-4bea-4a50-a3f1-60e0e028aa96.png">
+</p>
+
+<p>Below are the LRUHandle methods for the HandleTable class.</p>
+<pre><code class="language-cpp">LRUHandle** FindPointer(const Slice&amp; key, uint32_t hash);
+// use next_hash to traverse the double linked lists until find the item corresponding to the key.
+// if no match is found, next_hash points to the end of list_ and the value of next_hash is nullptr.
+// if a match is found, a double pointer (LRUHandle) pointed to by next_hash is returned.
+// due to the above characteristics, it is used in the first line of Lookup, Insert, and Remove function.
+
+LRUHandle* Lookup(const Slice&amp; key, uint32_t hash);
+// directly read the value pointed to by the pointer (LRUHandle) by calling FindPointer
+
+LRUHandle* Insert(LRUHandle* h);
+// call FindPointer to put LRUHandle at the location pointed to by the pointer (next_hash).
+
+LRUHandle* Remove(const Slice&amp; key, uint32_t hash);
+// directly deletes the item pointed to by the pointer (next_hash) by calling FindPointer
+
+void Resize();
+// dynamically expand array as LRUHandle grows
+</code></pre>
+<h4 id="5-in_use_-and-6-lru_">(5) in_use_ and (6) lru_</h4>
+<p>Each of them is a data structure that makes up the LRU Cache: Double Linked List. They separate hot and cold data and maintain an internal HashTable. Hot data is frequently accessed, while cold data is rarely accessed.</p>
+<p align="center">
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/84978165/189153724-0f2ab665-8ffb-4cc1-a986-e0425560178e.png">
+</p>
+
+<h4 id="5-in_use_">(5) in_use_</h4>
+<p>Hot linked list, which maintains the cached object for use by the caller.</p>
+<h4 id="6-lru_">(6) lru_</h4>
+<p>Cold linked list, which maintains the popularity of cached objects.</p>
+<p>Both of these double linked lists are managed by the <code>refs</code> variable. <code>in_use_</code> has <code>refs</code> of 2 because it is referenced by external users, and <code>lru_</code> has <code>refs</code> of 1 because it is not referenced.</p>
+<p><em>Here, <code>lru_</code> and <code>in_use_</code> are not actual nodes; they do not store data themselves.</em> Data is always inserted into the <code>lru_</code> list first. (Important, data is always inserted into the <code>lru_</code> list first.)</p>
+<p><code>lru_-&gt;next</code> (next pointer) points to the oldest data, and <code>lru_-&gt;prev</code> (previous pointer) points to the newest data. When a new Handle is inserted, it is inserted at the end of the double linked list, and <code>lru_-&gt;prev</code> (previous pointer) points to the newly inserted Handle. When a cache is accessed by external users, it goes from <code>lru_</code> to <code>next_hash</code> to <code>in_use_</code>, and <code>refs</code> increases from 1 to 2.</p>
+<hr />
+<h3 id="4-overall-cache-flow">4. Overall Cache Flow</h3>
+<p><strong>LevelDB Cache Mechanism</strong></p>
+<p>In LevelDB, Cache is checked when reading data, and the mechanism is shown in the diagram below.</p>
+<p align="center">
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/84978165/189153950-24b00d7d-a39b-44ac-b2f6-4defe5a08299.png">
+</p>
+
+<ul>
+<li>The function <code>Get</code> is called when reading data.</li>
+</ul>
+<pre><code class="language-cpp">leveldb::Status s = db-&gt;Get(leveldb::ReadOptions(), key, &amp;value);
+</code></pre>
+<ul>
+<li>Part of the source code of <code>DBImpl::Get</code>:</li>
+</ul>
+<pre><code class="language-cpp">&lt;1&gt; MemTable* mem = mem_;
+&lt;2&gt; MemTable* imm = imm_;
+&lt;3&gt; Version* current = versions_-&gt;current();
+
+if (mem-&gt;Get(lkey, value, &amp;s)) { &lt;4&gt;
+} else if (imm != nullptr &amp;&amp; imm-&gt;Get(lkey, value, &amp;s)) { 
+    &lt;5&gt;
+} else { 
+    &lt;6&gt;
+    s = current-&gt;Get(options, lkey, value, &amp;stats);
+    have_stat_update = true;
+}
+</code></pre>
+<ol>
+<li>Declare <code>memtable mem_</code> to find the table in memtable</li>
+<li>If not found in memtable, declare <code>memtable imm_</code> to find the table in immutable memtable</li>
+<li>If not found in both, declare <code>version current</code> to get the current version to find the table in sstable</li>
+<li>Call <code>Memtable::Get</code> to read the table from disk</li>
+<li>Similarly, call <code>Memtable::Get</code> to read the table from immutable memtable</li>
+<li>Call <code>Version::Get</code> to read the table from sstable</li>
+</ol>
+<p>Version::Get calls <code>TableCache::Get</code> to read the table.</p>
+<hr />
+<p><strong>LevelDB Cache Usage</strong></p>
+<p><code>TableCache::Get</code> is the part where LevelDB uses Cache.</p>
+<p>TableCache::Get source code:</p>
+<pre><code class="language-cpp">Cache::Handle* handle = nullptr;
+
+&lt;1&gt; Status s = FindTable(file_number, file_size, &amp;handle);
+
+if (s.ok()) {
+    &lt;2&gt; 
+    Table* t = reinterpret_cast&lt;TableAndFile*&gt;(cache_-&gt;Value(handle))-&gt;table;
+
+    s = t-&gt;InternalGet(options, k, arg, handle_result);
+
+    cache_-&gt;Release(handle);
+}
+
+return s;
+</code></pre>
+<p>+LevelDB has two different caches: <strong>TableCache</strong> and <strong>BlockCache</strong>.</p>
+<h4 id="1-tablecache-usage-findtable">&lt;1&gt; TableCache Usage (FindTable)</h4>
+<p>Find the table corresponding to the file in the cache. If not found, open the file first and then create the table corresponding to the file and add it to the cache.</p>
+<p>Below is the structure of TableCache.</p>
+<p align="center">
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/84978165/189172319-30682e1a-6f1b-4b1d-8b15-5e6dce460180.png">
+</p>
+
+<p><em>key</em> is the file number of the SSTable.
+<em>value</em> is divided into two sections:</p>
+<ul>
+<li><strong>RandomAccessFile</strong>: Pointer to the opened SSTable on disk</li>
+<li><strong>Table</strong>: Pointer to the Table structure corresponding to the SSTable in memory, which stores the <code>cache_id</code> of the SSTable and the block cache</li>
+</ul>
+<h4 id="2-blockcache-usage-internalget-blockreader">&lt;2&gt; BlockCache Usage (InternalGet -&gt; BlockReader)</h4>
+<p>The InternalGet function that implements the logic of finding Key in the SSTable calls BlockReader. BlockCache is used when the block is found in the BlockCache; if not found, the file is opened and read, and then the block is added to the BlockCache.</p>
+<ul>
+<li>BlockReader Cache Usage Algorithm:</li>
+<li>Try to get the block directly from the BlockCache.</li>
+<li>If not found in the BlockCache, call <code>ReadBlock</code> to read from the file.</li>
+<li>If reading is successful, add the block to the BlockCache.</li>
+</ul>
+<p>Below is the structure of BlockCache.</p>
+<p align="center">
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/84978165/189172561-b52b24a4-dfb5-4bb4-b0d4-69ca0963380e.png">
+</p>
+
+<p><em>key</em> is composed of the offset of each SSTable file and a unique <code>cache_id</code> to distinguish it from other SSTable files.</p>
+<p><em>value</em> is composed of Data blocks of the opened SSTable file.</p>
+<p>After BlockReader finishes looking up in the BlockCache and inserting into the BlockCache, the read operation finishes using the Cache.</p>
+<p>Below is a rough diagram of how to use Cache in LevelDB.</p>
+<p align="center">
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/84978165/189153950-24b00d7d-a39b-44ac-b2f6-4defe5a08299.png">
+</p>
+
+<hr />
+<p><strong>LevelDB Cache Creation</strong></p>
+<p>TableCache is created using the <code>cache_size</code> option in <code>./db_bench</code> and set using the <code>TableCache::TableCacheSize</code> function.</p>
+<p>TableCache::TableCache BackTrace:</p>
+<pre><code>leveldb::Benchmark::Run
+leveldb::Benchmark::Open 
+leveldb::DB::Open
+leveldb::DBImpl::DBImpl
+leveldb::TableCache::TableCache
+</code></pre></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

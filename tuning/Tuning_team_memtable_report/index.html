@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    
+    <title>(Rank 4) Team Memtable - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../..">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../analysis/memtable/">Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/wal/">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/compaction/compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/compaction/Major-Compaction/">Major Compaction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/compaction/Minor-Compaction/">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable/">SSTable Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable-write/">SSTable Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable-read/">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter/">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter-write/">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/cache/">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../benchmarks/wal_1/">Disable_wal</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../benchmarks/wal_2/">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../benchmarks/wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../benchmarks/compaction/">Compaction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../benchmarks/sstable/">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../benchmarks/bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Tuning_team_SSTable_report/">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../practice/practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../practice/answer/">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../Tuning_team_WAL%2CManifest_report/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../Tuning_team_cache_report/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#team-memtable-ycsb-tuning-report">[Team Memtable] YCSB Tuning Report</a></li>
+            <li class="second-level"><a href="#configuration-options-overview">Configuration Options Overview</a></li>
+                
+                <li class="third-level"><a href="#leveldbwrite_buffer_size">leveldb.write_buffer_size</a></li>
+                <li class="third-level"><a href="#leveldbmax_file_size">leveldb.max_file_size</a></li>
+                <li class="third-level"><a href="#leveldbcompression">leveldb.compression</a></li>
+                <li class="third-level"><a href="#leveldbcache_size">leveldb.cache_size</a></li>
+                <li class="third-level"><a href="#leveldbblock_size">leveldb.block_size</a></li>
+                <li class="third-level"><a href="#leveldbblock_restart_interval">leveldb.block_restart_interval</a></li>
+            <li class="second-level"><a href="#performance-test-results">Performance Test Results</a></li>
+                
+                <li class="third-level"><a href="#test-timeline">Test Timeline</a></li>
+                <li class="third-level"><a href="#performance-metrics">Performance Metrics</a></li>
+            <li class="second-level"><a href="#operation-breakdown">Operation Breakdown</a></li>
+                
+                <li class="third-level"><a href="#read-operations">READ Operations</a></li>
+                <li class="third-level"><a href="#update-operations">UPDATE Operations</a></li>
+            <li class="second-level"><a href="#configuration-settings">Configuration Settings</a></li>
+                
+            <li class="second-level"><a href="#database-parameters">Database Parameters</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="team-memtable-ycsb-tuning-report">[Team Memtable] YCSB Tuning Report</h2>
+<h3 id="configuration-options-overview">Configuration Options Overview</h3>
+<h4 id="leveldbwrite_buffer_size">leveldb.write_buffer_size</h4>
+<ul>
+<li>Controls the size of memtable &amp; immutable memtable</li>
+<li>Default: 33554432 (32MB)</li>
+<li>Impact:</li>
+<li>Larger size improves write performance</li>
+<li>However, increases recovery time during DB restart due to WAL replay</li>
+<li>Recommended to adjust based on your write patterns</li>
+</ul>
+<h4 id="leveldbmax_file_size">leveldb.max_file_size</h4>
+<ul>
+<li>Determines maximum size of a single SSTable file</li>
+<li>Default: 16777216 (16MB)</li>
+<li>Considerations:</li>
+<li>Should be proportional to key/value sizes</li>
+<li>Larger values may increase read/write amplification</li>
+<li>Need to balance between performance and resource usage</li>
+</ul>
+<h4 id="leveldbcompression">leveldb.compression</h4>
+<ul>
+<li>Uses Snappy compression algorithm</li>
+<li>Characteristics:</li>
+<li>Good performance-to-compression ratio</li>
+<li>Popular choice for databases</li>
+<li>Trade-off between CPU usage and storage space</li>
+<li>Recommendations:</li>
+<li>Enable for large datasets</li>
+<li>Disable for small datasets where CPU is more critical</li>
+</ul>
+<h4 id="leveldbcache_size">leveldb.cache_size</h4>
+<ul>
+<li>Controls block cache size</li>
+<li>Default: 33554432 (32MB)</li>
+<li>Effects:</li>
+<li>Larger cache improves read performance</li>
+<li>Increases memory usage</li>
+<li>Caches blocks to reduce disk I/O</li>
+</ul>
+<h4 id="leveldbblock_size">leveldb.block_size</h4>
+<ul>
+<li>Basic unit for read/write operations</li>
+<li>Default: 8192 (8KB)</li>
+<li>Should be configured according to key/value sizes</li>
+</ul>
+<h4 id="leveldbblock_restart_interval">leveldb.block_restart_interval</h4>
+<ul>
+<li>Default: 16</li>
+<li>Controls prefix compression interval for keys</li>
+<li>Determines how many keys share prefix compression</li>
+</ul>
+<h3 id="performance-test-results">Performance Test Results</h3>
+<h4 id="test-timeline">Test Timeline</h4>
+<ul>
+<li>Start: 2022-08-15 20:13:09 (0 operations)</li>
+<li>End: 2022-08-15 20:13:10 (100,000 operations)</li>
+</ul>
+<h4 id="performance-metrics">Performance Metrics</h4>
+<ul>
+<li>Total Runtime: 0.831485 seconds</li>
+<li>Total Operations: 100,000</li>
+<li>Throughput: 120,267 ops/sec</li>
+</ul>
+<h3 id="operation-breakdown">Operation Breakdown</h3>
+<h4 id="read-operations">READ Operations</h4>
+<ul>
+<li>Count: 49,912</li>
+<li>Maximum Latency: 4,231.61ms</li>
+<li>Minimum Latency: 1.14ms  </li>
+<li>Average Latency: 4.24ms</li>
+</ul>
+<h4 id="update-operations">UPDATE Operations</h4>
+<ul>
+<li>Count: 50,088</li>
+<li>Maximum Latency: 3,125.45ms</li>
+<li>Minimum Latency: 3.94ms</li>
+<li>Average Latency: 8.25ms</li>
+</ul>
+<h3 id="configuration-settings">Configuration Settings</h3>
+<p>Note: Options are configured for a small database due to the limited number of operations.</p>
+<h3 id="database-parameters">Database Parameters</h3>
+<pre><code>leveldb.write_buffer_size=33554432
+leveldb.max_file_size=16777216
+leveldb.compression=snappy
+leveldb.cache_size=33554432
+leveldb.filter_bits=10
+leveldb.block_size=8192
+leveldb.block_restart_interval=16
+</code></pre></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

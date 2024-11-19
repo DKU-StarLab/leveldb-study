@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    
+    <title>Answers - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../..">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../analysis/memtable/">Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/wal/">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/compaction/compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/compaction/Major-Compaction/">Major Compaction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/compaction/Minor-Compaction/">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable/">SSTable Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable-write/">SSTable Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable-read/">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter/">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter-write/">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/cache/">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../benchmarks/wal_1/">Disable_wal</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../benchmarks/wal_2/">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../benchmarks/wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../benchmarks/compaction/">Compaction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../benchmarks/sstable/">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../benchmarks/bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tuning/">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_SSTable_report/">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_memtable_report/">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../practice/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a rel="next" >
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#answers-submitted-by-students">Answers submitted by students</a></li>
+            <li class="second-level"><a href="#homework_answered_by_studentskorxlsx">homework_answered_by_students(kor).xlsx</a></li>
+                
+        <li class="first-level "><a href="#homework-solutions">Homework Solutions</a></li>
+            <li class="second-level"><a href="#question-1-ppt-jongki-park">Question 1. (PPT - Jongki Park)</a></li>
+                
+                <li class="third-level"><a href="#why-do-lsm-tree-and-leveldb-use-leveled-structure">Why do LSM-tree and LevelDB use leveled structure?</a></li>
+            <li class="second-level"><a href="#question-2-ppt-jongki-park">Question 2. (PPT - Jongki Park)</a></li>
+                
+                <li class="third-level"><a href="#in-leveldb-max-size-of-level-i-is-10imb-but-max-size-of-level-0-is-8mb-why">In leveldb, max size of level i is 10^iMB. But max size of level 0 is 8MB. Why?</a></li>
+            <li class="second-level"><a href="#practice-1-ppt-suhwan-shin">Practice 1. (PPT - Suhwan Shin)</a></li>
+                
+            <li class="second-level"><a href="#practice-2-ppt-zhu-yongjie">Practice 2. (PPT - Zhu Yongjie)</a></li>
+                
+            <li class="second-level"><a href="#practice-3-ppt-suhwan-shin">Practice 3. (PPT - Suhwan Shin)</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="answers-submitted-by-students">Answers submitted by students</h2>
+<h4 id="homework_answered_by_studentskorxlsx"><a href="./homework_answered_by_students(kor).xlsx">homework_answered_by_students(kor).xlsx</a></h4>
+<h2 id="homework-solutions">Homework Solutions</h2>
+<h3 id="question-1-ppt-jongki-park"><a href="https://github.com/DKU-StarLab/leveldb-study/blob/main/homework/%5Bhomework%5Dquestion_1%2C2.pdf">Question 1. (PPT - Jongki Park)</a></h3>
+<h4 id="why-do-lsm-tree-and-leveldb-use-leveled-structure">Why do LSM-tree and LevelDB use leveled structure?</h4>
+<table>
+<thead>
+<tr>
+<th># of Level</th>
+<th>Write performance</th>
+<th>Read Performance</th>
+<th>WAF</th>
+<th>RAF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single</td>
+<td>Bad</td>
+<td>Good</td>
+<td>High</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Multi</td>
+<td>Good</td>
+<td>Bad</td>
+<td>Low</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+<h3 id="question-2-ppt-jongki-park"><a href="https://github.com/DKU-StarLab/leveldb-study/blob/main/homework/%5Bhomework%5Dquestion_1%2C2.pdf">Question 2. (PPT - Jongki Park)</a></h3>
+<h4 id="in-leveldb-max-size-of-level-i-is-10imb-but-max-size-of-level-0-is-8mb-why">In leveldb, max size of level i is 10^iMB. But max size of level 0 is 8MB. Why?</h4>
+<ul>
+<li>We treat level-0 specially by bounding the number of files instead of number of bytes for two reasons:<ul>
+<li>(1) With larger write-buffer sizes, it is nice not to do too many level-0 compactions.</li>
+<li>(2) The files in level-0 are merged on every read and therefore we wish to avoid too many files when the individual file size is small</li>
+</ul>
+</li>
+</ul>
+<h3 id="practice-1-ppt-suhwan-shin"><a href="https://github.com/DKU-StarLab/leveldb-study/blob/main/homework/%5Bhomework%5Dpractice_1%2C2.pdf">Practice 1. (PPT - Suhwan Shin)</a></h3>
+<pre><code>[A] $ ./db_bench --benchmarks=&quot;fillseq&quot; 
+[B] $ ./db_bench --benchmarks=&quot;fillrandom&quot;
+</code></pre>
+<ul>
+<li>Q1. Compare throughput, latency, and stats of two benchmarks and explain why.</li>
+<li>Q2. Calculate SAF (Space Amplification Factor) for each benchmark.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Benchmark</th>
+<th>duplicate key range</th>
+<th>Major Compaction</th>
+<th>Throughput</th>
+<th>Latency</th>
+<th>SAF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fillseq</td>
+<td>No</td>
+<td>No</td>
+<td>High</td>
+<td>Low</td>
+<td>1 (0.98)</td>
+</tr>
+<tr>
+<td>Fillrandom</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Low</td>
+<td>High</td>
+<td>1.275</td>
+</tr>
+<tr>
+<td>* Q3. In benchmark A, SSTs are not written in L0. Why?</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>- Trivial Move</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="practice-2-ppt-zhu-yongjie"><a href="https://github.com/DKU-StarLab/leveldb-study/blob/main/homework/%5Bhomework%5Dpractice_3.pdf">Practice 2. (PPT - Zhu Yongjie)</a></h3>
+<pre><code>[Load] $ ./db_bench --benchmarks=&quot;fillrandom&quot; --use_existing_db=0
+
+[A] $ ./db_bench --benchmarks=&quot;readseq&quot; --use_existing_db=1
+[B] $ ./db_bench --benchmarks=&quot;readrandom&quot; --use_existing_db=1
+[C] $ ./db_bench --benchmarks=&quot;seekrandom&quot; --use_existing_db=1
+</code></pre>
+<ul>
+<li>Q1. Which user key-value interface does each benchmark use? (Put, Get, Iterator, ...)</li>
+<li>Q2. Compare throughput and latency of each benchmark and explain why.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Benchmark</th>
+<th>Interface</th>
+<th>Throughput (MB/s)</th>
+<th>Latency (micros/op)</th>
+<th>I/O</th>
+<th>Access Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>readseq</td>
+<td>Get()</td>
+<td>high</td>
+<td>low</td>
+<td>sequential</td>
+<td>all</td>
+</tr>
+<tr>
+<td>readrandom</td>
+<td>Iterator-&gt;Next()</td>
+<td>low</td>
+<td>high</td>
+<td>random</td>
+<td>access one by one </br> until find the key</td>
+</tr>
+<tr>
+<td>seekrandom</td>
+<td>Iterator-&gt;Seek()</td>
+<td>lowest</td>
+<td>highest</td>
+<td>random</td>
+<td>all</td>
+</tr>
+</tbody>
+</table>
+<h3 id="practice-3-ppt-suhwan-shin"><a href="https://github.com/DKU-StarLab/leveldb-study/blob/main/homework/%5Bhomework%5Dpractice_1%2C2.pdf">Practice 3. (PPT - Suhwan Shin)</a></h3>
+<pre><code>[A] $ ./db_bench --benchmarks=&quot;fillrandom&quot; --value_size=100 --num=1000000 --compression_ratio=1
+[B] $ ./db_bench --benchmarks=&quot;fillrandom&quot; --value_size=1000 --num=114173 --compression_ratio=1
+</code></pre>
+<blockquote>
+<p>Note 1. key_size = 16B<br />
+Note 2. same total kv pairs size.<br />
+Note 3. # of B's entries = 114173 = (16+100)/(16+1000) * 1000000 </p>
+</blockquote>
+<ul>
+<li>Q. The size of input kv pairs is the same. But One is better in throughput, the other is better in latency. Explain why.</li>
+<li>
+<table>
+<thead>
+<tr>
+<th>Benchmark</th>
+<th>DB size</th>
+<th># of entries</th>
+<th>Size of entry</th>
+<th>Throughput (MB/s)</th>
+<th>Latency (s/op)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>same</td>
+<td>1,000,000 (many)</td>
+<td>116B (small)</td>
+<td>low</td>
+<td>low</td>
+</tr>
+<tr>
+<td>B</td>
+<td>same</td>
+<td>114,173 (few)</td>
+<td>1016B (big)</td>
+<td>high</td>
+<td>high</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

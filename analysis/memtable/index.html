@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    
+    <title>Memtable - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../..">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li class="active">
+    <a href="./">Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../wal/">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../compaction/compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../compaction/Major-Compaction/">Major Compaction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../compaction/Minor-Compaction/">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../sstable/sstable/">SSTable Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../sstable/sstable-write/">SSTable Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../sstable/sstable-read/">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../bloomfilter/bloomfilter/">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../bloomfilter/bloomfilter-write/">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../bloomfilter/bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../cache/">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../benchmarks/wal_1/">Disable_wal</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../benchmarks/wal_2/">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../benchmarks/wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../benchmarks/compaction/">Compaction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../benchmarks/sstable/">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../benchmarks/bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tuning/">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_SSTable_report/">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_memtable_report/">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../practice/practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../practice/answer/">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../..">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../wal/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#memtable">Memtable</a></li>
+            <li class="second-level"><a href="#structure-operation">Structure &amp; Operation</a></li>
+                
+            <li class="second-level"><a href="#component">Component</a></li>
+                
+                <li class="third-level"><a href="#arena-memory-management-for-memtable">Arena: Memory Management for Memtable</a></li>
+                <li class="third-level"><a href="#skiplist-actual-structure-of-memtable">Skiplist: Actual Structure of Memtable</a></li>
+            <li class="second-level"><a href="#coding-function-analysis">Coding &amp; Function Analysis</a></li>
+                
+                <li class="third-level"><a href="#construction-and-destruction">Construction and destruction:</a></li>
+                <li class="third-level"><a href="#operation">Operation:</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="memtable">Memtable</h2>
+<p>Memtable can be viewed as a memory copy of the log. Its main role is to store log data in a structured manner.</p>
+<p><img alt="leveldb_format" src="https://wiesen.github.io/assets/leveldb-architecture.png" /></p>
+<p>(source: https://www.jianshu.com/p/0e6116f23c3d)</p>
+<p>In LevelDB, when writing data to the DB, Memtable is the space where kv data is stored. When the data written to Memtable exceeds the specified size (Options:write_buffer_size), it converts to an Immutable Memtable, and simultaneously creates a new Memtable for storing data. When compaction occurs in the background, the Immutable Memtable is dumped to disk, creating an SSTable.</p>
+<hr />
+<h3 id="structure-operation">Structure &amp; Operation</h3>
+<p><img alt="memtable_key_entry" src="https://github.com/user-attachments/assets/9bc80af1-856c-46be-ac5f-4f07ce4b4072" /></p>
+<p>(source: https://blog.csdn.net/redfivehit/article/details/107509884)</p>
+<ul>
+<li><strong>Klength &amp; Vlength</strong>: Varint32, maximum 5 bytes</li>
+<li><strong>SequenceNumber + ValueType</strong>: 8 bytes</li>
+</ul>
+<p>The Memtable key consists of four parts:<br />
+Memtable key = key length + user key + value type + sequence number</p>
+<p>Memtable can store multiple versions of the same key. KeyComparator first compares user keys in ascending order, then sequence numbers in descending order to determine entries. The user key is placed first to manipulate the same user key with sequence numbers.</p>
+<p>MemTable provides Add and Get interfaces for KV entries in memory, but there is no actual Delete operation. Deleting a key's value is inserted as an entry with a deletion tag in Memtable, with actual deletion occurring during compaction.</p>
+<p>Memtable is an interface class built on arena and skiplist. Arena manages memory, while skiplist is used for actual KV storage.</p>
+<hr />
+<h3 id="component">Component</h3>
+<h4 id="arena-memory-management-for-memtable">Arena: Memory Management for Memtable</h4>
+<p><img alt="arena" src="https://wiesen.github.io/assets/arena.png" /></p>
+<p>(source: http://mingxinglai.com/cn/2013/01/leveldb-arena/)</p>
+<ol>
+<li>Memory management for usage statistics: Memtable has a size limit (write_buffer_size). Memory is allocated through a unified interface.</li>
+<li>Memory alignment guarantee: Arena requests memory in kBlockSize units (static const int kBlockSize = 4096) and provides memory address alignment for efficiency. Uses Vector to store allocated memory.</li>
+<li>Prevention of inefficiency from frequent small memory block allocations and waste from large block allocations: When memtable requests memory, if size is less than kBlockSize / 4, it allocates from the current memory block; otherwise, it makes a new request (new).</li>
+<li>When Memtable reaches its limit, it dumps to disk and Arena immediately releases used memory.</li>
+<li>Memtable uses reference counting (refs): Even after Immutable Memtable completes disk dumping, it's not deleted if the reference count isn't 0.</li>
+</ol>
+<h4 id="skiplist-actual-structure-of-memtable">Skiplist: Actual Structure of Memtable</h4>
+<p><img alt="skiplist" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Skip_list_add_element-en.gif/400px-Skip_list_add_element-en.gif" /></p>
+<p>(source: https://en.wikipedia.org/wiki/Skip_list)</p>
+<ol>
+<li>Performance bottlenecks can occur here due to the high cost of insert (random write) operations in sorted structures. LevelDB uses a lightweight Skiplist instead of complex B-trees.</li>
+<li>Skiplist is an alternative data structure to binary trees. It maintains probabilistic balance, has similar time complexity of O(logN), and enables space savings.</li>
+<li>Skiplist offers better concurrency performance than binary trees. While binary trees may require rebalancing during updates, Skiplist does not.</li>
+<li>LevelDB's Skiplist doesn't require locks or node references, implementing thread synchronization through Memory Barriers.</li>
+</ol>
+<hr />
+<h3 id="coding-function-analysis">Coding &amp; Function Analysis</h3>
+<p><img alt="codeflow" src="https://pic2.zhimg.com/v2-867d7b9bb8b7c9584bfeb7b13156b70d_r.jpg" /></p>
+<p>(source: https://zhuanlan.zhihu.com/p/25300086)</p>
+<h4 id="construction-and-destruction">Construction and destruction:</h4>
+<p>Memtable's object structure requires explicit calls. Arena initialization and Skiplist structure are key elements. The Memtable class releases memory through <code>Unref()</code>, and LevelDB prohibits copy constructors and assignment operators.</p>
+<h4 id="operation">Operation:</h4>
+<ul>
+<li><strong>Write</strong>: <code>void Add(SequenceNumber seq, ValueType type, const Slice&amp; key, const Slice&amp; value)</code><br />
+  Status <code>DBImpl::MakeRoomForWrite(bool force)</code></li>
+</ul>
+<p><img alt="makeroomforwrite" src="https://github.com/arashio1111/arashio1111.GitHub.io/blob/main/2022-09-23%20141330.png?raw=true" /></p>
+<ol>
+<li><strong>Check level0 &amp; mem_</strong>: <code>MakeRoomForWrite()</code> checks if Memtable, Immutable Memtable, and Level 0 are full. If full, it performs flush/compaction and creates a new Memtable.</li>
+<li><strong>Encode</strong>: Encapsulates passed variables into InternalKey and encodes them with value as an entry.</li>
+<li>
+<p><strong>Insert into data structure</strong>: Calls <code>SkipList::Insert()</code> to insert data.</p>
+</li>
+<li>
+<p><strong>Read</strong>: <code>bool Get(const LookupKey&amp; key, std::string* value, Status* s)</code></p>
+</li>
+<li>
+<p>Obtains memtable_key from LookupKey.</p>
+</li>
+<li>Calls <code>MemTableIterator::Seek()</code> to return MemTableIterator.</li>
+<li>Restores MemTableIterator's key and decodes the last 8 bytes to check type.</li>
+<li><strong>a)</strong> If <code>kTypeValue</code>, returns value as valid data.</li>
+<li>
+<p><strong>b)</strong> If <code>kTypeDeletion</code>, sets Status to NotFound.</p>
+</li>
+<li>
+<p><strong>Delete</strong>: No delete function exists; instead adds an entry with <code>ValueType = kTypeDeletion</code>.</p>
+</li>
+</ol></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

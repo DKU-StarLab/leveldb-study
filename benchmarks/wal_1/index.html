@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    
+    <title>Disable_wal - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../..">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../analysis/memtable/">Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/wal/">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/compaction/compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/compaction/Major-Compaction/">Major Compaction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/compaction/Minor-Compaction/">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable/">SSTable Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable-write/">SSTable Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable-read/">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter/">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter-write/">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/cache/">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li class="active">
+    <a href="./">Disable_wal</a>
+</li>
+
+        
+            
+<li >
+    <a href="../wal_2/">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="../wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../compaction/">Compaction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../sstable/">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tuning/">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_SSTable_report/">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_memtable_report/">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../practice/practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../practice/answer/">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../../analysis/cache/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../wal_2/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#wal">WAL</a></li>
+            <li class="second-level"><a href="#option-disable_wal">Option - Disable_WAL</a></li>
+                
+                <li class="third-level"><a href="#hypothesis">Hypothesis</a></li>
+                <li class="third-level"><a href="#design">Design</a></li>
+                <li class="third-level"><a href="#experiment-environment">Experiment Environment</a></li>
+                <li class="third-level"><a href="#result">Result</a></li>
+                <li class="third-level"><a href="#discussion">Discussion</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="wal">WAL</h1>
+<h2 id="option-disable_wal">Option - Disable_WAL</h2>
+<p>In the case of LevelDB, there is no option to decide whether to use WAL when running <code>db_bench</code>. On the other hand, RocksDB, which is based on LevelDB, provides a <code>disable-wal</code> option that allows you to choose whether to use WAL.</p>
+<p>Please note that the performance (Throughput, Latency) comparisons used in this post are measured using RocksDB, not LevelDB.</p>
+<h3 id="hypothesis">Hypothesis</h3>
+<ul>
+<li>Enabling WAL will negatively impact latency and throughput.</li>
+</ul>
+<h3 id="design">Design</h3>
+<ul>
+<li>Execute the following benchmarks using RocksDB's <code>db_bench</code>:</li>
+<li><code>fillseq</code></li>
+<li><code>fillrandom</code></li>
+<li><code>readrandom</code></li>
+</ul>
+<h3 id="experiment-environment">Experiment Environment</h3>
+<h4 id="cpu">CPU</h4>
+<p>Model: Intel(R) Core(TM) i9-7940X CPU @ 3.10GHz
+Spec:</p>
+<pre><code>Caches (sum of all):
+  L1d:                   448 KiB (14 instances)
+  L1i:                   448 KiB (14 instances)
+  L2:                    14 MiB (14 instances)
+  L3:                    19.3 MiB (1 instance)
+</code></pre>
+<h4 id="os-hw">OS &amp; HW</h4>
+<ul>
+<li>OS: Ubuntu 22.04 LTS (Not VM)</li>
+<li>Storage: Samsung SSD 860 2TB</li>
+</ul>
+<h3 id="result">Result</h3>
+<p>The <code>disable-wal</code> option used in RocksDB determines whether WAL is enabled. Through this, the performance of Throughput, SAF, WAF, and Latency (Average) was measured. The following data is the average of all results after running RocksDB's <code>db_bench</code> 10 times.</p>
+<p><img alt="wal_performance" src="https://user-images.githubusercontent.com/49092508/184468454-28357711-46af-400d-bb15-c9ad97bf9fd8.png" /></p>
+<p>The above graph is represented in the table below.</p>
+<table>
+<thead>
+<tr>
+<th>WAL</th>
+<th>Throughput (MB/s)</th>
+<th>SAF</th>
+<th>WAF</th>
+<th>Latency (Average)</th>
+<th>Benchmark Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Disabled</td>
+<td>180.22</td>
+<td>2.667</td>
+<td>2</td>
+<td>0.61416</td>
+<td><code>fillseq</code></td>
+</tr>
+<tr>
+<td>Disabled</td>
+<td>77.33</td>
+<td>1.625</td>
+<td>1.7</td>
+<td>1.43117</td>
+<td><code>fillrandom</code></td>
+</tr>
+<tr>
+<td>Enabled</td>
+<td>51.73</td>
+<td>2.06667</td>
+<td>2</td>
+<td>2.13972</td>
+<td><code>fillseq</code></td>
+</tr>
+<tr>
+<td>Enabled</td>
+<td>36.17</td>
+<td>1.625</td>
+<td>1.7</td>
+<td>3.06011</td>
+<td><code>fillrandom</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="discussion">Discussion</h3>
+<p>In the case of RocksDB, when writing WAL, it calls <code>rocksdb::DBImpl::WriteToWAL</code>. When this member function is called, the following procedure occurs.
+<img alt="writetowal" src="https://user-images.githubusercontent.com/49092508/184468676-8c0ebc8f-2ab5-4350-87dc-94808d4d3d71.png" /></p>
+<blockquote>
+<p>The above diagram is not a complete UML class diagram but a diagram to show the overall flow.</p>
+</blockquote>
+<p>Through this diagram, we can see that when <code>rocksdb::DBImpl::WriteToWAL</code> is called, it uses <code>std::write</code> or <code>pwrite</code>. Therefore, allowing WAL requires more IO operations, and since these IO operations are heavily used, it significantly impacts the performance of Latency and Throughput.</p>
+<p>The following graph measures the time taken to write WAL.</p>
+<p><img alt="wal3" src="https://user-images.githubusercontent.com/49092508/184468818-e39c1f08-ad7c-4239-8fdb-7df621b19744.png" /></p>
+<p>As shown in the graph, WAL is a task with considerable overhead due to the use of IO.</p>
+<h4 id="summary">Summary</h4>
+<ol>
+<li>Advantages of WAL</li>
+<li>Increases the likelihood of not losing data in case of abnormal termination.</li>
+<li>Disadvantages of WAL</li>
+<li>It has significant overhead due to the use of IO, negatively affecting performance in terms of Latency and Throughput.</li>
+</ol></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

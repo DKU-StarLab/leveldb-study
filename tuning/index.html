@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>Tuning Contest Overview - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../analysis/memtable/">Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../analysis/wal/">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../analysis/manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../analysis/compaction/compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../analysis/compaction/Major-Compaction/">Major Compaction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../analysis/compaction/Minor-Compaction/">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../analysis/sstable/sstable/">SSTable Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../analysis/sstable/sstable-write/">SSTable Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../analysis/sstable/sstable-read/">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../analysis/bloomfilter/bloomfilter/">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../analysis/bloomfilter/bloomfilter-write/">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../analysis/bloomfilter/bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../analysis/cache/">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../benchmarks/wal_1/">Disable_wal</a>
+</li>
+
+        
+            
+<li >
+    <a href="../benchmarks/wal_2/">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="../benchmarks/wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../benchmarks/compaction/">Compaction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../benchmarks/sstable/">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../benchmarks/bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li class="active">
+    <a href="./">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="Tuning_team_SSTable_report/">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="Tuning_team_memtable_report/">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../practice/practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../practice/answer/">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../benchmarks/bloomfilter/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="Tuning_team_SSTable_report/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#leveldb-tuning-contest">LevelDB Tuning Contest</a></li>
+            <li class="second-level"><a href="#1-workload-benchmark-ycsb-cpp">1. Workload (Benchmark): YCSB-cpp</a></li>
+                
+                <li class="third-level"><a href="#contest-workload">Contest Workload</a></li>
+            <li class="second-level"><a href="#2-tuning-options">2. Tuning Options</a></li>
+                
+            <li class="second-level"><a href="#3-result">3. Result</a></li>
+                
+            <li class="second-level"><a href="#4-ranking-report">4. Ranking &amp; Report</a></li>
+                
+            <li class="second-level"><a href="#5-notice">5. Notice</a></li>
+                
+            <li class="second-level"><a href="#6-leveldb-options-and-restrictions">6. LevelDB options and restrictions</a></li>
+                
+            <li class="second-level"><a href="#7-install-ycsb-cpp">7. Install YCSB-cpp</a></li>
+                
+            <li class="second-level"><a href="#8-tuning-enviornment">8. Tuning Enviornment</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="leveldb-tuning-contest">LevelDB Tuning Contest</h2>
+<h3 id="1-workload-benchmark-ycsb-cpp">1. Workload (Benchmark): <a href="https://github.com/ls4154/YCSB-cpp">YCSB-cpp</a></h3>
+<p>The goal of the Yahoo Cloud Serving Benchmark (YCSB) project is to develop a framework and common set of workloads for evaluating the performance of different "key-value" and "cloud" serving stores.
+  <img alt="image" src="https://user-images.githubusercontent.com/87025898/183247993-0133d8c1-3b40-455e-987d-f54892488e84.png" /> </p>
+<ul>
+<li><a href="https://github.com/brianfrankcooper/YCSB">YCSB github</a></li>
+<li><a href="https://github.com/ls4154/YCSB-cpp">YCSB-cpp github</a></li>
+<li><a href="https://dl.acm.org/doi/abs/10.1145/1807128.1807152">Cooper, Brian F., et al. "Benchmarking cloud serving systems with YCSB." Proceedings of the 1st ACM symposium on Cloud computing. 2010.</a></li>
+</ul>
+<h4 id="contest-workload">Contest Workload</h4>
+<ul>
+<li>
+<p>YCSB Workload</p>
+</li>
+<li>
+<p>Record Count = 2,000,000 </p>
+</li>
+<li>Operation Count = 2,000,000</li>
+<li>
+<p>Workload file </p>
+<ul>
+<li><a href="./workloada">Workload A</a></li>
+<li><a href="./workloadb">Workload B</a></li>
+<li><a href="./workloadd">Workload D</a></li>
+</ul>
+</li>
+<li>
+<p>Load A -&gt; Run A -&gt; Run B -&gt; Run D</p>
+</li>
+</ul>
+<h3 id="2-tuning-options">2. Tuning Options</h3>
+<table>
+<thead>
+<tr>
+<th>Team</th>
+<th>write_buffer_size</th>
+<th>max_file_size</th>
+<th>compression</th>
+<th>block_cache</th>
+<th>filter_policy</th>
+<th>block_size</th>
+<th>block_restart_interval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="./tuning_option_set/leveldb1.properties">WAL/Manifest</a></td>
+<td>128MB</td>
+<td>64MB</td>
+<td>snappy</td>
+<td>128MB</td>
+<td>10</td>
+<td>8KB</td>
+<td>16</td>
+</tr>
+<tr>
+<td><a href="./tuning_option_set/leveldb2.properties">Memtable</a></td>
+<td>32MB</td>
+<td>16MB</td>
+<td>snappy</td>
+<td>32MB</td>
+<td>10</td>
+<td>8KB</td>
+<td>16</td>
+</tr>
+<tr>
+<td><a href="./tuning_option_set/leveldb3.properties">Compaction</a></td>
+<td>32MB</td>
+<td>4MB</td>
+<td>snappy</td>
+<td>8MB</td>
+<td>10</td>
+<td>2KB</td>
+<td>16</td>
+</tr>
+<tr>
+<td><a href="./tuning_option_set/leveldb4.properties">SSTable</a></td>
+<td>64MB</td>
+<td>32MB</td>
+<td>snappy</td>
+<td>13.75MB</td>
+<td>10</td>
+<td>2MB</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="./tuning_option_set/leveldb5.properties">Bloom Filter</a></td>
+<td>128MB</td>
+<td>64MB</td>
+<td>snappy</td>
+<td>64MB</td>
+<td>9</td>
+<td>8KB</td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="./tuning_option_set/leveldb6.properties">Cache</a></td>
+<td>47.68MB</td>
+<td>4MB</td>
+<td>snappy</td>
+<td>40MB</td>
+<td>10</td>
+<td>8KB</td>
+<td>32</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-result">3. Result</h3>
+<p><img src="https://github.com/user-attachments/assets/bda9b7b5-d200-4942-ab6b-94879eac8a32"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Avg. Throughput</br>(ops/sec)</th>
+<th style="text-align: left;">WAL/Manifest</th>
+<th style="text-align: left;">Memtable</th>
+<th style="text-align: left;">Compaction</th>
+<th style="text-align: left;">SSTable</th>
+<th style="text-align: left;">Bloom Filter</th>
+<th style="text-align: left;">Cache</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Load A</td>
+<td style="text-align: left;">71065</td>
+<td style="text-align: left;">34800</td>
+<td style="text-align: left;">23336</td>
+<td style="text-align: left;">57734</td>
+<td style="text-align: left;">71972</td>
+<td style="text-align: left;">35522</td>
+</tr>
+<tr>
+<td style="text-align: left;">Run A</td>
+<td style="text-align: left;">73928</td>
+<td style="text-align: left;">58610</td>
+<td style="text-align: left;">40784</td>
+<td style="text-align: left;">63753</td>
+<td style="text-align: left;">72253</td>
+<td style="text-align: left;">47830</td>
+</tr>
+<tr>
+<td style="text-align: left;">Run B</td>
+<td style="text-align: left;">131709</td>
+<td style="text-align: left;">130014</td>
+<td style="text-align: left;">114509</td>
+<td style="text-align: left;">147205</td>
+<td style="text-align: left;">136455</td>
+<td style="text-align: left;">125638</td>
+</tr>
+<tr>
+<td style="text-align: left;">Run D</td>
+<td style="text-align: left;">191939</td>
+<td style="text-align: left;">200841</td>
+<td style="text-align: left;">177168</td>
+<td style="text-align: left;">207546</td>
+<td style="text-align: left;">194346</td>
+<td style="text-align: left;">193820</td>
+</tr>
+<tr>
+<td style="text-align: left;">- <a href="./tuning_contest_script.sh">Tuning Benchmark shell script</a></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">- <a href="./leveldb_tuning_contest.xlsx">Tuning Benchmark excel data</a></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">- <a href="./tuning_contest_result/">Tuning Benchmark raw data</a></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-ranking-report">4. Ranking &amp; Report</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Total Rank</th>
+<th style="text-align: left;">Team</th>
+<th style="text-align: left;">Load A</th>
+<th style="text-align: left;">Run A</th>
+<th style="text-align: left;">Run B</th>
+<th style="text-align: left;">Run D</th>
+<th style="text-align: left;">Report</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">SSTable</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"><a href="./%5BTuning%5Dteam_SSTable_report.md">Link (KOR)</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Bloom Filter</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;"><a href="./%5BTuning%5Dteam_bloomfilter_report.md">Link (KOR)</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">WAL/Manifest</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"><a href="./%5BTuning%5Dteam_WAL%2CManifest_report.md">Link (KOR)</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Memtable</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"><a href="./%5BTuning%5Dteam_memtable_report.md">Link (KOR)</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Cache</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"><a href="./%5BTuning%5Dteam_cache_report.md">Link (KOR)</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">Compaction</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;"><a href="./%5BTuning%5DCompaction_%3Cthe%20best%20options%3E_report.md">Link (ENG)</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-notice">5. Notice</h3>
+<ol>
+<li>Study the db options and their relationships.</li>
+<li>Analyze workloads such as key/value size and key/operations distribution.</li>
+<li>Hypothesize the best option set and verify it by experiment.</li>
+<li>Submit your best option set to the assistant by e-mail.<ul>
+<li>Send your <em><strong>YCSB-cpp/leveldb/leveldb.properties</strong></em> to <em>koreachoi96@gmail.com</em> until <strong>Monday, 15 August 2022, 9:00 AM</strong></li>
+</ul>
+</li>
+<li>Write a report about your hypothesis, experiment, and final decision in markdown format.<ul>
+<li>Pull request at tuning directory until <strong>Tuesday, 16 August 2022, 2:00 PM</strong></li>
+<li>Title: [Tuning]team_<your_topic>_report.md</li>
+</ul>
+</li>
+<li>Check your ranking at <strong>Tuesday, 16 August 2022, 4:00 PM</strong></li>
+<li>Please refer to LevelDB options.h and RocksDB tuning guide before you start!</li>
+<li><a href="https://github.com/google/leveldb/blob/main/include/leveldb/options.h">leveldb/include/leveldb/options.h</a></li>
+<li><a href="https://github.com/google/leveldb/blob/main/doc/index.md">leveldb/doc/index.md</a></li>
+<li><a href="https://github.com/facebook/rocksdb/wiki/RocksDB-Tuning-Guide">RocksDB Tuning Guide</a></li>
+<li><a href="https://github.com/facebook/rocksdb/wiki/Setup-Options-and-Basic-Tuning">RocksDB Setup Options and Basice Tuning</a></li>
+</ol>
+<h3 id="6-leveldb-options-and-restrictions">6. LevelDB options and restrictions</h3>
+<p>Modify <em><strong>YCSB-cpp/leveldb/leveldb.properties</strong></em> like below.</p>
+<pre><code class="language-s"># YCSB-cpp/leveldb/leveldb.properties
+# ---------------------------Restriction----------------------------
+#  max_memory size (= write_buffer_size + block_cache_size) &lt;= 1024 * 1024 * 1024 (1GB)
+#  max_file_size &lt;= 1024 * 1024 * 1024 (1GB)
+leveldb.max_open_files=10000
+
+# -------------LevelDB Options, Tune them!------------------
+leveldb.dbname=/tmp/ycsb-leveldb
+leveldb.format=single
+leveldb.destroy=false
+
+leveldb.write_buffer_size=2097152
+leveldb.max_file_size=4194304
+leveldb.compression=snappy 
+leveldb.cache_size=4194304
+leveldb.filter_bits=10
+leveldb.block_size=4096
+leveldb.block_restart_interval=16
+</code></pre>
+<h3 id="7-install-ycsb-cpp">7. Install <a href="https://github.com/ls4154/YCSB-cpp">YCSB-cpp</a></h3>
+<ul>
+<li>Install and build leveldb in release mode</li>
+</ul>
+<pre><code class="language-bash">git clone https://github.com/ls4154/YCSB-cpp.git
+</code></pre>
+<ul>
+<li>Modify config section in Makefile</li>
+</ul>
+<pre><code class="language-bash">#---------------------build config-------------------------
+DEBUG_BUILD ?= 0
+# put your leveldb directory
+EXTRA_CXXFLAGS ?= -I/example/leveldb/include
+EXTRA_LDFLAGS ?= -L/example/leveldb/build -lsnappy
+
+BIND_LEVELDB ?= 1
+BIND_ROCKSDB ?= 0 
+BIND_LMDB ?= 0
+</code></pre>
+<ul>
+<li><code>make</code></li>
+<li>Modify <em><strong>YCSB-cpp/leveldb/leveldb.properties</strong></em></li>
+<li>Run benchmarks</li>
+</ul>
+<pre><code class="language-bash"># Command
+./ycsb -load -db leveldb -P workloads/workloada -P leveldb/leveldb.properties -s
+./ycsb -run -db leveldb -P workloads/workloada -P leveldb/leveldb.properties -s
+./ycsb -run -db leveldb -P workloads/workloadb -P leveldb/leveldb.properties -s
+./ycsb -run -db leveldb -P workloads/workloadd -P leveldb/leveldb.properties -s
+</code></pre>
+<ul>
+<li>You can make copies of leveldb.properties and use them for benchmarks.</li>
+</ul>
+<pre><code class="language-bash"># Command
+./ycsb -load -db leveldb -P workloads/workloada -P leveldb/leveldb.properties1 -s
+./ycsb -load -db leveldb -P workloads/workloada -P leveldb/leveldb.properties2 -s
+</code></pre>
+<h3 id="8-tuning-enviornment">8. Tuning Enviornment</h3>
+<ul>
+<li>DKU Linux Server</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td></td>
+</tr>
+<tr>
+<td>Memory</td>
+<td></td>
+</tr>
+<tr>
+<td>Storage</td>
+<td></td>
+</tr>
+<tr>
+<td>Linux</td>
+<td></td>
+</tr>
+<tr>
+<td>Ubuntu</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

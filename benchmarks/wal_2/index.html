@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    
+    <title>Max_total_wal_size - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../..">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../analysis/memtable/">Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/wal/">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/compaction/compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/compaction/Major-Compaction/">Major Compaction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/compaction/Minor-Compaction/">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable/">SSTable Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable-write/">SSTable Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable-read/">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter/">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter-write/">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/cache/">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../wal_1/">Disable_wal</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="../wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../compaction/">Compaction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../sstable/">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tuning/">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_SSTable_report/">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_memtable_report/">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../practice/practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../practice/answer/">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../wal_1/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../wal_3/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#write-ahead-logging-wal-analysis">Write-Ahead Logging (WAL) Analysis</a></li>
+            <li class="second-level"><a href="#overview-of-max_total_wal_size-option">Overview of max_total_wal_size Option</a></li>
+                
+                <li class="third-level"><a href="#hypothesis">Hypothesis</a></li>
+                <li class="third-level"><a href="#experimental-design">Experimental Design</a></li>
+                <li class="third-level"><a href="#experiment-environment">Experiment Environment</a></li>
+                <li class="third-level"><a href="#results">Results</a></li>
+                <li class="third-level"><a href="#discussion">Discussion</a></li>
+                <li class="third-level"><a href="#future-work">Future Work</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="write-ahead-logging-wal-analysis">Write-Ahead Logging (WAL) Analysis</h1>
+<h2 id="overview-of-max_total_wal_size-option">Overview of <code>max_total_wal_size</code> Option</h2>
+<h3 id="hypothesis">Hypothesis</h3>
+<ul>
+<li>Each column family has its own ssTable, but they share a single WAL.</li>
+<li>A new WAL is created whenever a column family is flushed, redirecting all writes to the new WAL.</li>
+<li>WALs can only be deleted once all their data is moved to ssTables, necessitating regular flushes.</li>
+<li>Without constraints on WAL size, deletion slows, and flushes become infrequent.</li>
+<li>The <code>max_total_wal_size</code> option triggers the deletion of the oldest live WAL file when the size exceeds a specified value, forcing a flush if live data exists.</li>
+<li>A smaller WAL size might lead to frequent flushes, potentially degrading performance.</li>
+</ul>
+<h3 id="experimental-design">Experimental Design</h3>
+<ul>
+<li><strong>Independent Variable</strong>: <code>--max_total_wal_size=[int value]</code></li>
+<li><strong>Dependent Variables</strong>: SAF, WAF, Latency, Throughput</li>
+</ul>
+<h4 id="command">Command</h4>
+<pre><code class="language-bash">./db_bench --benchmarks=&quot;fillseq&quot; --max_total_wal_size=[0,1,10,100,1000,10000,100000,1000000,10000000,100000000] --num=10000000
+</code></pre>
+<h3 id="experiment-environment">Experiment Environment</h3>
+<ul>
+<li><strong>Operating System</strong>: macOS Monterey</li>
+<li><strong>Processor</strong>: 2.3GHz 8-Core Intel Core i9</li>
+<li><strong>SSD</strong>: APPLE SSD AP1024N 1TB</li>
+</ul>
+<h3 id="results">Results</h3>
+<ul>
+<li>Initial experiments showed no significant results in the given environment.</li>
+<li>The default value of <code>max_total_wal_size</code> is not zero but calculated as:
+  <code>plaintext
+  [sum of all write_buffer_size * max_write_buffer_number] * 4</code></li>
+<li>This option is effective only with two or more column families.</li>
+</ul>
+<h4 id="calculations-for-column-families">Calculations for Column Families</h4>
+<ul>
+<li><strong>10 Column Families</strong>:</li>
+<li><code>write_buffer_size = 64 MB (Default)</code></li>
+<li><code>max_write_buffer_number = 2 (Default)</code></li>
+<li>
+<p><code>max_total_wal_size = [10*64MB*2]*4 = 5.12GB</code></p>
+</li>
+<li>
+<p><strong>15 Column Families</strong>:</p>
+</li>
+<li><code>write_buffer_size = 64 MB (Default)</code></li>
+<li><code>max_write_buffer_number = 2 (Default)</code></li>
+<li><code>max_total_wal_size = [15*64MB*2]*4 = 7.68GB</code></li>
+</ul>
+<h4 id="experiment-results">Experiment Results</h4>
+<ul>
+<li>The results seem to reflect only the default column family analysis.</li>
+<li>Different results were observed when the <code>--num_column_families=</code> option was not specified, indicating usage of all 10 and 15 families.</li>
+</ul>
+<h3 id="discussion">Discussion</h3>
+<ul>
+<li>Performance appears to degrade as <code>max_total_wal_size</code> decreases from its default value.</li>
+<li>Testing with a fixed <code>max_total_wal_size</code> of 500MB and varying column family counts (10, 15, 20, 25, 30) suggests performance degradation with more column families sharing the WAL.</li>
+<li>The threshold for performance degradation in <code>max_total_wal_size</code> increases with more column families.</li>
+</ul>
+<h3 id="future-work">Future Work</h3>
+<ul>
+<li>Further benchmarking with multiple column families, altering their characteristics, and monitoring flush counts could provide deeper insights.</li>
+</ul></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

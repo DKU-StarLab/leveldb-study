@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+    
+    <title>Bloom Filter Write - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../../css/base.min.css" rel="stylesheet">
+    <link href="../../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../../..">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../memtable/">Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../wal/">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../compaction/compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../compaction/Major-Compaction/">Major Compaction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../compaction/Minor-Compaction/">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../sstable/sstable/">SSTable Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../sstable/sstable-write/">SSTable Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../sstable/sstable-read/">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../bloomfilter/">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../cache/">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_1/">Disable_wal</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_2/">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/compaction/">Compaction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/sstable/">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../tuning/">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_SSTable_report/">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_memtable_report/">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../practice/practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../practice/answer/">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../bloomfilter/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../bloomfilter-read/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#bloom-filter-write">Bloom Filter Write</a></li>
+        <li class="first-level "><a href="#bloom-filter-policy">Bloom Filter Policy</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="bloom-filter-write">Bloom Filter Write</h2>
+<p><img alt="img1 daumcdn" src="https://user-images.githubusercontent.com/101636590/183425832-0ca0a6f6-a8d4-471b-8765-44a3ccad1904.png" /></p>
+<p>The entire LevelDB code contains about 100 main functions. By checking the <code>makefile</code> of <code>db_bench</code>, we can see that the main function of <code>db_bench</code> is located in the <code>db_bench.cc</code> file.</p>
+<p><img alt="img1 daumcdn" src="https://user-images.githubusercontent.com/101636590/183425880-7bcff039-5faa-4e42-9ad9-763c12f6c614.png" /></p>
+<p>This main function is largely divided into two parts. The first part is the <code>sscanf</code> section that reads parameters like <code>bloom_bits</code> and <code>num</code> when executing <code>db_bench</code>, and the second part is the <code>benchmark.Run()</code> class function.</p>
+<p><img alt="img1 daumcdn" src="https://user-images.githubusercontent.com/101636590/183425930-e7017bb8-d77e-428a-a4c1-fa9e1b5288ca.png" /></p>
+<p>The <code>benchmark.Run()</code> is also divided into three main parts.</p>
+<p><img alt="img1 daumcdn" src="https://user-images.githubusercontent.com/101636590/183425988-2d5638f4-ba97-4a54-9f5e-ddc3529dbe7a.png" /></p>
+<p>In the <code>Benchmark</code> class, several class variables, including <code>filter_policy</code>, are declared.</p>
+<p><img alt="img1 daumcdn" src="https://user-images.githubusercontent.com/101636590/183425998-87fd0957-3bc3-4c7f-9239-ebf597053cf7.png" /></p>
+<p>Subsequently, the values of the class variables are assigned in the class constructor. At this time, if the <code>bloom_bits</code> value read by <code>sscanf</code> in the main function is 0 or more, it means that a bloom filter is used, so the <code>NewBloomFilterPolicy()</code> function is called. If it is less than 0, it means that the bloom filter is not used, and <code>Null</code> is returned. The default value of <code>bloom_bits</code> is -1, meaning that if the value is not changed, the bloom filter is not used, and if set to 0, a minimum size bloom filter is used.</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/101636590/189701906-715a3bca-2840-444f-a2a6-65d9e488a611.png" /></p>
+<p>Then, the <code>Run()</code> class function is divided into three main parts.</p>
+<p><img alt="img1 daumcdn" src="https://user-images.githubusercontent.com/101636590/183426642-fe0298bb-797c-4453-8baf-877f042e7468.png" /></p>
+<p><code>PrintHeader()</code> is a function that outputs information about the environment or data when running <code>db_bench</code> to the terminal, <code>Open()</code> handles the write process, and <code>RunBenchmark()</code> handles the read process.</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/101636590/189703746-c4dbafce-b352-46d5-8404-ac614a7536ff.png" /></p>
+<p>In the <code>Open()</code> function, the values of class variables, including <code>filter_policy</code>, are stored in a new <code>Struct</code> called <code>options</code> and passed to the <code>DB::Open()</code> function. The <code>DB::Open()</code> function also puts the values of <code>options</code> received as arguments into a class called <code>impl</code> and continues the process of passing variable values, including <code>filter_policy</code>, to the next function by performing functions like <code>MaybeScheduleCompaction()</code>.</p>
+<p><img alt="img1 daumcdn" src="https://user-images.githubusercontent.com/101636590/183426744-152b6145-f791-45f1-b45e-3e8c5139930f.png" /></p>
+<p>The code flow is as shown above, which involves performing compaction and creating SSTables, including FilterBlock. In this process, <code>filter_policy</code> only receives values from the previous function to the next function, so detailed explanation is omitted.</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/101636590/189719785-9600699f-32c8-4833-891b-253fadd6d770.png" /></p>
+<p>Finally, in the <code>GenerateFilter()</code> function, the <code>createFilter</code> class function of the <code>filter_policy</code> that has been passed so far is called.</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/101636590/189720666-9f93d9fb-f38a-46c6-a492-5b90f7e296ce.png" /></p>
+<p>The content of this function is determined by the <code>NewBloomFilterPolicy()</code> function called in the <code>Benchmark</code> class constructor.</p>
+<h2 id="bloom-filter-policy">Bloom Filter Policy</h2>
+<p><img alt="image" src="https://user-images.githubusercontent.com/101636590/189722524-431b95ed-948e-4b27-b65a-c8c3c2a699c1.png" /></p>
+<p><code>NewBloomFilterPolicy()</code> is a function that creates and returns a "BloomFilterPolicy" class that overrides the "FilterPolicy" class.</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/101636590/189721381-008fcdf8-9133-4c0d-9f00-ad612fc659fc.png" /></p>
+<p>The <code>FilterPolicy</code> class consists of a <code>Name()</code> function that returns the name of the filter, a <code>CreateFilter()</code> function that creates a bloom filter array during write, and a <code>KeyMayMatch()</code> function that checks if a specific key value exists in the array during read.</p>
+<p>The <code>BloomFilterPolicy</code> class that overrides this is implemented as follows:</p>
+<pre><code class="language-cpp">class BloomFilterPolicy : public FilterPolicy {
+ public:
+  explicit BloomFilterPolicy(int bits_per_key) : bits_per_key_(bits_per_key) {
+    // We intentionally round down to reduce probing cost a little bit
+    k_ = static_cast&lt;size_t&gt;(bits_per_key * 0.69);  // 0.69 =~ ln(2)
+    if (k_ &lt; 1) k_ = 1;
+    if (k_ &gt; 30) k_ = 30;
+  }
+
+  const char* Name() const override { return &quot;leveldb.BuiltinBloomFilter2&quot;; }
+</code></pre>
+<p>The part of the code that determines the number of hash functions and limits the maximum number, and</p>
+<p>The <code>Name()</code> function that returns a specific name.</p>
+<p><br/>
+<br/></p>
+<pre><code class="language-cpp">void CreateFilter(const Slice* keys, int n, std::string* dst) const override {
+    // Compute bloom filter size (in both bits and bytes)
+    size_t bits = n * bits_per_key_;
+
+    // For small n, we can see a very high false positive rate.  Fix it
+    // by enforcing a minimum bloom filter length.
+    if (bits &lt; 64) bits = 64;
+
+    size_t bytes = (bits + 7) / 8;
+    bits = bytes * 8;
+</code></pre>
+<p>And the <code>CreateFilter()</code> function determines the size of the bloom filter array (=bits) by multiplying the bloom_bits (=bits_per_key) value and the num (=n) value.</p>
+<p><br/>
+<br/></p>
+<pre><code class="language-cpp">const size_t init_size = dst-&gt;size();
+    dst-&gt;resize(init_size + bytes, 0);
+    dst-&gt;push_back(static_cast&lt;char&gt;(k_));  // Remember # of probes in filter
+    char* array = &amp;(*dst)[init_size];
+    for (int i = 0; i &lt; n; i++) {
+      // Use double-hashing to generate a sequence of hash values.
+      // See analysis in [Kirsch,Mitzenmacher 2006].
+      uint32_t h = BloomHash(keys[i]);
+      const uint32_t delta = (h &gt;&gt; 17) | (h &lt;&lt; 15);  // Rotate right 17 bits
+      for (size_t j = 0; j &lt; k_; j++) {
+        const uint32_t bitpos = h % bits;
+        array[bitpos / 8] |= (1 &lt;&lt; (bitpos % 8));
+        h += delta;
+      }
+    }
+ ```
+
+It is divided into a part that handles &quot;double hashing&quot;.
+
+# Double Hashing
+
+![img1 daumcdn](https://user-images.githubusercontent.com/101636590/183426381-db205ffc-c946-49af-a75d-2b0869145737.png)
+![img1 daumcdn](https://user-images.githubusercontent.com/101636590/183426385-eb7ead05-1359-4802-9bc6-0f2d892756bb.png)
+
+(Source: https://www.eecs.harvard.edu/~michaelm/postscripts/rsa2008.pdf)
+
+Referring to the paper mentioned in the comments of the function, it is mathematically proven that by using two hash functions and reusing one of them, instead of using k different hash functions, the load and computation caused by hash functions can be significantly reduced while maintaining the original performance.
+
+&lt;br/&gt;
+&lt;br/&gt;
+
+![img1 daumcdn](https://user-images.githubusercontent.com/101636590/183426427-2a7c8496-b118-42aa-b6da-112205d9b581.png)
+
+In LevelDB, the first hash function is implemented as a function called `BloomHash()`, and the second hash function is implemented as a bit operation `( h&gt;&gt;17 ) | ( h&lt;&lt;15 )`.
+
+```cpp
+namespace {
+static uint32_t BloomHash(const Slice&amp; key) {
+  return Hash(key.data(), key.size(), 0xbc9f1d34);
+}
+</code></pre>
+<pre><code class="language-cpp">uint32_t Hash(const char* data, size_t n, uint32_t seed) {
+  // Similar to murmur hash
+  const uint32_t m = 0xc6a4a793;
+  const uint32_t r = 24;
+  const char* limit = data + n;
+  uint32_t h = seed ^ (n * m);
+</code></pre>
+<p><code>BloomHash</code> takes a key value as an argument and returns a specific value, taking the form of a typical hash function.</p>
+<p><img alt="img1 daumcdn" src="https://user-images.githubusercontent.com/101636590/183426489-099b0b6f-8a1c-4263-a575-60407a8b8c65.png" /></p>
+<p>The shift operation is structured to swap the first 15 bits and the last 17 bits. (Note that the hash value uses a 32-bit data type called <code>uint32_t</code>.) This shift operation is presumed to be used because it satisfies the properties of a hash function while having low overhead required for computation.</p>
+<pre><code class="language-cpp">uint32_t h = BloomHash(key);
+    const uint32_t delta = (h &gt;&gt; 17) | (h &lt;&lt; 15);  // Rotate right 17 bits
+    for (size_t j = 0; j &lt; k; j++) {
+      const uint32_t bitpos = h % bits;
+      if ((array[bitpos / 8] &amp; (1 &lt;&lt; (bitpos % 8))) == 0) return false;
+      h += delta;
+    }
+</code></pre>
+<p>And notably, since one bit must be set to 1 per hash, the bloom filter array is used by dividing one byte (1 byte = 8 bits) into 8 parts.</p>
+<pre><code class="language-cpp"> bool KeyMayMatch(const Slice&amp; key, const Slice&amp; bloom_filter) const override {
+    // ... omitted
+    uint32_t h = BloomHash(key);
+    const uint32_t delta = (h &gt;&gt; 17) | (h &lt;&lt; 15);  // Rotate right 17 bits
+    for (size_t j = 0; j &lt; k; j++) {
+      const uint32_t bitpos = h % bits;
+      if ((array[bitpos / 8] &amp; (1 &lt;&lt; (bitpos % 8))) == 0) return false;
+      h += delta;
+    }
+    return true;
+  }
+</code></pre>
+<p>Finally, the <code>KeyMayMatch</code> function used when reading data uses almost the same computation as <code>CreateFilter</code>, but it uses an if statement and an and operation instead of an or operation to check if a specific key value exists within the filter.</p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../../.."</script>
+    
+    <script src="../../../js/base.js"></script>
+    <script src="../../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

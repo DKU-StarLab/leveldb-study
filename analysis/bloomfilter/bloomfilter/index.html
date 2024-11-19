@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+    
+    <title>Bloom Filter Structure - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../../css/base.min.css" rel="stylesheet">
+    <link href="../../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../../..">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../memtable/">Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../wal/">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../compaction/compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../compaction/Major-Compaction/">Major Compaction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../compaction/Minor-Compaction/">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../sstable/sstable/">SSTable Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../sstable/sstable-write/">SSTable Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../sstable/sstable-read/">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li class="active">
+    <a href="./">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../bloomfilter-write/">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../cache/">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_1/">Disable_wal</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_2/">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/compaction/">Compaction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/sstable/">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../tuning/">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_SSTable_report/">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_memtable_report/">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../practice/practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../practice/answer/">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../../sstable/sstable-read/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../bloomfilter-write/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#bloom-filter-structure">Bloom Filter Structure</a></li>
+            <li class="second-level"><a href="#bloom-filter-location">Bloom Filter Location</a></li>
+                
+            <li class="second-level"><a href="#true-negative-false-positive">True Negative &amp; False Positive</a></li>
+                
+            <li class="second-level"><a href="#hash-function">Hash Function</a></li>
+                
+            <li class="second-level"><a href="#false-positive-probability">False Positive Probability</a></li>
+                
+            <li class="second-level"><a href="#code-flow-of-bloom-filter">Code Flow of Bloom Filter</a></li>
+                
+            <li class="second-level"><a href="#reference">Reference</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="bloom-filter-structure">Bloom Filter Structure</h2>
+<p><img alt="Bloom Filter Diagram" src="https://user-images.githubusercontent.com/101636590/183424363-05494e10-e230-45b1-9a2a-18f413748970.png" />
+(Source: https://en.wikipedia.org/wiki/Bloom_filter)</p>
+<p>A Bloom filter is a probabilistic data structure that can determine whether a specific key exists in a data block.</p>
+<p>When writing data to a Bloom filter, k hash functions are performed on each key to obtain k hash values. The values corresponding to these hash values in the Bloom filter array are changed from 0 to 1, indicating that the key exists in the data block.</p>
+<p>When reading, instead of reading the entire data block, the same k hash functions are performed on the data to be read to obtain k hash values. Only the data blocks where all the corresponding array values are 1 are selected for reading, thereby improving read performance.</p>
+<hr />
+<h3 id="bloom-filter-location">Bloom Filter Location</h3>
+<p><img alt="SSTable Logic Diagram" src="https://user-images.githubusercontent.com/101636590/188339431-c3f219ba-b2f0-4bc5-bbcf-a39a8be35d85.jpg" />
+(Source: https://leveldb-handbook.readthedocs.io/zh/latest/)</p>
+<p>The Bloom filter exists within the SSTable, and the structure of the SSTable is as shown above. One SSTable contains n data blocks, 1 filter block, and 1 meta index block.</p>
+<p>The filter block contains n Bloom filter arrays, and the meta index block indicates which data block each Bloom filter array corresponds to.</p>
+<hr />
+<h3 id="true-negative-false-positive">True Negative &amp; False Positive</h3>
+<p><img alt="True Negative &amp; False Positive" src="https://user-images.githubusercontent.com/101636590/188339451-c0638280-3882-4883-8396-d23c88008068.png" />
+(Source: https://www.linkedin.com/pulse/which-worse-false-positive-false-negative-miha-mozina-phd)</p>
+<p>The biggest advantage of a Bloom filter is that a True Negative never occurs. A True Negative is when data that exists in the database is judged as non-existent, which is directly related to the reliability of the filter.</p>
+<p>On the other hand, False Positives (judging non-existent data as existent) can occur frequently. This can be a cause of performance degradation, and reducing False Positives is one of the important challenges of Bloom filters.</p>
+<hr />
+<h3 id="hash-function">Hash Function</h3>
+<p><img alt="Bloom Filter Hashing" src="https://user-images.githubusercontent.com/101636590/183424697-ef93e101-a865-47a3-9e14-2046590dd9d9.png" /></p>
+<p>Using the benchmarking tool <code>db_bench</code> provided by LevelDB, we can adjust the number of bits used per key (Bloom_bits) or the number of data (Num). The size of the generated Bloom filter array becomes <code>Bloom_bits * Num</code> bits. This value can be checked in the <code>CreateFilter</code> class function of <code>bloom.cc</code>.</p>
+<p>The default setting of <code>db_bench</code> does not use a Bloom filter, and to use it, the <code>Bloom_bits</code> value must be specified. The ideal <code>Bloom_bits</code> value in LevelDB is 10, which can improve read performance without significantly degrading write performance.</p>
+<p>Additionally, the number of hash functions K is determined using the formula <code>K = ln(2) * (M/N) = ln(2) * B</code>. This formula calculates the value that can minimize the False Positive rate.</p>
+<hr />
+<h3 id="false-positive-probability">False Positive Probability</h3>
+<p><img alt="False Positive Formula" src="https://user-images.githubusercontent.com/101636590/188341913-5b0f489f-294a-4d5c-8171-d0ae7fa895cc.png" /></p>
+<p>The probability of a False Positive can be mathematically organized, and through this, the optimal k value and number of bits to minimize False Positives can be calculated.</p>
+<p>When the k value is <code>ln(2) * (m/n)</code>, the probability of a False Positive is expressed in the form of <code>1/2^k</code>, and as the k value increases, the probability of a False Positive decreases. This is proportional to bloom_bits.</p>
+<hr />
+<h3 id="code-flow-of-bloom-filter">Code Flow of Bloom Filter</h3>
+<ul>
+<li><a href="https://github.com/DKU-StarLab/leveldb-wiki/blob/main/analysis/bloomfilter/bloomfilter-write.md">Write: Creation of Bloom Filter</a></li>
+<li><a href="https://github.com/DKU-StarLab/leveldb-wiki/blob/main/analysis/bloomfilter/bloomfilter-read.md">Read: Quickly check the existence of a specific key with Bloom Filter</a></li>
+</ul>
+<hr />
+<h3 id="reference">Reference</h3>
+<ul>
+<li><a href="https://d2.naver.com/helloworld/749531">Estimation using Probabilistic Data Structures</a>  </li>
+<li><a href="https://github.com/google/leveldb">LevelDB Github</a>  </li>
+<li><a href="https://github.com/google/leveldb/blob/main/benchmarks/db_bench.cc">Github - db_bench.cc</a>  </li>
+<li><a href="https://github.com/google/leveldb/blob/main/util/bloom.cc">Github - bloom.cc</a>  </li>
+<li><a href="https://github.com/google/leveldb/blob/main/table/filter_block.cc">Github - filter_block.cc</a>  </li>
+<li><a href="https://github.com/google/leveldb/blob/main/include/leveldb/filter_policy.h">Github - filter_policy.h</a>  </li>
+<li><a href="https://leveldb-handbook.readthedocs.io/zh/latest/bloomfilter.html">LevelDB Handbook</a></li>
+</ul></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../../.."</script>
+    
+    <script src="../../../js/base.js"></script>
+    <script src="../../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

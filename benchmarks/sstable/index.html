@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    
+    <title>SSTable - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../..">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../analysis/memtable/">Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/wal/">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/compaction/compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/compaction/Major-Compaction/">Major Compaction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/compaction/Minor-Compaction/">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable/">SSTable Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable-write/">SSTable Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable-read/">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter/">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter-write/">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/cache/">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../wal_1/">Disable_wal</a>
+</li>
+
+        
+            
+<li >
+    <a href="../wal_2/">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="../wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../compaction/">Compaction</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tuning/">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_SSTable_report/">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_memtable_report/">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../practice/practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../practice/answer/">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../compaction/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../bloomfilter/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#sstable">SSTable</a></li>
+            <li class="second-level"><a href="#hypothesis">Hypothesis</a></li>
+                
+            <li class="second-level"><a href="#design">Design</a></li>
+                
+            <li class="second-level"><a href="#experiment-environment">Experiment Environment</a></li>
+                
+            <li class="second-level"><a href="#result">Result</a></li>
+                
+            <li class="second-level"><a href="#discussion">Discussion</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="sstable">SSTable</h1>
+<p>An SSTable consists of Data Blocks containing key-value pairs and a Filter Block that holds bloom filters for each Data Block. According to the <a href="https://leveldb-handbook.readthedocs.io/zh/latest/sstable.html">LevelDB Handbook</a>, it states the following regarding the Filter Block:</p>
+<blockquote>
+<p><em>If the user does not specify LevelDB to use filters, LevelDB does not store content in this block.</em></p>
+</blockquote>
+<p>This means that if you do not specify to use bloom filters, data is not stored in the Filter Block. This led to the thought, <em>"If we don't use bloom filters, wouldn't the performance improve during writes since we don't write to the Filter Block?"</em> Thus, I decided to conduct an experiment on this.  </p>
+<p>Before conducting the experiment, I used <code>uftrace</code> to confirm that the <code>leveldb::FilterBlockBuilder::Addkey</code> function is only called when bloom filters are applied, verifying that data is not written to the Filter Block if bloom filters are not used.</p>
+<h2 id="hypothesis">Hypothesis</h2>
+<p>If bloom filters are not applied, data is not stored in the Filter Block, which will improve performance during write operations.<br />
+<code>Latency</code> will decrease, and <code>Throughput</code> will increase.</p>
+<h2 id="design">Design</h2>
+<ul>
+<li>Controlled Variables</li>
+<li><code>--value_size</code>: 2,000</li>
+<li><code>--use_existing_db</code>: 0</li>
+<li><code>--compression_ratio</code>: 1</li>
+<li><code>--benchmarks</code>: "fillseq"</li>
+<li>Independent Variables</li>
+<li><code>--bloom_bits</code>: Not specified when bloom filters are not applied, specified as 64 when applied</li>
+<li>Dependent Variables</li>
+<li><code>Throughput</code></li>
+<li><code>Latency</code> </li>
+</ul>
+<h2 id="experiment-environment">Experiment Environment</h2>
+<ul>
+<li>CPU: 40*Intel® Xeon® Silver 4210R CPU @2.40GHz</li>
+<li>CPUCache: 14080KB</li>
+</ul>
+<h2 id="result">Result</h2>
+<p>Measured 10 times each with and without applying bloom filters  <br />
+<code>Latency</code>: micros/op<br />
+<code>Throughput</code>: MB/s</p>
+<ul>
+<li>When bloom filters are applied  </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;">3</th>
+<th style="text-align: center;">4</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;">6</th>
+<th style="text-align: center;">7</th>
+<th style="text-align: center;">8</th>
+<th style="text-align: center;">9</th>
+<th style="text-align: center;">10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latency</td>
+<td style="text-align: center;">11.194</td>
+<td style="text-align: center;">11.314</td>
+<td style="text-align: center;">11.178</td>
+<td style="text-align: center;">11.176</td>
+<td style="text-align: center;">11.023</td>
+<td style="text-align: center;">11.374</td>
+<td style="text-align: center;">11.204</td>
+<td style="text-align: center;">11.047</td>
+<td style="text-align: center;">11.117</td>
+<td style="text-align: center;">11.206</td>
+</tr>
+<tr>
+<td>Throughput</td>
+<td style="text-align: center;">171.8</td>
+<td style="text-align: center;">169.9</td>
+<td style="text-align: center;">172.0</td>
+<td style="text-align: center;">172.0</td>
+<td style="text-align: center;">174.4</td>
+<td style="text-align: center;">169.0</td>
+<td style="text-align: center;">171.6</td>
+<td style="text-align: center;">174.0</td>
+<td style="text-align: center;">172.9</td>
+<td style="text-align: center;">171.6</td>
+</tr>
+<tr>
+<td>&gt; <em>Average Latency = 11.183 micros/op</em></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>&gt; <em>Average Throughput = 172.92 MB/s</em></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>When bloom filters are not applied  </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;">3</th>
+<th style="text-align: center;">4</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;">6</th>
+<th style="text-align: center;">7</th>
+<th style="text-align: center;">8</th>
+<th style="text-align: center;">9</th>
+<th style="text-align: center;">10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latency</td>
+<td style="text-align: center;">10.543</td>
+<td style="text-align: center;">11.258</td>
+<td style="text-align: center;">10.280</td>
+<td style="text-align: center;">10.674</td>
+<td style="text-align: center;">10.976</td>
+<td style="text-align: center;">10.537</td>
+<td style="text-align: center;">10.724</td>
+<td style="text-align: center;">10.353</td>
+<td style="text-align: center;">10.619</td>
+<td style="text-align: center;">10.785</td>
+</tr>
+<tr>
+<td>Throughput</td>
+<td style="text-align: center;">182.4</td>
+<td style="text-align: center;">170.8</td>
+<td style="text-align: center;">187.0</td>
+<td style="text-align: center;">180.1</td>
+<td style="text-align: center;">175.2</td>
+<td style="text-align: center;">182.5</td>
+<td style="text-align: center;">179.3</td>
+<td style="text-align: center;">185.7</td>
+<td style="text-align: center;">181.1</td>
+<td style="text-align: center;">178.3</td>
+</tr>
+<tr>
+<td>&gt; <em>Average Latency = 10.674 micros/op</em></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>&gt; <em>Average Throughput = 180.24 MB/s</em></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="discussion">Discussion</h2>
+<p>Based on the results above, comparing the average <code>Latency</code> and <code>Throughput</code> when bloom filters are applied versus when they are not, we find the following:  </p>
+<ul>
+<li>Latency</li>
+</ul>
+<p align="center"><img src="https://user-images.githubusercontent.com/65762283/187726811-56a5f707-7734-45b7-b638-e2645bc55f14.png"></p>
+<ul>
+<li>Throughput  </li>
+</ul>
+<p><br/><p align="center"><img src="https://user-images.githubusercontent.com/65762283/187726961-c13fc1dc-8c00-4f1e-9644-6cec629107a6.png"></p></p>
+<p>Before the experiment, I hypothesized that not using bloom filters would result in lower <code>Latency</code> and higher <code>Throughput</code> during writes. Indeed, the results show that <code>Latency</code> is lower and <code>Throughput</code> is higher when bloom filters are not applied compared to when they are.<br />
+However, I expected a more significant difference between applying and not applying bloom filters during write operations, but the actual difference in <code>Latency</code> was only about 0.5 micros per key-value pair, which did not seem substantial. I pondered why the difference was not more pronounced.</p>
+<ol>
+<li>
+<p>db_bench Output<br />
+The output from running db_bench does not strictly represent the time taken to create a single SSTable but rather the time taken to process a single key-value pair. Therefore, the output of db_bench should be viewed as an indicator of the overall write process rather than the time taken to create an SSTable. Since an SSTable is not created for every key-value pair, the time difference in writing an SSTable may not significantly impact the overall write process. Thus, while there may have been a noticeable time difference in processing a single SSTable, it might not have been significant in the overall write process.</p>
+</li>
+<li>
+<p>fillseq<br />
+The reason for using <code>fillseq</code> instead of <code>fillrandom</code> in this experiment was to ensure the same order of key insertion when applying and not applying bloom filters. <code>fillseq</code> has the characteristic of not triggering <code>compaction</code>, meaning that performance differences only appear for SSTables created by <code>flush</code>. In an environment where both <code>flush</code> and <code>compaction</code> occur, more SSTables are created, potentially leading to more significant performance differences. However, since this experiment was conducted in a <code>flush</code>-only scenario, the number of SSTables created was limited, resulting in smaller performance differences.</p>
+</li>
+</ol>
+<p><br/></p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

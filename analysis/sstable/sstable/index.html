@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+    
+    <title>SSTable Structure - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../../css/base.min.css" rel="stylesheet">
+    <link href="../../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../../..">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../memtable/">Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../wal/">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../compaction/compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../compaction/Major-Compaction/">Major Compaction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../compaction/Minor-Compaction/">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li class="active">
+    <a href="./">SSTable Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../sstable-write/">SSTable Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../sstable-read/">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../bloomfilter/bloomfilter/">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../bloomfilter/bloomfilter-write/">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../bloomfilter/bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../cache/">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_1/">Disable_wal</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_2/">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/compaction/">Compaction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/sstable/">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../tuning/">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_SSTable_report/">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_memtable_report/">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../practice/practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../practice/answer/">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../../compaction/Minor-Compaction/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../sstable-write/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#sstable">SSTable</a></li>
+            <li class="second-level"><a href="#sstable-format">SSTable format</a></li>
+                
+            <li class="second-level"><a href="#data-block">Data Block</a></li>
+                
+            <li class="second-level"><a href="#filter-block">Filter Block</a></li>
+                
+            <li class="second-level"><a href="#meta-index-block">Meta Index Block</a></li>
+                
+            <li class="second-level"><a href="#index-block">Index Block</a></li>
+                
+            <li class="second-level"><a href="#footer">Footer</a></li>
+                
+            <li class="second-level"><a href="#note-block-entry-structure">Note - Block Entry Structure</a></li>
+                
+                <li class="third-level"><a href="#example">Example</a></li>
+            <li class="second-level"><a href="#sstable-write-read">SSTable - Write &amp; Read</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="sstable">SSTable</h2>
+<p>LevelDB is based on the LSM tree (Log Structured Merge Tree), which means that when writing, data is not written directly to the disk but is first written to the Log and then to the MemTable. When the MemTable is full, it sends the data to the Immutable MemTable, and from the Immutable MemTable, it flushes the data to storage (i.e., disk).</p>
+<p>When the data in memory is flushed to storage in this way, LevelDB stores the data in a data structure called SSTable (Sorted String Table). This article deals with this SSTable.<br />
+<br/>  </p>
+<h3 id="sstable-format">SSTable format</h3>
+<p>Physically, an SSTable is divided into 4KB blocks, each containing fields for storing data, compression type (indicating whether the data stored in the block is compressed and, if so, which algorithm was used), and CRC checks for error detection.</p>
+<p>From a logical perspective, an SSTable can be viewed as having the following structure:</p>
+<p align="center"><img src="https://user-images.githubusercontent.com/65762283/182532427-47d356d8-c3a7-4d72-b8df-f3adcb75bcbe.png"></p>
+
+<p><br/>  </p>
+<h3 id="data-block">Data Block</h3>
+<p>This block stores key-value pairs. The structure is as follows:</p>
+<p align="center"><img src="https://user-images.githubusercontent.com/65762283/187910209-7d931fb7-6870-45e2-ade4-f0316cb25c72.png"></p>
+
+<p>Since SSTables hold keys in a sorted manner, each key can have many overlapping parts with others. To address this issue and improve space efficiency, LevelDB is designed to store only the non-overlapping part of the key (excluding the prefix shared with the previous record) rather than the entire key value.</p>
+<p>This method reduces the memory used for storing keys, but it also has the downside of degrading read performance. Although SSTables are internally sorted, allowing for binary search, the partial key storage means binary search cannot be effectively used.</p>
+<p>To solve this problem, LevelDB introduces the concept of a <code>Restart Point</code>. Instead of storing only partial keys for all entries in a Data Block, it stores the full key value every k entries (default is 16). These entries with full key values are called <code>Restart Points</code>. As shown in the diagram, the Data Block internally stores the positions of each <code>Restart Point</code>.</p>
+<p>By introducing <code>Restart Points</code> and rewriting the full key value every k records, the entries within a Data Block form sections based on these <code>Restart Points</code>.</p>
+<p align="center"><img src="https://user-images.githubusercontent.com/65762283/187920060-32e4a102-a0e7-4929-8d59-6494f9f09ee8.png"></p>
+
+<p>Since SSTables internally maintain keys in a sorted order, the entries corresponding to each <code>Restart Point</code> are also sorted. Therefore, you can use binary search to find the section where the key you are looking for might be, thus improving read performance.<br />
+<br/>  </p>
+<h3 id="filter-block">Filter Block</h3>
+<p>This block contains Bloom Filters. The structure is as follows:</p>
+<p align="center"><img src="https://user-images.githubusercontent.com/65762283/187955758-acd5f9e8-8d00-4ea4-898b-9773e5071b9b.png"></p>
+
+<p>Filters refer to Bloom Filters, and the Filter offset contains the starting offset information for each Filter. The Filter offset's offset contains the offset information for Filter 1. To read a Bloom Filter, you first read the Filter offset's offset, then use it to read the desired Filter's offset, and finally navigate to and read the corresponding Filter.<br />
+<br/>  </p>
+<h3 id="meta-index-block">Meta Index Block</h3>
+<p>This block contains the index information for the Filter Block and stores only one related record.<br />
+<br/>  </p>
+<h3 id="index-block">Index Block</h3>
+<p>This block contains the index information for each Data Block. The structure is as follows:</p>
+<p align="center"><img src="https://user-images.githubusercontent.com/65762283/187952948-860a8f3d-1b91-4ce0-b127-3b7a56b64008.png"></p>
+
+<p>Each entry contains not only the index information for the corresponding Data Block but also the size of the Data Block and the largest key value in that Data Block.<br />
+<br/>  </p>
+<h3 id="footer">Footer</h3>
+<p>This block has a fixed size of 48 bytes and contains the index information for the Meta Index Block and the Index Block. The structure is as follows:</p>
+<p align="center"><img src="https://user-images.githubusercontent.com/65762283/187959918-6f36b165-b598-4aed-8c88-72716c7d0179.png"></p>
+<p><br/>  </p>
+<h3 id="note-block-entry-structure">Note - Block Entry Structure</h3>
+<p>Data Block, Index Block, and Meta Index Block are all created through the same object called BlockBuilder, so their structures are essentially the same. This means that not only Data Blocks but also Index Blocks and Meta Index Blocks have <code>Restart Points</code>. Just as Data Blocks store Key-Value Pairs, Index Blocks and Meta Index Blocks also store a kind of Key-Value Pair. For example, in an Index Block, the Max key field of each entry acts as the key, while the offset and length fields act as the value.</p>
+<p>The structure of the entries that make up these blocks is as follows:</p>
+<p align="center"><img src="https://user-images.githubusercontent.com/65762283/187917146-dcf4bd36-30b6-4406-ab15-ac461bb48f64.png"></p>
+
+<ul>
+<li>Shared key length: Length of the part of the key that overlaps with the previous record</li>
+<li>Unshared key length: Length of the part of the key that does not overlap with the previous record</li>
+<li>Value length: Length of the value</li>
+<li>Unshared key content: Part of the key that does not overlap with the previous record</li>
+<li>Value: The value itself  </li>
+</ul>
+<h4 id="example">Example</h4>
+<pre><code>- restart_interval = 3
+- entry 1: key = abc, value = v1
+- entry 2: key = abe, value = v2
+- entry 3: key = abg, value = v3
+- entry 4: key = chesh, value = v4
+- entry 5: key = chosh, value = v5
+- entry 6: key = chush, value = v6
+</code></pre>
+<p align="center"><img src="https://user-images.githubusercontent.com/65762283/187968907-06fdea2b-b44c-4240-b529-c77a9f6112b8.png"></p>
+
+<p>By setting the <code>restart_interval</code> to 3, you can see that a <code>Restart Point</code> is marked every 3 records, and the entries corresponding to these <code>Restart Points</code> store the full key value, unlike other records.  </p>
+<h3 id="sstable-write-read">SSTable - Write &amp; Read</h3>
+<p><a href="../sstable-write/">Write - Process of Creating an SSTable</a><br />
+<a href="../sstable-read/">Read - Process of Finding a Key in an SSTable</a>  </p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../../.."</script>
+    
+    <script src="../../../js/base.js"></script>
+    <script src="../../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

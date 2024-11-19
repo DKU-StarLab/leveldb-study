@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    
+    <title>WAL - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../..">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../memtable/">Memtable</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../compaction/compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../compaction/Major-Compaction/">Major Compaction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../compaction/Minor-Compaction/">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../sstable/sstable/">SSTable Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../sstable/sstable-write/">SSTable Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../sstable/sstable-read/">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../bloomfilter/bloomfilter/">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../bloomfilter/bloomfilter-write/">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../bloomfilter/bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../cache/">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../benchmarks/wal_1/">Disable_wal</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../benchmarks/wal_2/">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../benchmarks/wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../benchmarks/compaction/">Compaction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../benchmarks/sstable/">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../benchmarks/bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tuning/">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_SSTable_report/">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_memtable_report/">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../practice/practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../practice/answer/">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../memtable/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../manifest/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#wal">WAL</a></li>
+            <li class="second-level"><a href="#index">Index</a></li>
+                
+            <li class="second-level"><a href="#wal_1">WAL</a></li>
+                
+                <li class="third-level"><a href="#introduction">Introduction</a></li>
+                <li class="third-level"><a href="#format">Format</a></li>
+            <li class="second-level"><a href="#functions">Functions</a></li>
+                
+                <li class="third-level"><a href="#logwriteraddrecord">log::Writer::AddRecord</a></li>
+                <li class="third-level"><a href="#logwriteremitphysicalrecord">log::Writer::EmitPhysicalRecord</a></li>
+                <li class="third-level"><a href="#posixwritablefileappend">PosixWritableFile::Append()</a></li>
+            <li class="second-level"><a href="#etc">ETC</a></li>
+                
+                <li class="third-level"><a href="#summary">Summary</a></li>
+                <li class="third-level"><a href="#design">Design</a></li>
+                <li class="third-level"><a href="#scenarios">Scenarios</a></li>
+                <li class="third-level"><a href="#results">Results</a></li>
+            <li class="second-level"><a href="#bottom-line">Bottom line</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="wal">WAL</h2>
+<p>This document provides an explanation of WAL (Write Ahead Log).</p>
+<h3 id="index">Index</h3>
+<ul>
+<li><a href="#wal">WAL</a>: Overview of WAL</li>
+<li><a href="#functions">Functions</a>: Description of WAL/MANIFEST related functions  </li>
+<li>Since MANIFEST and WAL share many common functions, they are documented together in the WAL section.</li>
+<li><a href="#etc">ETC</a>: Additional research findings</li>
+</ul>
+<h3 id="wal_1">WAL</h3>
+<h4 id="introduction">Introduction</h4>
+<p>LevelDB does not have an option to enable/disable WAL. To activate or deactivate WAL, you need to either use RocksDB or modify LevelDB's source code.</p>
+<p>LevelDB uses WAL (Write Ahead Log) when writing data. WAL records logs of all transactions in LevelDB and is used to prevent transaction loss.</p>
+<p>In LevelDB, data is temporarily stored in the Memtable first. However, since Memtable exists only in memory, data stored in Memtable can be lost if the system terminates abnormally or encounters an error. Analysis of this is detailed in the <a href="#etc">ETC</a> section.</p>
+<p>To prevent data loss, LevelDB stores transactions in a separate log file, which is the WAL.</p>
+<h4 id="format">Format</h4>
+<p>LevelDB's WAL is stored as a <code>.log</code> file in binary format. The WAL file stores two things:
+- Transaction header
+- Actual transaction data (payload)</p>
+<h5 id="header">Header</h5>
+<p>The WAL header is stored in the following format:</p>
+<p><img src="https://user-images.githubusercontent.com/49092508/190959632-08d86d79-d24c-4d50-bbf6-55fccb829556.png" width="700"/></p>
+<p>Header components:
+1. CRC Checksum (4byte)
+2. Data size (2byte)
+3. Record Type (1byte)</p>
+<h5 id="payload">Payload</h5>
+<p>After the WAL header, the payload is stored in the following format.</p>
+<blockquote>
+<p>Example: When PUT-ting 3 pairs of Key-Value data like {"A": "Hello world!", "B": "Good bye world!", "C": "I am hungry"}, the WAL file looks like this:</p>
+</blockquote>
+<p><img src="https://user-images.githubusercontent.com/49092508/190959530-2832a72d-8f65-4207-9ca1-2fa227d17acb.png" width="700"/></p>
+<h3 id="functions">Functions</h3>
+<p>Here are the findings from analyzing WAL and MANIFEST related functions.</p>
+<p>The <code>log::reader</code> file contains the <code>Reader</code> class and several functions.</p>
+<p><img src="https://github.com/user-attachments/assets/80cb5290-83ef-4ac2-817c-a4957a5c4d84" width="700"/></p>
+<p>Analysis focused on the <code>bool Reader::ReadRecord(Slice* record, std::string* scratch)</code> function.</p>
+<p><img src="https://github.com/user-attachments/assets/d0f7438f-2498-4f03-a629-846d74efbc38" width="700"/></p>
+<ul>
+<li>The <code>ReadRecord()</code> function finds the initial block position (<code>SkipToInitialBlock()</code>), and runs a <code>while</code> loop to get return values from <code>ReadPhysicalRecord()</code> function to read data.</li>
+<li>This function reads the block's <code>record type</code> and handles any errors. The function terminates when it reaches the end of the block.</li>
+<li>If the data spans multiple blocks, it adds data to <code>scratch</code> and transfers everything to <code>record</code> at the last block.</li>
+<li>The <code>in_fragmented_record</code> variable is used to determine if data spans multiple blocks.</li>
+</ul>
+<h4 id="logwriteraddrecord">log::Writer::AddRecord</h4>
+<p>Receives <code>slice</code> type data and writes it to WAL. Calls <code>log::Writer::EmitPhysicalRecord</code> function for writing.</p>
+<h4 id="logwriteremitphysicalrecord">log::Writer::EmitPhysicalRecord</h4>
+<p>Receives <code>slice</code> type data, creates a header, and writes to file. Adds the header and writes to <code>.log</code> file through <code>PosixWritableFile::Append()</code>.</p>
+<h4 id="posixwritablefileappend">PosixWritableFile::Append()</h4>
+<p>Implementation of <code>WritableFile</code> in POSIX environment. WAL files are written through <code>PosixWritableFile</code>. Records <code>slice</code> data to buffer and writes to file when buffer is full.</p>
+<h3 id="etc">ETC</h3>
+<p>Includes experimental results of data loss with WAL enabled/disabled. Since WAL options are only supported in RocksDB, experiments were conducted using RocksDB.</p>
+<h4 id="summary">Summary</h4>
+<p>Experiments were conducted in the following situation:
+- After writing data with PUT command, forcefully terminate process (<code>SIGINT</code>)
+- Check for data loss before termination</p>
+<h4 id="design">Design</h4>
+<p>The code used in experiments can be found <a href="https://github.com/gooday2die/WAL-Testing">here</a>.</p>
+<h4 id="scenarios">Scenarios</h4>
+<p>Experiments were conducted with 4 scenarios:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>WAL Enabled</th>
+<th>Manual Flush</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scenario 1</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>Scenario 2</td>
+<td>X</td>
+<td>O</td>
+</tr>
+<tr>
+<td>Scenario 3</td>
+<td>O</td>
+<td>X</td>
+</tr>
+<tr>
+<td>Scenario 4</td>
+<td>O</td>
+<td>O</td>
+</tr>
+</tbody>
+</table>
+<h4 id="results">Results</h4>
+<p>Results are as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Data Integrity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scenario 1</td>
+<td>Lost all data in Memtable</td>
+</tr>
+<tr>
+<td>Scenario 2</td>
+<td>Lost some data before Manual Flush</td>
+</tr>
+<tr>
+<td>Scenario 3</td>
+<td>Preserved all data</td>
+</tr>
+<tr>
+<td>Scenario 4</td>
+<td>Preserved all data</td>
+</tr>
+</tbody>
+</table>
+<p>Additional experiments used these conditions:
+- Total 1,000,000 PUT commands executed
+- [0] Flush every 1,000, [1] Flush every 10,000</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Speed</th>
+<th>Data Integrity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WAL Disabled</td>
+<td>1.843s</td>
+<td>Lost all data</td>
+</tr>
+<tr>
+<td>WAL Enabled</td>
+<td>3.604s</td>
+<td>Preserved all data</td>
+</tr>
+<tr>
+<td>Manual Flush [0] &amp; WAL Disabled</td>
+<td>39.128s</td>
+<td>Lost some data</td>
+</tr>
+<tr>
+<td>Manual Flush [1] &amp; WAL Disabled</td>
+<td>5.611s</td>
+<td>Lost some data</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bottom-line">Bottom line</h3>
+<ul>
+<li>Enabling WAL ensures data preservation</li>
+<li>Disabling WAL risks significant data loss</li>
+<li>Using Manual Flush with WAL disabled can preserve some data</li>
+</ul></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

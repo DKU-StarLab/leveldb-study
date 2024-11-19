@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+    
+    <title>Major Compaction - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../../css/base.min.css" rel="stylesheet">
+    <link href="../../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../../..">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../memtable/">Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../wal/">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">Major Compaction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../Minor-Compaction/">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../sstable/sstable/">SSTable Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../sstable/sstable-write/">SSTable Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../sstable/sstable-read/">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../bloomfilter/bloomfilter/">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../bloomfilter/bloomfilter-write/">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../bloomfilter/bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../cache/">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_1/">Disable_wal</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_2/">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/compaction/">Compaction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/sstable/">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../tuning/">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_SSTable_report/">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_memtable_report/">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../practice/practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../practice/answer/">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../compaction/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../Minor-Compaction/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#major-compaction">Major Compaction</a></li>
+        <li class="first-level "><a href="#overall-major-compaction-code-flow">Overall Major Compaction Code Flow</a></li>
+            <li class="second-level"><a href="#overall-process">Overall Process</a></li>
+                
+            <li class="second-level"><a href="#maybeschedulecompaction">MaybeScheduleCompaction</a></li>
+                
+            <li class="second-level"><a href="#backgroundcompaction">BackgroundCompaction</a></li>
+                
+                <li class="third-level"><a href="#additional-explanation">(Additional Explanation)</a></li>
+            <li class="second-level"><a href="#docompactionwork">DoCompactionWork</a></li>
+                
+            <li class="second-level"><a href="#opencompactionoutputfile">OpenCompactionOutputFile</a></li>
+                
+            <li class="second-level"><a href="#finishcompactionoutputfile">FinishCompactionOutputFile</a></li>
+                
+            <li class="second-level"><a href="#installcompactionresults">InstallCompactionResults</a></li>
+                
+            <li class="second-level"><a href="#cleanupcompaction">CleanupCompaction</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="major-compaction">Major Compaction</h2>
+<p>What is <code>Major Compaction</code>?<br />
+      - This is the actual process we commonly refer to as <code>Compaction</code>.<br />
+      - Unlike <code>Minor Compaction</code>, which moves data from memory to disk, it merges data within the disk.<br />
+      - It merges each data and moves it to a lower level.  </p>
+<p>Why use <code>Major Compaction</code>?<br />
+      - The most obvious benefit of using <code>Major Compaction</code> is to clean up duplicate data.<br />
+      - If the same key exists in sst files of different levels, you can delete the data (old data) at the lower level.<br />
+      - Since previously written data might be needed, data to be deleted is recorded sequentially, and the latest data is updated to save disk space.<br />
+      - Since Level 0 may not have ordered data files, merging them into Level 1 sorts the data, making it easier to find files and improving read efficiency.</p>
+<p>When does <code>Major Compaction</code> occur?<br />
+      - It occurs when the files at each level accumulate to a threshold and there is no immutable present.</p>
+<h2 id="overall-major-compaction-code-flow">Overall Major Compaction Code Flow</h2>
+<blockquote>
+<p>Let's take a look at the overall Major Compaction Code Flow.</p>
+</blockquote>
+<p><img alt="image" src="https://user-images.githubusercontent.com/106041072/188577384-fca24121-ef6d-40b7-aa82-020faf6cc965.png" /><br />
+When the files at each level accumulate to a threshold, <code>MaybeScheduleCompaction</code> determines whether a merge is needed. If a merge is necessary, it checks for the presence of <code>immutable</code> and, if absent, calls <code>PickCompaction</code> to gather information for the merge, and Major Compaction proceeds in <code>DoCompactionWork</code>.  </p>
+<p>Let's delve into the process of Major compaction through the source code.    </p>
+<h5 id="overall-process">Overall Process</h5>
+<ol>
+<li>The number of files at a certain level reaches a threshold. </li>
+<li><code>MaybeScheduleCompaction</code> determines if a merge is needed.  </li>
+<li><code>BackgroundCompaction</code> checks for the presence of immutable and, if absent, calls functions for Major Compaction.  </li>
+<li><code>PickCompaction</code> stores the information needed for the merge. </li>
+<li>With the stored information, the actual merge is carried out in <code>DoCompactionWork</code>.  </li>
+<li>In <code>DoCompactionWork</code>, <code>OpenCompactionOutputFile</code>, <code>FinishCompactionOutputFile</code>, and <code>InstallCompactionResults</code> are executed to create sst files, insert merged records, check for errors, and place the files in the respective level.  </li>
+<li>Afterward, the version is updated, and finally, <code>CleanupCompaction</code> is called to delete unnecessary sst files, completing the Major Compaction.  </li>
+</ol>
+<h3 id="maybeschedulecompaction">MaybeScheduleCompaction</h3>
+<blockquote>
+<p>Determines if a merge is needed.</p>
+</blockquote>
+<pre><code class="language-cpp">void DBImpl::MaybeScheduleCompaction() {
+  mutex_.AssertHeld();
+  //(TeamCompaction)If a merger is already in progress, DB is being deleted, or if there is an error, nothing will happen.
+  if (background_compaction_scheduled_) {
+  } else if (shutting_down_.load(std::memory_order_acquire)) {
+  } else if (!bg_error_.ok()) {
+  //(TeamCompaction)If immutable does not exist, manual compaction do not exist, and mergers at each level are not required, nothing will happen.
+  } else if (imm_ == nullptr &amp;&amp; manual_compaction_ == nullptr &amp;&amp;
+             !versions_-&gt;NeedsCompaction()) {
+  //(TeamCompaction)In other cases, since a merger occurs, call 'BGWork' to proceed with the merger.
+  } else {
+    background_compaction_scheduled_ = true;
+    env_-&gt;Schedule(&amp;DBImpl::BGWork, this);
+  }
+}
+</code></pre>
+<ol>
+<li>If a merge is already in progress, the DB is being deleted, or there is an error, nothing happens.  </li>
+<li>If immutable does not exist, manual compaction does not exist, and compaction is not needed at each level (<code>NeedCompaction</code>), nothing happens. (Manual compaction will be explained in the BackgroundCompaction section.)  </li>
+<li>In other cases, since a merge is needed, <code>BGWork</code> is called to proceed with the merge.  </li>
+</ol>
+<h3 id="backgroundcompaction">BackgroundCompaction</h3>
+<blockquote>
+<p>Determines Major Compaction or Minor Compaction based on the presence of immutable. Also, if the user wants manual compaction, it proceeds here.  </p>
+</blockquote>
+<pre><code class="language-cpp">void DBImpl::BackgroundCompaction() {
+  mutex_.AssertHeld();
+
+//(TeamCompaction)If imutable exists, proceed with Minor Compact through the CompactMemtable function.
+  if (imm_ != nullptr) {
+    CompactMemTable();
+    return;
+  }
+
+  Compaction* c;
+  //(TeamCompaction)If you want to merge manually, proceed with the manual merger with true (most of them are automatically merged, so they are not used well)
+  bool is_manual = (manual_compaction_ != nullptr);
+  InternalKey manual_end;
+  if (is_manual) {
+    ManualCompaction* m = manual_compaction_;
+    c = versions_-&gt;CompactRange(m-&gt;level, m-&gt;begin, m-&gt;end);
+    m-&gt;done = (c == nullptr);
+    if (c != nullptr) {
+      manual_end = c-&gt;input(0, c-&gt;num_input_files(0) - 1)-&gt;largest;
+    }
+    Log(options_.info_log,
+        &quot;Manual compaction at level-%d from %s .. %s; will stop at %s\n&quot;,
+        m-&gt;level, (m-&gt;begin ? m-&gt;begin-&gt;DebugString().c_str() : &quot;(begin)&quot;),
+        (m-&gt;end ? m-&gt;end-&gt;DebugString().c_str() : &quot;(end)&quot;),
+        (m-&gt;done ? &quot;(end)&quot; : manual_end.DebugString().c_str()));
+  } //(TeamCompaction)Store information that needs to be merged if immutable does not exist
+  else {
+    c = versions_-&gt;PickCompaction();
+  }
+
+//...skipped
+
+Status status;
+  //(TeamCompaction)Nothing happens if there is no information to merge
+  if (c == nullptr) {
+  } else if (!is_manual &amp;&amp; c-&gt;IsTrivialMove()) {
+
+    //...skipped (TeamCompaciton) Manual Compaction progression part
+
+  } //(TeamCompaction)With information to merge, proceed with Major Compaction.
+  else {
+    CompactionState* compact = new CompactionState(c);
+    status = DoCompactionWork(compact);
+    if (!status.ok()) {
+      RecordBackgroundError(status);
+    }
+    //(TeamCompaction)If there is no problem after completing the merger completely, remove the sst files (files collected after the merger) that are now unnecessary
+    CleanupCompaction(compact);
+    //(TeamCompaction)Remove the sst files that were saved for the merger
+    c-&gt;ReleaseInputs();
+    RemoveObsoleteFiles();
+  }
+
+//...skipped
+
+</code></pre>
+<ol>
+<li>If immutable exists, Minor Compaction (Flush) is performed through <code>CompactMemtable</code>.  </li>
+<li>If immutable does not exist and manual compaction is not desired, information for compaction is stored through <code>PickCompaction</code>.  </li>
+<li>If there is no information to merge, nothing happens. If there is, Major Compaction is carried out in <code>DoCompactionWork</code> based on that information.  </li>
+<li>After the merge is completed in <code>DoCompactionWork</code> and the state is intact, unnecessary sst files from before the merge are removed through <code>CleanupCompaction</code> to finish.  </li>
+</ol>
+<h5 id="additional-explanation">(Additional Explanation)</h5>
+<blockquote>
+<p>Manual Compaction vs Automatic Compaction  </p>
+</blockquote>
+<p>Manual Compaction<br />
+  - Rarely used and mainly for debugging purposes.<br />
+  - To use, set a key range in the benchmark and execute it, setting the manual compaction boolean to true to perform manual compaction.  </p>
+<p>Automatic Compaction<br />
+  - Most of the compactions we use are performed automatically.  </p>
+<h3 id="docompactionwork">DoCompactionWork</h3>
+<blockquote>
+<p>The actual Major Compaction is carried out.  </p>
+</blockquote>
+<pre><code class="language-cpp">Status DBImpl::DoCompactionWork(CompactionState* compact) {
+
+//...skipped
+
+  //(TeamCompaction)Create an iter for the index block and data block of each sst file from level 0, 1 to N, and use it to find each key. 
+  //(TeamCompaction)After that, arrange the created iters so that they can be listed in the order of level 0, 1 to N, and store them in input (see Compaction-Iter.md for details)
+  Iterator* input = versions_-&gt;MakeInputIterator(compact-&gt;compaction);
+
+// Release mutex while we're actually doing the compaction work
+  mutex_.Unlock();
+  //(TeamCompaction)Position the pointer position of the created iter first
+  input-&gt;SeekToFirst();
+  Status status;
+  //(TeamCompaction)Parse the internal key and divide it into user key, sequence number, and type
+  ParsedInternalKey ikey;
+  std::string current_user_key;
+  bool has_current_user_key = false;
+  //(TeamCompaction)Set the latest key to the highest value
+  SequenceNumber last_sequence_for_key = kMaxSequenceNumber;
+  //(TeamCompaction)The process of repeatedly finding and processing the key/value that needs to be merged through iter stored in the input
+  while (input-&gt;Valid() &amp;&amp; !shutting_down_.load(std::memory_order_acquire)) {
+
+   //...skipped
+
+    //(TeamCompaction)Obtain the key of the current corresponding sst file
+    Slice key = input-&gt;key();
+    //(TeamCompaction)Check if you need an sst file to put the key in, and if there is an sst file to put in, the merger is completed
+    if (compact-&gt;compaction-&gt;ShouldStopBefore(key) &amp;&amp; 
+        compact-&gt;builder != NULL) {
+      status = FinishCompactionOutputFile(compact, input);
+    }
+
+    //(TeamCompaction)Compare different sequences for the same key to obtain the latest user key and delete records from different user keys that were the same
+    bool drop = false;
+    if (!ParseInternalKey(key, &amp;ikey)) {
+      // Do not hide error keys
+      current_user_key.clear();
+      has_current_user_key = false;
+      last_sequence_for_key = kMaxSequenceNumber;
+    } else {
+      if (!has_current_user_key ||
+          user_comparator()-&gt;Compare(ikey.user_key, Slice(current_user_key)) !=
+              0) {
+        // First occurrence of this user key
+        current_user_key.assign(ikey.user_key.data(), ikey.user_key.size());
+        has_current_user_key = true;
+        last_sequence_for_key = kMaxSequenceNumber;
+      }
+
+      if (last_sequence_for_key &lt;= compact-&gt;smallest_snapshot) {
+        // Hidden by an newer entry for same user key
+        drop = true;  // (A)
+      } else if (ikey.type == kTypeDeletion &amp;&amp;
+                 ikey.sequence &lt;= compact-&gt;smallest_snapshot &amp;&amp;
+                 compact-&gt;compaction-&gt;IsBaseLevelForKey(ikey.user_key)) {
+        // For this user key:
+        // (1) there is no data in higher levels
+        // (2) data in lower levels will have larger sequence numbers
+        // (3) data in layers that are being compacted here and have
+        //     smaller sequence numbers will be dropped in the next
+        //     few iterations of this loop (by rule (A) above).
+        // Therefore this deletion marker is obsolete and can be dropped.
+        drop = true;
+      }
+
+      last_sequence_for_key = ikey.sequence;
+    }
+
+  //...skipped
+
+    if (!drop) {
+      //(TeamCompaction)Create new sst file if necessary
+      if (compact-&gt;builder == nullptr) {
+        status = OpenCompactionOutputFile(compact);
+        if (!status.ok()) {
+          break;
+        }
+      }
+      if (compact-&gt;builder-&gt;NumEntries() == 0) {
+        compact-&gt;current_output()-&gt;smallest.DecodeFrom(key);
+      }
+      compact-&gt;current_output()-&gt;largest.DecodeFrom(key);
+      //(TeamCompaction)Add records from the latest user key to the sst file
+      compact-&gt;builder-&gt;Add(key, input-&gt;value());
+
+      //(TeamCompaction)If data accumulates in the sst file and exceeds the maximum file size, the merger of the sst file is completed
+      if (compact-&gt;builder-&gt;FileSize() &gt;=
+          compact-&gt;compaction-&gt;MaxOutputFileSize()) {
+        status = FinishCompactionOutputFile(compact, input);
+        if (!status.ok()) {
+          break;
+        }
+      }
+    }
+    //(TeamCompaction)Among the sst files arranged in order of level 0, 1 to N in the input variable, the next sst file is moved on
+    input-&gt;Next();
+  }
+
+  if (status.ok() &amp;&amp; shutting_down_.load(std::memory_order_acquire)) {
+    status = Status::IOError(&quot;Deleting DB during compaction&quot;);
+  }
+  //(TeamCompaction)If the sst file does not have an error and the sst file exists, the merger is completed
+  if (status.ok() &amp;&amp; compact-&gt;builder != nullptr) {
+    status = FinishCompactionOutputFile(compact, input);
+  }
+  if (status.ok()) {
+    status = input-&gt;status();
+  }
+
+  //...skipped
+
+  //(TeamCompaction)Move the merged sst file to its level
+  if (status.ok()) {
+    status = InstallCompactionResults(compact);
+  }
+  if (!status.ok()) {
+    RecordBackgroundError(status);
+  }
+  VersionSet::LevelSummaryStorage tmp;
+  Log(options_.info_log, &quot;compacted to: %s&quot;, versions_-&gt;LevelSummary(&amp;tmp));
+  return status;
+}
+
+</code></pre>
+<ol>
+<li>Create an iter for the <code>index block</code> and <code>data block</code> of each sst file from level 0, 1 to N, and use it to find each key. Then, arrange the created iters so that they can be listed in the order of level 0, 1 to N, and store them in <code>input</code>.  </li>
+<li>Position the pointer of the iter to the first position and parse the <code>internalkey</code> into user key, sequence, and type.  </li>
+<li>Obtain the key of the current corresponding sst file using <code>key()</code>.  </li>
+<li>Compare different sequences for the same key to obtain the latest user key's record and delete records from different user keys that were the same.  </li>
+<li>If an sst file is needed, create a new one and insert the latest user key's record.  </li>
+<li>If data accumulates in the sst file and exceeds the maximum file size, complete the merge and move to the next sst file.  </li>
+<li>Repeat steps 2-6 to complete the merge of all sst files, check the overall status, and if there are no errors, move the merged sst file to its level.  </li>
+</ol>
+<h3 id="opencompactionoutputfile">OpenCompactionOutputFile</h3>
+<blockquote>
+<p>Creates a new sst file to insert the merged user key records.  </p>
+</blockquote>
+<pre><code class="language-cpp">Status DBImpl::OpenCompactionOutputFile(CompactionState* compact) {
+
+ //...skipped
+
+  //(TeamCompaction)Set the number of the newly created sst file
+  std::string fname = TableFileName(dbname_, file_number);
+  //(TeamCompaction)Numbered and temporarily merged records in writablefile
+  Status s = env_-&gt;NewWritableFile(fname, &amp;compact-&gt;outfile);
+  //(TeamCompaction)If the record is in good condition, create a sst file and add it to the builder
+  if (s.ok()) {
+    compact-&gt;builder = new TableBuilder(options_, compact-&gt;outfile);
+  }
+  return s;
+}
+</code></pre>
+<ol>
+<li>Assign a number to the newly created sst file.  </li>
+<li>Numbered and temporarily merged records in <code>WriteableFile</code>.  </li>
+<li>If the record is in good condition, create an sst file and add it to the builder.  </li>
+</ol>
+<h3 id="finishcompactionoutputfile">FinishCompactionOutputFile</h3>
+<blockquote>
+<p>Checks for errors in the merged iter and sst file.  </p>
+</blockquote>
+<pre><code class="language-cpp">Status DBImpl::FinishCompactionOutputFile(CompactionState* compact,
+                                          Iterator* input) {
+  //...skipped
+
+  //(TeamCompaction)Check for errors for iter
+  Status s = input-&gt;status();
+  const uint64_t current_entries = compact-&gt;builder-&gt;NumEntries();
+  if (s.ok()) {
+    s = compact-&gt;builder-&gt;Finish();
+  } else {
+    compact-&gt;builder-&gt;Abandon();
+  }
+
+  //...skipped
+
+  //(TeamCompaction)Check and finalize errors for the sst file itself
+  if (s.ok()) {
+    s = compact-&gt;outfile-&gt;Sync();
+  }
+  if (s.ok()) {
+    s = compact-&gt;outfile-&gt;Close();
+  }
+  delete compact-&gt;outfile;
+  compact-&gt;outfile = nullptr;
+
+  //...skipped
+
+}
+</code></pre>
+<ol>
+<li>Check for errors in the iter.  </li>
+<li>Check and finalize errors for the sst file itself.  </li>
+</ol>
+<h3 id="installcompactionresults">InstallCompactionResults</h3>
+<blockquote>
+<p>Moves the merged sst file to its level and updates the version.  </p>
+</blockquote>
+<pre><code class="language-cpp">Status DBImpl::InstallCompactionResults(CompactionState* compact) {
+
+  //...skipped
+
+  //(TeamCompaction) Moved merged sst files to that level
+  compact-&gt;compaction-&gt;AddInputDeletions(compact-&gt;compaction-&gt;edit());
+  const int level = compact-&gt;compaction-&gt;level();
+  for (size_t i = 0; i &lt; compact-&gt;outputs.size(); i++) {
+    const CompactionState::Output&amp; out = compact-&gt;outputs[i];
+    compact-&gt;compaction-&gt;edit()-&gt;AddFile(level + 1, out.number, out.file_size,
+                                         out.smallest, out.largest);
+  }
+  //(TeamCompaction)Update version
+  return versions_-&gt;LogAndApply(compact-&gt;compaction-&gt;edit(), &amp;mutex_);
+}
+</code></pre>
+<ol>
+<li>Move the merged sst file to its level.</li>
+<li>Update the version to complete.  </li>
+</ol>
+<h3 id="cleanupcompaction">CleanupCompaction</h3>
+<blockquote>
+<p>Removes unnecessary sst files (sst files before the merge) after the merge is completed.</p>
+</blockquote>
+<pre><code class="language-cpp">void DBImpl::CleanupCompaction(CompactionState* compact) {
+  mutex_.AssertHeld();
+  //(TeamCompaction)Remove files if they exist in the builder that contains the sst files that need to be merged
+  if (compact-&gt;builder != nullptr) {
+    // May happen if we get a shutdown call in the middle of compaction
+    compact-&gt;builder-&gt;Abandon();
+    delete compact-&gt;builder;
+  } else {
+    assert(compact-&gt;outfile == nullptr);
+  }
+  delete compact-&gt;outfile;
+  for (size_t i = 0; i &lt; compact-&gt;outputs.size(); i++) {
+    const CompactionState::Output&amp; out = compact-&gt;outputs[i];
+    pending_outputs_.erase(out.number);
+  }
+  delete compact;
+}
+</code></pre>
+<ol>
+<li>Since the latest sst file has been updated, if there are files in the <code>builder</code> that contains the sst files to be merged, they are removed as they are no longer needed.  </li>
+<li>Finalize the Major Compaction.</li>
+</ol></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../../.."</script>
+    
+    <script src="../../../js/base.js"></script>
+    <script src="../../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

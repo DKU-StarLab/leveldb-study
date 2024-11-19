@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+    
+    <title>SSTable Read - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../../css/base.min.css" rel="stylesheet">
+    <link href="../../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../../..">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../memtable/">Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../wal/">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../compaction/compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../compaction/Major-Compaction/">Major Compaction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../compaction/Minor-Compaction/">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../sstable/">SSTable Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../sstable-write/">SSTable Write</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../bloomfilter/bloomfilter/">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../bloomfilter/bloomfilter-write/">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../bloomfilter/bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../cache/">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_1/">Disable_wal</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_2/">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/compaction/">Compaction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/sstable/">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../tuning/">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_SSTable_report/">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_memtable_report/">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../practice/practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../practice/answer/">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../sstable-write/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../../bloomfilter/bloomfilter/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#sstable-read">SSTable - Read</a></li>
+            <li class="second-level"><a href="#leveldb-get-operation">LevelDB Get Operation</a></li>
+                
+            <li class="second-level"><a href="#process-of-finding-target-key-in-storage">Process of Finding Target Key in Storage</a></li>
+                
+            <li class="second-level"><a href="#process-of-finding-target-key-from-selected-sstable">Process of Finding Target Key from Selected SSTable</a></li>
+                
+            <li class="second-level"><a href="#process-of-searching-for-target-key-inside-sstable">Process of Searching for Target Key Inside SSTable</a></li>
+                
+                <li class="third-level"><a href="#tableblockreader">Table::BlockReader</a></li>
+                <li class="third-level"><a href="#blockiterseek">Block::Iter::Seek</a></li>
+            <li class="second-level"><a href="#summary-process-of-finding-target-key-in-storage">Summary - Process of Finding Target Key in Storage</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="sstable-read">SSTable - Read</h2>
+<p>This document explores how LevelDB finds a value for a desired key through the Get Operation, specifically focusing on the process of searching within SSTables stored in storage, using a Top-Down approach.
+<br/></p>
+<h3 id="leveldb-get-operation">LevelDB Get Operation</h3>
+<p>LevelDB searches for a desired key in the following order:</p>
+<ol>
+<li>Search in MemTable</li>
+<li>If not found, search in Immutable MemTable</li>
+<li>If not found, search in storage (disk)
+<br/></li>
+</ol>
+<p>We can see this search process in <code>DBImpl::Get</code> as follows:</p>
+<pre><code class="language-cpp">Status DBImpl::Get(const ReadOptions&amp; options, const Slice&amp; key,
+                   std::string* value) {
+
+  // ...
+
+  MemTable* mem = mem_;
+  MemTable* imm = imm_;
+  Version* current = versions_-&gt;current();
+
+  // ...
+  {
+    mutex_.Unlock();
+    LookupKey lkey(key, snapshot);
+    // 1. Searching in the MemTable
+    if (mem-&gt;Get(lkey, value, &amp;s)) {
+    // 2. If not in MemTable, searching in the Immutable MemTable
+    } else if (imm != nullptr &amp;&amp; imm-&gt;Get(lkey, value, &amp;s)) {
+    // 3. If not in Immutable MemTable, searching in storage(disk)
+    } else {
+      s = current-&gt;Get(options, lkey, value, &amp;stats);
+      have_stat_update = true;
+    }
+    mutex_.Lock();
+  }
+  // ...
+}
+</code></pre>
+<p><br/></p>
+<h3 id="process-of-finding-target-key-in-storage">Process of Finding Target Key in Storage</h3>
+<p>The process of finding a target key in storage begins with <code>Version::Get</code> and follows these steps:</p>
+<ol>
+<li>Select SSTables that might contain the target key from each Level</li>
+<li>Search for the target key within the selected SSTables
+<br/></li>
+</ol>
+<p>We can see this search process in <code>Version::Get</code> as follows:</p>
+<pre><code class="language-cpp">Status Version::Get(const ReadOptions&amp; options, const LookupKey&amp; k,
+                    std::string* value, GetStats* stats) {
+  // ...
+
+  struct State {
+    // ...
+
+    static bool Match(void* arg, int level, FileMetaData* f) {
+      // ...
+      // 2. Find the target key from the selected SSTable
+      state-&gt;s = state-&gt;vset-&gt;table_cache_-&gt;Get(*state-&gt;options, f-&gt;number,
+                                                f-&gt;file_size, state-&gt;ikey,
+                                                &amp;state-&gt;saver, SaveValue);
+      // ...
+    }
+  };
+
+  // ...
+  // 1. At each level, select SSTables that may have a target key
+  ForEachOverlapping(state.saver.user_key, state.ikey, &amp;state, &amp;State::Match);
+
+  return state.found ? state.s : Status::NotFound(Slice());
+}
+</code></pre>
+<blockquote>
+<p><em>When calling <code>ForEachOverlapping</code>, <code>Match</code> is passed as an argument, and <code>ForEachOverlapping</code> performs the process of finding the target key from the selected SSTables by executing the received <code>Match</code> on the selected SSTables.</em></p>
+</blockquote>
+<ul>
+<li>Level 0: SSTables in Level 0 can have overlapping key ranges. Therefore, each SSTable is evaluated one by one using Linear Search.</li>
+<li>Other Levels: In levels other than Level 0, SSTable key ranges are separated. Therefore, Binary Search is used to quickly find SSTables that might contain the target key.
+<br/></li>
+</ul>
+<pre><code class="language-cpp">void Version::ForEachOverlapping(Slice user_key, Slice internal_key, void* arg,
+                                 bool (*func)(void*, int, FileMetaData*)) {
+
+  const Comparator* ucmp = vset_-&gt;icmp_.user_comparator();
+  std::vector&lt;FileMetaData*&gt; tmp;
+  tmp.reserve(files_[0].size());
+  // Level 0: Picks out SSTables via Linear Search
+  for (uint32_t i = 0; i &lt; files_[0].size(); i++) {
+    FileMetaData* f = files_[0][i];
+    if (ucmp-&gt;Compare(user_key, f-&gt;smallest.user_key()) &gt;= 0 &amp;&amp;
+        ucmp-&gt;Compare(user_key, f-&gt;largest.user_key()) &lt;= 0) {
+      tmp.push_back(f);
+    }
+  }
+  if (!tmp.empty()) {
+    std::sort(tmp.begin(), tmp.end(), NewestFirst);
+    for (uint32_t i = 0; i &lt; tmp.size(); i++) {
+      // Perform functions received as parameter
+      if (!(*func)(arg, 0, tmp[i])) return;
+    }
+  }
+
+  // Ohter Levels: Picks out SSTables via Binary Search
+  for (int level = 1; level &lt; config::kNumLevels; level++) {
+    size_t num_files = files_[level].size();
+    if (num_files == 0) continue;
+
+    // FindFile : Gets index of SSTable that may have a target key via Binary search
+    uint32_t index = FindFile(vset_-&gt;icmp_, files_[level], internal_key);
+    if (index &lt; num_files) {
+      FileMetaData* f = files_[level][index];
+      if (ucmp-&gt;Compare(user_key, f-&gt;smallest.user_key()) &lt; 0) {
+
+      } else {
+        // Perform functions received as parameter
+        if (!(*func)(arg, level, f)) return;
+      }
+    }
+  }
+}
+</code></pre>
+<p><br/></p>
+<h3 id="process-of-finding-target-key-from-selected-sstable">Process of Finding Target Key from Selected SSTable</h3>
+<p>Starting from <code>TableCache::Get</code>, the process follows these steps to find the target key:</p>
+<ol>
+<li>Check if the SSTable object has already been cached, and if not, cache it.</li>
+<li>Search inside the SSTable to find the target key.
+<br/></li>
+</ol>
+<p>We can see this search process in <code>TableCache::Get</code> as follows:</p>
+<pre><code class="language-cpp">Status TableCache::Get(const ReadOptions&amp; options, uint64_t file_number,
+                       uint64_t file_size, const Slice&amp; k, void* arg,
+                       void (*handle_result)(void*, const Slice&amp;,
+                                             const Slice&amp;)) {
+  Cache::Handle* handle = nullptr;
+  // 1. Checks whether the corresponding SSTable has already been cached
+  //    If not, caches the corresponding SSTable
+  Status s = FindTable(file_number, file_size, &amp;handle);
+  if (s.ok()) {
+    Table* t = reinterpret_cast&lt;TableAndFile*&gt;(cache_-&gt;Value(handle))-&gt;table;
+    // 2. Find the target key via searching inside the corresponding SSTable
+    s = t-&gt;InternalGet(options, k, arg, handle_result);
+    cache_-&gt;Release(handle);
+  }
+  return s;
+}
+</code></pre>
+<blockquote>
+<p><em>When <code>TableCache::FindTable</code> is executed, the <code>Table::Open</code> method is called, which loads the Index Block and Filter Block of the corresponding SSTable into memory.</em>
+<br/></p>
+</blockquote>
+<h3 id="process-of-searching-for-target-key-inside-sstable">Process of Searching for Target Key Inside SSTable</h3>
+<p>Starting from <code>Table::InternalGet</code>, the process follows these steps to find the target key:</p>
+<ol>
+<li>Search the Index Block to identify potential Data Blocks containing the target key</li>
+<li>If using bloom filter, check if the target key exists in the identified Data Block using the bloom filter</li>
+<li>If the target key is determined to exist, create an Iterator for the identified Data Block</li>
+<li>Search the Data Block using the created Iterator</li>
+<li>If the target key is found, save its value
+<br/></li>
+</ol>
+<p>We can see this search process in <code>Table::InternalGet</code> as follows:</p>
+<pre><code class="language-cpp">Status Table::InternalGet(const ReadOptions&amp; options, const Slice&amp; k, void* arg,
+                          void (*handle_result)(void*, const Slice&amp;,
+                                                const Slice&amp;)) {
+  Status s;
+  // Create an Iterator for the Index Block
+  Iterator* iiter = rep_-&gt;index_block-&gt;NewIterator(rep_-&gt;options.comparator);
+  // 1. Search the Index Block and find the Data Block that may have a target key
+  iiter-&gt;Seek(k);
+  if (iiter-&gt;Valid()) {
+    // ...
+
+    // 2. If using a bloom filter, 
+    //    investigate with a bloom filter if there is a target key in the found Data Block
+    if (filter != nullptr &amp;&amp; handle.DecodeFrom(&amp;handle_value).ok() &amp;&amp;
+        !filter-&gt;KeyMayMatch(handle.offset(), k)) {
+      // Not found
+    } else {
+      // 3. If it is determined that there is a target key,
+      //    reate an Iterator for the found Data Block
+      Iterator* block_iter = BlockReader(this, options, iiter-&gt;value());
+      // 4. Exploring the Data Block using the generated Iterator
+      block_iter-&gt;Seek(k);
+      // 5. If find the target key, save the value
+      if (block_iter-&gt;Valid()) {
+        (*handle_result)(arg, block_iter-&gt;key(), block_iter-&gt;value());
+      }
+      // ...
+    }
+  }
+  // ...
+}
+</code></pre>
+<h4 id="tableblockreader">Table::BlockReader</h4>
+<blockquote>
+<p><em>Creates and returns an Iterator for the Data Block referenced by the Index Block Iterator's entry</em></p>
+</blockquote>
+<ol>
+<li>Check if the corresponding Data Block has already been cached using the <code>Lookup</code> method</li>
+<li>If not cached, cache the corresponding Data Block:
+   1) Read the contents of the corresponding Data Block using <code>ReadBlock</code>
+   2) Create a new Block object with the read contents (effectively loading the Data Block into memory)
+   3) Insert the loaded Data Block into the cache</li>
+<li>Create an Iterator for that Data Block</li>
+</ol>
+<blockquote>
+<p><em>If not using cache, just read the contents of the corresponding Data Block using <code>ReadBlock</code> and load it into memory</em>
+<br/></p>
+</blockquote>
+<p><code>Table::BlockReader</code> performs the following operations:</p>
+<pre><code class="language-cpp">Iterator* Table::BlockReader(void* arg, const ReadOptions&amp; options,
+                             const Slice&amp; index_value) {
+  // ...
+
+  if (s.ok()) {
+    BlockContents contents;
+    if (block_cache != nullptr) {
+      // ...
+
+      // 1. Checks whether the corresponding Data Block has already been cached via Lookup
+      cache_handle = block_cache-&gt;Lookup(key);
+      if (cache_handle != nullptr) {
+        block = reinterpret_cast&lt;Block*&gt;(block_cache-&gt;Value(cache_handle));
+      } else {
+        // 2. If not, caches the corresponding Data Block
+        // 2-1. Read the contents of the corresponding Data Block via ReadBlock
+        s = ReadBlock(table-&gt;rep_-&gt;file, options, handle, &amp;contents);
+        if (s.ok()) {
+          // 2-2. Create a new Block object with read contents
+          //      (It means loading the corresponding Data Block into memory)
+          block = new Block(contents);
+          if (contents.cachable &amp;&amp; options.fill_cache) {
+            // 2-3. Insert Loaded data block into cache
+            cache_handle = block_cache-&gt;Insert(key, block, block-&gt;size(),
+                                               &amp;DeleteCachedBlock);
+          }
+        }
+      }
+    } else {
+      // If do not use cache, just load the corresponding Data Block into memory
+      s = ReadBlock(table-&gt;rep_-&gt;file, options, handle, &amp;contents);
+      if (s.ok()) {
+        block = new Block(contents);
+      }
+    }
+  }
+
+  // 3. Create an Iterator for that Data Block
+  Iterator* iter;
+  if (block != nullptr) {
+    iter = block-&gt;NewIterator(table-&gt;rep_-&gt;options.comparator);
+
+    // ...
+  } else {
+    iter = NewErrorIterator(s);
+  }
+  return iter;
+}
+</code></pre>
+<h4 id="blockiterseek">Block::Iter::Seek</h4>
+<blockquote>
+<p><em>Finds the target argument within the Block</em></p>
+</blockquote>
+<ol>
+<li>Use Binary Search to find the area where the target might be located</li>
+<li>Use Linear Search to find the target within the found area
+<br/></li>
+</ol>
+<p><code>Block::Iter::Seek</code> performs the search as follows:</p>
+<pre><code class="language-cpp">void Seek(const Slice&amp; target) override {
+    // ...
+
+    // 1. Find the area where the target is located via Binary Search
+    while (left &lt; right) {
+      uint32_t mid = (left + right + 1) / 2;
+      uint32_t region_offset = GetRestartPoint(mid);
+
+      // ...
+      Slice mid_key(key_ptr, non_shared);
+      if (Compare(mid_key, target) &lt; 0) {
+        // if &quot;mid&quot; &lt; &quot;target&quot;
+        left = mid;
+      } else {
+        // if &quot;mid&quot; &gt;= &quot;target&quot;
+        right = mid - 1;
+      }
+    }
+
+    // ...
+
+    // 2. Find the target in the correspond area via Linear Search
+    while (true) {
+      if (!ParseNextKey()) {
+        return;
+      }
+      if (Compare(key_, target) &gt;= 0) {
+        return;
+      }
+    }
+  }
+</code></pre>
+<p>Based on the described content, here's a more detailed explanation of the process of searching for a target key inside an SSTable:</p>
+<p align="center">
+   <img src = "https://user-images.githubusercontent.com/65762283/187970494-255dbac9-d76f-46a0-8ff9-3061506ae5a9.png">
+</p>
+
+<ol>
+<li><code>NewIterator</code>: Create an Iterator for the Index Block</li>
+<li><code>Seek</code>: Use the created Iterator to search the Index Block and identify potential Data Blocks containing the target key</li>
+<li><code>KeyMayMatch</code>: (If using bloom filter) Use the bloom filter to check if the target key exists in the identified Data Block</li>
+<li><code>BlockReader</code>: If it exists, create an Iterator for the corresponding Data Block</li>
+<li><code>Seek</code>: Use the created Iterator to search within the Data Block for the target key</li>
+<li><code>SaveValue</code>: If the target key is found, save its value
+<br/></li>
+</ol>
+<h3 id="summary-process-of-finding-target-key-in-storage">Summary - Process of Finding Target Key in Storage</h3>
+<p align="center">
+   <img src = "https://user-images.githubusercontent.com/65762283/187468693-a1819b3e-8c09-4cff-828d-3e9f6707b340.png">
+</p>
+
+<ol>
+<li>Select SSTables from each Level that might contain the target key</li>
+<li>Check if each selected SSTable object has been cached, and if not, cache it</li>
+<li>During this process, the Index Block and Filter Block of the corresponding SSTable are loaded into memory</li>
+<li>Search the Index Block to identify potential Data Blocks containing the target key</li>
+<li>Use the bloom filter in the Filter Block to check if the target key exists in the identified Data Block</li>
+<li>If it exists, check if the corresponding Data Block has been cached, and if not, cache it</li>
+<li>During this process, the Data Block is loaded into memory</li>
+<li>Search within the Data Block to find the target key</li>
+</ol></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../../.."</script>
+    
+    <script src="../../../js/base.js"></script>
+    <script src="../../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

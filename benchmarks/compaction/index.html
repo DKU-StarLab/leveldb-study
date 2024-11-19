@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    
+    <title>Compaction - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../..">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../analysis/memtable/">Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/wal/">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/compaction/compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/compaction/Major-Compaction/">Major Compaction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/compaction/Minor-Compaction/">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable/">SSTable Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable-write/">SSTable Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable-read/">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter/">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter-write/">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/cache/">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../wal_1/">Disable_wal</a>
+</li>
+
+        
+            
+<li >
+    <a href="../wal_2/">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="../wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Compaction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../sstable/">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tuning/">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_SSTable_report/">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_memtable_report/">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tuning/Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../practice/practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../practice/answer/">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../wal_3/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../sstable/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#experimental-environment">Experimental Environment</a></li>
+            <li class="second-level"><a href="#1-fillrandom-with-variable-key-size">1. 'fillrandom' with Variable Key Size</a></li>
+                
+            <li class="second-level"><a href="#2-fillrandom-with-variable-value-size">2. 'fillrandom' with Variable Value Size</a></li>
+                
+            <li class="second-level"><a href="#3-readrandom-with-variable-keyvalue-size">3. 'readrandom' with Variable Key/Value Size</a></li>
+                
+            <li class="second-level"><a href="#re-experiment-due-to-unexpected-results">Re-experiment Due to Unexpected Results</a></li>
+                
+            <li class="second-level"><a href="#re-experiment-1-fillrandom-with-variable-key-size">Re-experiment-1 'fillrandom' with Variable Key Size</a></li>
+                
+            <li class="second-level"><a href="#re-experiment-2-fillrandom-with-variable-value-size">Re-experiment-2 'fillrandom' with Variable Value Size</a></li>
+                
+            <li class="second-level"><a href="#conclusion-and-discussion">Conclusion and Discussion</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="experimental-environment">Experimental Environment</h1>
+<p>We conducted experiments to investigate how the size of the Key and Value affects Compaction.</p>
+<table>
+<thead>
+<tr>
+<th>Various <strong>Key</strong> Size</th>
+<th>Various <strong>Value</strong> Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16 byte</td>
+<td>256 byte</td>
+</tr>
+<tr>
+<td>32 byte</td>
+<td>1 kb</td>
+</tr>
+<tr>
+<td>64 byte</td>
+<td>4 kb</td>
+</tr>
+<tr>
+<td>128 byte</td>
+<td>16 kb</td>
+</tr>
+</tbody>
+</table>
+<p>For benchmarks, we utilized only <code>fillrandom</code> and <code>readrandom</code> where Compaction occurs.</p>
+<table>
+<thead>
+<tr>
+<th>Experiment Setup</th>
+<th>Benchmarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>version 1.23</td>
+<td>fillrandom</td>
+</tr>
+<tr>
+<td>CPU Intel Xeon(R)</td>
+<td>readrandom</td>
+</tr>
+<tr>
+<td></td>
+<td>~~fillseq~~</td>
+</tr>
+<tr>
+<td></td>
+<td>~~readseq~~</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-fillrandom-with-variable-key-size">1. 'fillrandom' with Variable Key Size</h2>
+<p>In <code>fillrandom</code> with variable key size, we expected the WAF latency to gradually increase. However, contrary to our expectations, the WAF decreased as the key size decreased.</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/86946575/181190994-d47ec06f-3ca6-4589-9c33-b9b075662053.png" /></p>
+<h2 id="2-fillrandom-with-variable-value-size">2. 'fillrandom' with Variable Value Size</h2>
+<p>For variable value size, we anticipated that increasing the size by 4 times would result in a 4-fold performance difference. However, the results showed:</p>
+<ul>
+<li><strong>Compaction latency</strong> increased by 5.18 times.</li>
+<li><strong>Latency</strong> increased by 5.33 times.</li>
+</ul>
+<p>This seems to be because as the value size increased, Compaction occurred more frequently.</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/86946575/181191389-3b6f2350-37fc-4d1c-9d3f-0c3f1925a744.png" /></p>
+<h2 id="3-readrandom-with-variable-keyvalue-size">3. 'readrandom' with Variable Key/Value Size</h2>
+<p>In <code>readrandom</code> with variable value size, latency increased by more than 100 times at 4kb and 16kb.</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/86946575/181191670-7da09cdf-5b99-41e8-a8fa-6650fb9567e1.png" /></p>
+<h2 id="re-experiment-due-to-unexpected-results">Re-experiment Due to Unexpected Results</h2>
+<p>In the <code>fillrandom</code> benchmark experiment, we found the rate of change in the graph inappropriate, prompting a re-experiment. We calculated the average of values obtained by repeating the same experiment three times and compared it with the previous experiment.</p>
+<h2 id="re-experiment-1-fillrandom-with-variable-key-size">Re-experiment-1 'fillrandom' with Variable Key Size</h2>
+<p>Measured by the average of values repeated three times.</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/106041072/188067454-ab99fc82-ee58-45c2-93d8-5e03cd8285a6.png" /></p>
+<p>As a result, the <strong>WAF</strong> continued to decrease as in the previous experiment. Further research was conducted to understand why the <strong>WAF</strong> continued to decrease contrary to expectations.</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/106041072/188067476-fd1f0d75-e041-45d7-ab62-395132b6d600.png" /></p>
+<h2 id="re-experiment-2-fillrandom-with-variable-value-size">Re-experiment-2 'fillrandom' with Variable Value Size</h2>
+<p>Measured by the average of values repeated three times. To ensure more accurate measurements, we subdivided the intervals further.</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/106041072/188064488-c6a8640d-c2f2-4d24-bca7-14b12cdbfba9.png" /></p>
+<p>As a result, we obtained more precise results with <strong>latency</strong> decreasing from 5.33 times to 2.5 times.</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/106041072/188066351-8090ecc3-813f-4afb-b960-ed4ae737f1c8.png" /></p>
+<p>Similarly, we calculated the average of values repeated three times and subdivided the intervals further for comparison.</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/106041072/188066684-fe2aa797-0280-4714-ab78-f52e89675a8a.png" /></p>
+<p>As a result, we obtained more precise results with <strong>compaction latency</strong> decreasing from 5.18 times to 3.5 times.</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/106041072/188066725-a0430329-c16c-4e85-a69b-8837ba8613b4.png" /></p>
+<h2 id="conclusion-and-discussion">Conclusion and Discussion</h2>
+<p>We conducted experiments based on the hypothesis that key/value size affects compaction. In the case of <code>fillrandom</code>, as the value size increased, the number of values to be compacted increased, resulting in decreased throughput and increased WAF, latency, and compaction latency. In the case of <code>readrandom</code>, as the value to be read at once increased, latency also increased.</p>
+<p>The results from <code>fillrandom</code> with increasing key size were peculiar. As the key size increased, the number of keys within that size remained the same, but the key range increased (see image below). Therefore, when compaction is triggered, the size to be loaded into memory, merge sorted, and written back to disk increased, leading to increased latency and compaction latency. However, since the number of keys within the range remained the same, the overlapping range was the same, allowing for more write processing over a larger range at once, resulting in decreased WAF and increased throughput.</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/106041072/188073166-66f5514e-cc06-4131-bc36-67a923b129da.png" /></p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

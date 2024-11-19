@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    
+    <title>(Rank 1) Team SSTable - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../..">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../analysis/memtable/">Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/wal/">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/compaction/compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/compaction/Major-Compaction/">Major Compaction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/compaction/Minor-Compaction/">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable/">SSTable Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable-write/">SSTable Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/sstable/sstable-read/">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter/">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter-write/">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../analysis/bloomfilter/bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../analysis/cache/">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../benchmarks/wal_1/">Disable_wal</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../benchmarks/wal_2/">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../benchmarks/wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../benchmarks/compaction/">Compaction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../benchmarks/sstable/">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../benchmarks/bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Tuning_team_memtable_report/">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../practice/practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../practice/answer/">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../Tuning_team_bloomfilter_report/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#team-sstable-tuning-report">[Team SSTable] Tuning Report</a></li>
+            <li class="second-level"><a href="#write_buffer_size">write_buffer_size</a></li>
+                
+            <li class="second-level"><a href="#max_file_size">max_file_size</a></li>
+                
+            <li class="second-level"><a href="#compression">compression</a></li>
+                
+            <li class="second-level"><a href="#cache_size">cache_size</a></li>
+                
+            <li class="second-level"><a href="#filter_bits">filter_bits</a></li>
+                
+            <li class="second-level"><a href="#block_size">block_size</a></li>
+                
+            <li class="second-level"><a href="#block_restart_interval">block_restart_interval</a></li>
+                
+        <li class="first-level "><a href="#result">Result</a></li>
+            <li class="second-level"><a href="#default-set">Default set</a></li>
+                
+            <li class="second-level"><a href="#our-best-set">Our Best set</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="team-sstable-tuning-report">[Team SSTable] Tuning Report</h2>
+<h3 id="write_buffer_size">write_buffer_size</h3>
+<p>Increasing this option improves write performance, thus speeding up bulk loads. However, this comes with a trade-off as the time to search for a desired key in the MemTable may increase. Nevertheless, since the search time in a Skiplist is O(log n), the time taken for searching is not significantly large compared to the increase in write_buffer size. Moreover, searching in memory is faster than searching on disk, so we decided to increase the <code>write_buffer_size</code>.</p>
+<h3 id="max_file_size">max_file_size</h3>
+<p>This option concerns the size of the SSTable. If this is smaller than the write_buffer_size, more SSTables will be created through minor compaction, which is disadvantageous for write performance. Additionally, if <code>max_file_size</code> is less than a quarter of <code>write_buffer_size</code>, level 0 compaction may occur every time a minor compaction happens, leading to performance degradation. Therefore, we decided to set <code>max_file_size</code> to be larger than a quarter of <code>write_buffer_size</code>, and thought it appropriate to set it to about half of <code>write_buffer_size</code>.</p>
+<h3 id="compression">compression</h3>
+<p>According to the content in <code>options.h</code>, it is generally better to use snappy, so we left it as is.</p>
+<h3 id="cache_size">cache_size</h3>
+<p>A larger cache size results in more hits, improving read performance. Especially for workload D, which involves reading recent data frequently, increasing the cache size can lead to significant performance improvements. However, we cannot increase the cache size indefinitely, so we considered how large it should be. The cache size of the environment (school server) where the experiment is run is 14080KB, so we decided to set the cache size accordingly.</p>
+<h3 id="filter_bits">filter_bits</h3>
+<ul>
+<li>Whether to use a Bloom Filter<br />
+  Not using a Bloom Filter improves write performance, while using it enhances read performance. However, based on our team's experimental results, the improvement in write performance without a Bloom Filter was negligible. Since LSM-Tree is inherently optimized for writing, we decided that enhancing read performance is more beneficial and chose to use a Bloom Filter.</li>
+<li>How many bits to use per key<br />
+  Referring to the previous presentation by the Bloom Filter team, we found that using 10 bits yielded the most optimal speed. Therefore, we decided to keep it at 10 bits.</li>
+</ul>
+<h3 id="block_size">block_size</h3>
+<p>According to our team's analysis, when creating an SSTable, Data Blocks are written directly to disk, while other blocks, including Filter Blocks, are gathered in a buffer and written at once. Thus, if the number of Data Blocks within an SSTable is small, the disk I/O required to create that SSTable can be reduced, potentially improving write performance. However, this comes with a trade-off of potentially degrading read performance. Since the process of finding a key within an SSTable uses binary search, and the time complexity of binary search is O(log n), we thought the increase in block size would not significantly increase search time. Therefore, we decided to increase the block_size.</p>
+<h3 id="block_restart_interval">block_restart_interval</h3>
+<p>Through <code>block_restart_interval</code>, key-value pairs within a Data Block form a kind of section. Analyzing the code, we observed that the target key is found using binary search for the section, and linear search within the section. Therefore, we judged that setting this option smaller is advantageous for reading and decided to make it smaller. Although this may use more space, we decided not to consider this as long as runtime and throughput are the only concerns.</p>
+<h2 id="result">Result</h2>
+<p>The average values obtained by entering each command three times are as follows.</p>
+<h3 id="default-set">Default set</h3>
+<pre><code>leveldb.write_buffer_size=2097152
+leveldb.max_file_size=4194304
+leveldb.compression=snappy 
+leveldb.cache_size=4194304
+leveldb.filter_bits=10
+leveldb.block_size=4096
+leveldb.block_restart_interval=16
+</code></pre>
+<ul>
+<li>Load A</li>
+<li>Average Load Runtime(sec): 4.4636</li>
+<li>Average Load Throughput(ops/sec): 22598.2</li>
+<li>Run A</li>
+<li>Average Run Runtime(sec): 1.98984</li>
+<li>Average Run Throughput(ops/sec): 51221.6</li>
+<li>Run B</li>
+<li>Average Run Runtime(sec): 0.60909</li>
+<li>Average Run Throughput(ops/sec): 164452.7</li>
+<li>Run D</li>
+<li>Average Run Runtime(sec): 0.43340</li>
+<li>Average Run Throughput(ops/sec): 230799.3</li>
+</ul>
+<h3 id="our-best-set">Our Best set</h3>
+<pre><code>leveldb.write_buffer_size=67108864
+leveldb.max_file_size=33554432
+leveldb.compression=snappy 
+leveldb.cache_size=14417920
+leveldb.filter_bits=10
+leveldb.block_size=2097152
+leveldb.block_restart_interval=4
+</code></pre>
+<ul>
+<li>Load A</li>
+<li>Average Load Runtime(sec): 1.32495</li>
+<li>Average Load Throughput(ops/sec): 77013.1</li>
+<li>Run A</li>
+<li>Average Run Runtime(sec): 1.16803</li>
+<li>Average Run Throughput(ops/sec): 85921.1</li>
+<li>Run B</li>
+<li>Average Run Runtime(sec): 0.55706</li>
+<li>Average Run Throughput(ops/sec): 184068</li>
+<li>Run D</li>
+<li>Average Run Runtime(sec): 0.42554</li>
+<li>Average Run Throughput(ops/sec): 240711.3</li>
+</ul></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

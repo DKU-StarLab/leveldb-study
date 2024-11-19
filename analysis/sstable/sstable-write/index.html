@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+
+    
+    <title>SSTable Write - LevelDB WIKI</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../../css/base.min.css" rel="stylesheet">
+    <link href="../../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../../..">LevelDB WIKI</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Analysis <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../memtable/">Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../wal/">WAL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../manifest/">Manifest</a>
+</li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Compaction</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../compaction/compaction/">Compaction Types</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../compaction/Major-Compaction/">Major Compaction</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../compaction/Minor-Compaction/">Minor Compaction</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">SSTable</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../sstable/">SSTable Structure</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">SSTable Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../sstable-read/">SSTable Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Bloom Filter</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../bloomfilter/bloomfilter/">Bloom Filter Structure</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../bloomfilter/bloomfilter-write/">Bloom Filter Write</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../bloomfilter/bloomfilter-read/">Bloom Filter Read</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../cache/">Cache</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Benchmark Experiment <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">WAL</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_1/">Disable_wal</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_2/">Max_total_wal_size</a>
+</li>
+
+        
+            
+<li >
+    <a href="../../../benchmarks/wal_3/">Manual_wal_flush</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/compaction/">Compaction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/sstable/">SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../benchmarks/bloomfilter/">Bloom Filter</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">YCSB Tuning Contest <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../tuning/">Tuning Contest Overview</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_SSTable_report/">(Rank 1) Team SSTable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_bloomfilter_report/">(Rank 1) Team Bloom Filter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_WAL%2CManifest_report/">(Rank 3) Team WAL/Manifest</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_memtable_report/">(Rank 4) Team Memtable</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_cache_report/">(Rank 5) Team Cache</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../tuning/Tuning_team_Compaction_report/">(Rank 6) Team Compaction</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../../practice/practice/">Assignments</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../../practice/answer/">Answers</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../sstable/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../sstable-read/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#sstable-write">SSTable - Write</a></li>
+            <li class="second-level"><a href="#when-a-flush-occurs-from-the-memtable">When a Flush Occurs from the MemTable</a></li>
+                
+            <li class="second-level"><a href="#overall-process">Overall Process</a></li>
+                
+                <li class="third-level"><a href="#steps">Steps</a></li>
+                <li class="third-level"><a href="#tablebuilderadd">TableBuilder::Add</a></li>
+                <li class="third-level"><a href="#tablebuilderfinish">TableBuilder::Finish</a></li>
+                <li class="third-level"><a href="#tablebuilderflush">TableBuilder::Flush</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="sstable-write">SSTable - Write</h2>
+<p>SSTables are created in the following situations:</p>
+<ol>
+<li>When a <code>Flush (Minor Compaction)</code> occurs from the MemTable</li>
+<li>When <code>Compaction</code> occurs in storage</li>
+</ol>
+<p>This document focuses on how SSTables are created when a <code>Flush</code> occurs from the MemTable.
+<br></p>
+<h3 id="when-a-flush-occurs-from-the-memtable">When a Flush Occurs from the MemTable</h3>
+<p>The process of a <code>Flush</code> occurring from the MemTable is as follows:</p>
+<p align="center"><img src="https://user-images.githubusercontent.com/65762283/187967954-c9b740dc-18c6-4def-8170-bb29d3bb8809.png"></p>
+
+<p><code>CompactMemTable</code> is called, which in turn calls <code>WriteLevel0Table</code>, resulting in the creation of an SSTable. At this point, <code>BuildTable</code> is the function that actually creates the SSTable.</p>
+<p>The flow of <code>BuildTable</code> is as follows:</p>
+<h3 id="overall-process">Overall Process</h3>
+<p><img alt="Sequence 01" src="https://user-images.githubusercontent.com/65762283/183480267-03e4a024-06b0-4798-83d0-74c50a5d0f1a.gif" /></p>
+<h4 id="steps">Steps</h4>
+<ol>
+<li>Create an instance of <code>TableBuilder</code></li>
+<li>Add key-value pairs from the MemTable one by one using the <code>Add</code> method of <code>TableBuilder</code></li>
+<li>Complete the process of creating the SSTable using the <code>Finish</code> method of <code>TableBuilder</code></li>
+<li>Write the contents in the <code>WritableFile</code> to storage</li>
+<li>Load the SSTable stored in storage into the cache and check if it is available</li>
+</ol>
+<pre><code class="language-cpp">Status BuildTable(const std::string&amp; dbname, Env* env, const Options&amp; options,
+                  TableCache* table_cache, Iterator* iter, FileMetaData* meta) {
+  Status s;
+  meta-&gt;file_size = 0;
+  // Make sure the Iterator points to the first element
+  iter-&gt;SeekToFirst();
+
+  std::string fname = TableFileName(dbname, meta-&gt;number);
+  if (iter-&gt;Valid()) {
+    WritableFile* file;
+    s = env-&gt;NewWritableFile(fname, &amp;file);
+    if (!s.ok()) {
+      return s;
+    }
+
+    // 1. Create an instance of TableBuilder
+    TableBuilder* builder = new TableBuilder(options, file);
+    meta-&gt;smallest.DecodeFrom(iter-&gt;key());
+    Slice key;
+
+    // 2. Add key-value pairs of MemTable one by one via TableBuilder's &quot;Add&quot; method
+    for (; iter-&gt;Valid(); iter-&gt;Next()) {
+      key = iter-&gt;key();
+      builder-&gt;Add(key, iter-&gt;value());
+    }
+    if (!key.empty()) {
+      meta-&gt;largest.DecodeFrom(key);
+    }
+
+    // 3. Complete the process of creating SSTable via TableBuilder's &quot;Finish&quot; method
+    s = builder-&gt;Finish();
+    if (s.ok()) {
+      meta-&gt;file_size = builder-&gt;FileSize();
+      assert(meta-&gt;file_size &gt; 0);
+    }
+    delete builder;
+
+    // 4. Write the contents in the WritableFile to storage
+    if (s.ok()) {
+      s = file-&gt;Sync();
+    }
+    if (s.ok()) {
+      s = file-&gt;Close();
+    }
+    delete file;
+    file = nullptr;
+
+    if (s.ok()) {
+      // 5. Put the SSTable stored in storage into cache and check if it is available
+      Iterator* it = table_cache-&gt;NewIterator(ReadOptions(), meta-&gt;number,
+                                              meta-&gt;file_size);
+      s = it-&gt;status();
+      delete it;
+    }
+  }
+
+  // Check for Iterator related errors
+  if (!iter-&gt;status().ok()) {
+    s = iter-&gt;status();
+  }
+
+  if (s.ok() &amp;&amp; meta-&gt;file_size &gt; 0) {
+    // Keep it
+  } else {
+    env-&gt;RemoveFile(fname);
+  }
+  return s;
+}
+</code></pre>
+<h4 id="tablebuilderadd">TableBuilder::Add</h4>
+<blockquote>
+<p><em>The role of passing the key-value pair currently referenced by the Iterator to each BlockBuilder within the TableBuilder.</em></p>
+</blockquote>
+<ol>
+<li>If the Data Block being created by the <code>BlockBuilder</code> is empty, meaning a new Data Block is being started, add a new entry to the Index Block. The entry added at this time is not for the newly started Data Block but for the Data Block that was being created just before.</li>
+<li>If using a Bloom Filter, update the Filter Block as well.</li>
+<li>Add data to the Data Block.</li>
+<li>If the Data Block being created is full (i.e., exceeds the block size specified by the option), call <code>Flush</code>.</li>
+</ol>
+<pre><code class="language-cpp">void TableBuilder::Add(const Slice&amp; key, const Slice&amp; value) {
+  Rep* r = rep_;
+
+  // ...
+
+  // 1. If the Data Block that BlockBuilder is creating is empty,
+  //    add a new entry to the Index Block
+  if (r-&gt;pending_index_entry) {
+    assert(r-&gt;data_block.empty());
+    r-&gt;options.comparator-&gt;FindShortestSeparator(&amp;r-&gt;last_key, key);
+    std::string handle_encoding;
+    r-&gt;pending_handle.EncodeTo(&amp;handle_encoding);
+    r-&gt;index_block.Add(r-&gt;last_key, Slice(handle_encoding));
+    r-&gt;pending_index_entry = false;
+  }
+
+  // 2. If using Bloom Filter, update the Filter Block as well
+  if (r-&gt;filter_block != nullptr) {
+    r-&gt;filter_block-&gt;AddKey(key);
+  }
+
+  r-&gt;last_key.assign(key.data(), key.size());
+  r-&gt;num_entries++;
+  // 3. Add data to the Data Block
+  r-&gt;data_block.Add(key, value);
+
+  const size_t estimated_block_size = r-&gt;data_block.CurrentSizeEstimate();
+  // 4. If the Data Block being created is full, call &quot;Flush&quot;
+  if (estimated_block_size &gt;= r-&gt;options.block_size) {
+    Flush();
+  }
+}
+</code></pre>
+<h4 id="tablebuilderfinish">TableBuilder::Finish</h4>
+<blockquote>
+<p><em>Called when <code>Add</code> is finished for all key-value pairs in the MemTable, and it finalizes the SSTable being written.</em></p>
+</blockquote>
+<ol>
+<li>Call <code>Flush</code>.</li>
+<li>If using a Bloom Filter, add the Filter Block to the <code>WritableFile</code> using <code>FilterBlockBuilder</code>.</li>
+<li>Add the Meta Index Block to the <code>WritableFile</code>.</li>
+<li>Add the Index Block being created by <code>BlockBuilder</code> to the <code>WritableFile</code>.</li>
+<li>Add the Footer to the <code>WritableFile</code>.</li>
+</ol>
+<pre><code class="language-cpp">Status TableBuilder::Finish() {
+  Rep* r = rep_;
+  // 1. Call &quot;Flush&quot;
+  Flush();
+  assert(!r-&gt;closed);
+  r-&gt;closed = true;
+
+  BlockHandle filter_block_handle, metaindex_block_handle, index_block_handle;
+
+  // 2. If using Bloom Filter, add the Filter Block to the WritableFile.
+  if (ok() &amp;&amp; r-&gt;filter_block != nullptr) {
+    WriteRawBlock(r-&gt;filter_block-&gt;Finish(), kNoCompression,
+                  &amp;filter_block_handle);
+  }
+
+  // 3. Add the Meta Index Block to the WritableFile
+  if (ok()) {
+    BlockBuilder meta_index_block(&amp;r-&gt;options);
+    if (r-&gt;filter_block != nullptr) {
+      std::string key = &quot;filter.&quot;;
+      key.append(r-&gt;options.filter_policy-&gt;Name());
+      std::string handle_encoding;
+      filter_block_handle.EncodeTo(&amp;handle_encoding);
+      meta_index_block.Add(key, handle_encoding);
+    }
+
+    WriteBlock(&amp;meta_index_block, &amp;metaindex_block_handle);
+  }
+
+  // 4. Add the Index Block to the WritableFile.
+  if (ok()) {
+    if (r-&gt;pending_index_entry) {
+      r-&gt;options.comparator-&gt;FindShortSuccessor(&amp;r-&gt;last_key);
+      std::string handle_encoding;
+      r-&gt;pending_handle.EncodeTo(&amp;handle_encoding);
+      r-&gt;index_block.Add(r-&gt;last_key, Slice(handle_encoding));
+      r-&gt;pending_index_entry = false;
+    }
+    WriteBlock(&amp;r-&gt;index_block, &amp;index_block_handle);
+  }
+
+  // 5. Add the Footer to the WritableFile.
+  if (ok()) {
+    Footer footer;
+    footer.set_metaindex_handle(metaindex_block_handle);
+    footer.set_index_handle(index_block_handle);
+    std::string footer_encoding;
+    footer.EncodeTo(&amp;footer_encoding);
+    r-&gt;status = r-&gt;file-&gt;Append(footer_encoding);
+    if (r-&gt;status.ok()) {
+      r-&gt;offset += footer_encoding.size();
+    }
+  }
+  return r-&gt;status;
+}
+</code></pre>
+<h4 id="tablebuilderflush">TableBuilder::Flush</h4>
+<blockquote>
+<p><em>The role of writing the Data Block being created to storage.</em></p>
+</blockquote>
+<ol>
+<li>Add the contents of the Data Block being created to the <code>WritableFile</code>.</li>
+<li>Write the contents of the <code>WritableFile</code> to storage.</li>
+<li>If using a Bloom Filter, create a new Bloom Filter.</li>
+</ol>
+<pre><code class="language-cpp">void TableBuilder::Flush() {
+  Rep* r = rep_;
+
+  // ...
+
+  // 1. Add the contents of the Data Block being created to the WritableFile
+  WriteBlock(&amp;r-&gt;data_block, &amp;r-&gt;pending_handle);
+  if (ok()) {
+    r-&gt;pending_index_entry = true;
+    // 2. Write the contents of WritableFile to storage
+    r-&gt;status = r-&gt;file-&gt;Flush();
+  }
+  // 3. If using Bloom Filter, create a new Bloom Filter
+  if (r-&gt;filter_block != nullptr) {
+    r-&gt;filter_block-&gt;StartBlock(r-&gt;offset);
+  }
+}
+</code></pre></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../../.."</script>
+    
+    <script src="../../../js/base.js"></script>
+    <script src="../../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>
