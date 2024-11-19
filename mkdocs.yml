@@ -1,0 +1,49 @@
+site_name: LevelDB WIKI
+theme:
+  name: cinder
+  language: en
+font:
+text: 'Roboto'
+code: 'Roboto Mono'
+features:
+- navigation.tabs
+- navigation.top
+- toc.integrate
+nav:
+  - Home: index.md
+  - Code Analysis:
+      - Memtable: analysis/memtable.md
+      - WAL: analysis/wal.md
+      - Manifest: analysis/manifest.md
+      - Compaction:
+        - Compaction Types: analysis/compaction/compaction.md
+        - Major Compaction: analysis/compaction/Major-Compaction.md
+        - Minor Compaction: analysis/compaction/Minor-Compaction.md
+      - SSTable: 
+        - SSTable Structure: analysis/sstable/sstable.md
+        - SSTable Write: analysis/sstable/sstable-write.md
+        - SSTable Read: analysis/sstable/sstable-read.md
+      - Bloom Filter:
+        - Bloom Filter Structure: analysis/bloomfilter/bloomfilter.md
+        - Bloom Filter Write: analysis/bloomfilter/bloomfilter-write.md
+        - Bloom Filter Read: analysis/bloomfilter/bloomfilter-read.md
+      - Cache: analysis/cache.md
+  - Benchmark Experiment:
+      - WAL:
+          - Disable_wal: benchmarks/wal_1.md
+          - Max_total_wal_size: benchmarks/wal_2.md
+          - Manual_wal_flush: benchmarks/wal_3.md
+      - Compaction: benchmarks/compaction.md
+      - SSTable: benchmarks/sstable.md
+      - Bloom Filter: benchmarks/bloomfilter.md
+  - YCSB Tuning Contest:
+      - Tuning Contest Overview: tuning/README.md
+      - (Rank 1) Team SSTable: tuning/Tuning_team_SSTable_report.md
+      - (Rank 1) Team Bloom Filter : tuning/Tuning_team_bloomfilter_report.md
+      - (Rank 3) Team WAL/Manifest : tuning/Tuning_team_WAL,Manifest_report.md
+      - (Rank 4) Team Memtable : tuning/Tuning_team_memtable_report.md
+      - (Rank 5) Team Cache : tuning/Tuning_team_cache_report.md
+      - (Rank 6) Team Compaction : tuning/Tuning_team_Compaction_report.md
+  - Assignments:
+      - Assignments: practice/practice.md
+      - Answers: practice/answer.md
