@@ -4,11 +4,16 @@
 ## Goals
 * [Study LevelDB.](./introduction/README.md)
 * [Analyze LevelDB](./analysis/README.md)
-* Write LevelDB analysis document.
-  * github: https://github.com/DKU-StarLab/leveldb-wiki
-  * website: https://sslab.dankook.ac.kr/leveldb-wiki
+* Write **Open Source Documentation** Analyzing LevelDB.
+  * ENG Website: https://dku-starlab.github.io/leveldb-wiki/
+  * KOR Website: https://sslab.dankook.ac.kr/leveldb-wiki
+  * Github: https://github.com/DKU-StarLab/leveldb-wiki
 * [Tuning Contest: YCSB](./tuning/README.md)
 * Write a research paper on what you learned.
+  * [Sangwoo Kang et. al., Read performance analysis according to Compaction Trigger. 한국정보과학회 학술발표논문집, 제주.](https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11224619)
+  * [Suhwan Shin et. al., Per Key-Value Checksum Analysis on RocksDB. 한국정보과학회 학술발표논문집, 제주.](https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11224618)
+  * [Subin Hong et. al., LevelDB cache structure and performance analysis. 한국정보과학회 학술발표논문집, 제주.](https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11224615)
+  * [Hansu Kim et. al., Bloom Filter Optimization in LevelDB based on Hit-Ratio. 한국정보과학회 학술발표논문집, 제주.](https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11224614)
 
 ## Members
 * Student:
